@@ -47,6 +47,7 @@ namespace SpaceInvaders
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
             this.Components.Add(enemiesMatrix);
             base.Initialize();
+
         }
 
         protected override void Update(GameTime gameTime)

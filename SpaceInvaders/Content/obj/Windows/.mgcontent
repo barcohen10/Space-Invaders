@@ -4,17 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Bullet.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Enemy1.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Enemy2.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Enemy3.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/MotherSpaceShip.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/SpaceBg.jpg</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/SpaceShip.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/SpaceShip2.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Barrier.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Enemies.png</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Fonts/CalibriFont.spritefont</File>
-    <File>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Fonts/Arial.spritefont</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Bullet.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Enemy1.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Enemy2.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Enemy3.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/MotherSpaceShip.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/SpaceBg.jpg</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/SpaceShip.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/SpaceShip2.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Barrier.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Sprites/Enemies.png</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Fonts/CalibriFont.spritefont</File>
+    <File>D:/GitProjects/Monogame/Space-Invaders/SpaceInvaders/Content/Fonts/Arial.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>
