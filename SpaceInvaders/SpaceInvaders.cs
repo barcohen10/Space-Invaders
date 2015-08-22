@@ -8,7 +8,7 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
-using C15Ex03Dotan301810610Bar308000322.Screens;
+using C15Ex02Dotan301810610Bar308000322.Screens;
 
 namespace SpaceInvaders
 {
@@ -57,9 +57,9 @@ namespace SpaceInvaders
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            m_SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            //m_SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             base.Draw(gameTime);
-            m_SpriteBatch.End();
+            //m_SpriteBatch.End();
         }
     }
 }

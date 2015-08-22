@@ -10,7 +10,6 @@
 //using System.Text;
 //using System.Windows.Forms;
 
-
 //namespace C15Ex02Dotan301810610Bar308000322.Screens
 //{
 //  public  class PauseScreen :GameScreen

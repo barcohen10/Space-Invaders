@@ -24,7 +24,6 @@ namespace SpaceInvaders.ObjectModel
         {
             this.Velocity = new Vector2(r_BarrierVelocity, 0);
             m_CollisionServices = this.Game.Services.GetService(typeof(CollisionServices)) as CollisionServices;
-            UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
         }
 
         public event EventHandler TouchScreenLimit;
@@ -36,7 +35,12 @@ namespace SpaceInvaders.ObjectModel
                 TouchScreenLimit(this, EventArgs.Empty);
             }
         }
-
+        public override void Initialize()
+        {
+            base.Initialize();
+            UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+        
+        }
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

@@ -21,8 +21,8 @@ namespace SpaceInvaders.ObjectModel
          {
              Opacity = 0.5f;
              Scales = new Vector2(0.5f);
-             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
              base.Initialize();
+             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
          }
 
          public override void Draw(GameTime i_GameTime)
