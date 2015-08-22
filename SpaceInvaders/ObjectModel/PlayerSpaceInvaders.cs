@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Services;
+
+namespace SpaceInvaders.ObjectModel
+{
+    public class PlayerSpaceInvaders : Player
+    {
+        private SpaceShip m_SpaceShip;
+        private Text m_ScoreText;
+        private List<Life> m_LifesSprites = new List<Life>();
+        private string m_Nickname;
+        private eSpaceShipType m_SpaceShipType;
+
+        public enum eSpaceShipType
+        {
+            Green,
+            Blue
+        }
+
+        public List<Life> LifesSprites
+        {
+            get { return m_LifesSprites; }
+            set { m_LifesSprites = value; }
+        }
+
+        public SpaceShip SpaceShip
+        {
+            get
+            {
+                return m_SpaceShip;
+            }
+
+            set
+            {
+                m_SpaceShip = value;
+            }
+        }
+
+        public Text ScoreMessage
+        {
+            get
+            {
+                return m_ScoreText;
+            }
+
+            set
+            {
+                m_ScoreText = value;
+            }
+        }
+
+        public PlayerSpaceInvaders(Game i_Game, string i_PlayerNickname, eSpaceShipType i_SpaceShipType)
+            : base(i_Game, i_PlayerNickname)
+        {
+            m_Nickname = i_PlayerNickname;
+            m_SpaceShipType = i_SpaceShipType;
+            m_ScoreText = SpritesFactory.CreateSprite(i_Game, SpritesFactory.eSpriteType.Text) as Text;
+            switch (m_SpaceShipType)
+            {
+                case eSpaceShipType.Blue:
+                    m_SpaceShip = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.BlueSpaceShip) as SpaceShip;
+                    m_ScoreText.TintColor = Color.Blue;
+                    break;
+
+                case eSpaceShipType.Green:
+                    m_SpaceShip = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.GreenSpaceShip) as SpaceShip;
+                    m_ScoreText.TintColor = Color.Green;
+                    break;
+            }
+
+            for (int i = 0; i < this.Lifes; i++)
+            {
+                this.LifesSprites.Add(new Life(this.Game, SpaceShip.AssetName));
+            }
+        }
+
+        public override void LoseLife()
+        {
+            if (Lifes > 0)
+            {
+                this.LifesSprites[Lifes - 1].Visible = false;
+                base.LoseLife();
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            m_ScoreText.TextString = string.Format("{0} Score: {1}", this.Nickname, this.Score);
+        }
+    }
+}
