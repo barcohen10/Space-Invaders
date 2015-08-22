@@ -9,9 +9,9 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
-    public class ScreensMananger : CompositeDrawableComponent<GameScreen>, IScreensMananger
+    public class ScreensManager : CompositeDrawableComponent<GameScreen>, IScreensManager
     {
-        public ScreensMananger(Game i_Game)
+        public ScreensManager(Game i_Game)
             : base(i_Game)
         {
             i_Game.Components.Add(this);
@@ -132,7 +132,7 @@ namespace SpaceInvaders.Infrastructure.Managers
 
         public override void Initialize()
         {
-            Game.Services.AddService(typeof(IScreensMananger), this);
+            Game.Services.AddService(typeof(IScreensManager), this);
 
             base.Initialize();
         }

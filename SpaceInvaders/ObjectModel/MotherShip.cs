@@ -10,18 +10,19 @@ using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using Microsoft.Xna.Framework.Graphics;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
     public class MotherShip : Sprite, ICollidable2D, IAnimated, IDieable
     {
-        private const int k_RandomNumberToGet = 5;
+        private const int k_RandomNumberToGet = 333;
         private readonly float r_MotherShipVelocity = float.Parse(ConfigurationManager.AppSettings["MotherShip.Velocity"]);
 
         private Random m_RandomGenerator = new Random();
 
-        public MotherShip(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game)
+        public MotherShip(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {
             this.Velocity = new Vector2(r_MotherShipVelocity, 0);
         }
@@ -94,7 +95,7 @@ namespace SpaceInvaders.ObjectModel
             }
             else if (!this.isDying)
             {
-                int randomNumber = m_RandomGenerator.Next(10);
+                int randomNumber = m_RandomGenerator.Next(1000);
                 if (randomNumber.Equals(k_RandomNumberToGet))
                 {
                     startShowingMotherShip();
@@ -126,7 +127,7 @@ namespace SpaceInvaders.ObjectModel
                     player.AddScore(Points);
                 }
 
-                this.Game.Components.Remove(bullet);
+                this.GameScreen.Remove(bullet);
                 bullet.Dispose();
             }
         }
@@ -136,5 +137,8 @@ namespace SpaceInvaders.ObjectModel
             get;
             set;
         }
+
+
+
     }
 }

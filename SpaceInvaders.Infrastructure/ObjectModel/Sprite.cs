@@ -3,6 +3,7 @@ using Infrastructure.ObjectModel.Animators;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.Managers;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using System;
 
@@ -10,16 +11,22 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
 {
     public class Sprite : LoadableDrawableComponent
     {
-        private SpriteSortMode m_SpriteSortModel = SpriteSortMode.Deferred;
-        private BlendState m_BlendState = BlendState.AlphaBlend;
-        Color[] m_Pixels;
+        private Color[] m_Pixels;
 
         protected void UseOwnSpriteBatch(SpriteSortMode i_SpriteSortMode, BlendState i_BlendState)
         {
             SpriteBatch = new SpriteBatch(this.GraphicsDevice);
             m_UseSharedBatch = false;
             m_BlendState = i_BlendState;
-            m_SpriteSortModel = i_SpriteSortMode;
+            m_SortMode = i_SpriteSortMode;
+        }
+
+        private GameScreen m_GameScreen;
+
+        public GameScreen GameScreen 
+        {
+            get{return m_GameScreen; }
+            set { m_GameScreen = value; }
         }
 
         public Color[] Pixels
@@ -42,6 +49,22 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
 
         private string m_Id = Guid.NewGuid().ToString();
         public string Id { get { return m_Id; } }
+
+        public event EventHandler<EventArgs> Disposed;
+
+        protected virtual void OnDisposed()
+        {
+            if (Disposed != null)
+            {
+                Disposed(this, EventArgs.Empty);
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            OnDisposed();
+            base.Dispose(disposing);
+        }
 
         protected CompositeAnimator m_Animations;
         public CompositeAnimator Animations
@@ -218,6 +241,55 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             set { m_SpriteEffects = value; }
         }
 
+        protected SpriteSortMode m_SortMode = SpriteSortMode.Deferred;
+        public SpriteSortMode SortMode
+        {
+            get { return m_SortMode; }
+            set { m_SortMode = value; }
+        }
+
+        protected BlendState m_BlendState = BlendState.AlphaBlend;
+        public BlendState BlendState
+        {
+            get { return m_BlendState; }
+            set { m_BlendState = value; }
+        }
+
+        protected SamplerState m_SamplerState = null;
+        public SamplerState SamplerState
+        {
+            get { return m_SamplerState; }
+            set { m_SamplerState = value; }
+        }
+
+        protected DepthStencilState m_DepthStencilState = null;
+        public DepthStencilState DepthStencilState
+        {
+            get { return m_DepthStencilState; }
+            set { m_DepthStencilState = value; }
+        }
+
+        protected RasterizerState m_RasterizerState = null;
+        public RasterizerState RasterizerState
+        {
+            get { return m_RasterizerState; }
+            set { m_RasterizerState = value; }
+        }
+
+        protected Effect m_Shader = null;
+        public Effect Shader
+        {
+            get { return m_Shader; }
+            set { m_Shader = value; }
+        }
+
+        protected Matrix m_TransformMatrix = Matrix.Identity;
+        public Matrix TransformMatrix
+        {
+            get { return m_TransformMatrix; }
+            set { m_TransformMatrix = value; }
+        }
+
         protected Vector2 m_Velocity = Vector2.Zero;
         /// <summary>
         /// Pixels per Second on 2 axis
@@ -238,6 +310,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             set { m_AngularVelocity = value; }
         }
 
+
         public Sprite(string i_AssetName, Game i_Game, int i_UpdateOrder, int i_DrawOrder)
             : base(i_AssetName, i_Game, i_UpdateOrder, i_DrawOrder)
         { }
@@ -249,6 +322,12 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
         public Sprite(string i_AssetName, Game i_Game)
             : base(i_AssetName, i_Game, int.MaxValue)
         { }
+
+        public Sprite(string i_AssetName, GameScreen i_GameScreen)
+            : base(i_AssetName, i_GameScreen.Game, int.MaxValue)
+        {
+            m_GameScreen = i_GameScreen;
+        }
 
         /// <summary>
         /// Default initialization of bounds
@@ -344,24 +423,35 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             this.Animations.Update(gameTime);
         }
 
-        /// <summary>
-        /// Basic texture draw behavior, using a shared/own sprite batch
-        /// </summary>
-        /// <param name="i_GameTime"></param>
-        public override void Draw(GameTime i_GameTime)
-        {
 
+        public override void Draw(GameTime gameTime)
+        {
             if (!m_UseSharedBatch)
             {
-                m_SpriteBatch.Begin(m_SpriteSortModel, m_BlendState);
+                if (SaveAndRestoreDeviceState)
+                {
+                    saveDeviceStates();
+                }
+
+                m_SpriteBatch.Begin(
+                    SortMode, m_BlendState, SamplerState,
+                    DepthStencilState, RasterizerState, Shader, TransformMatrix);
             }
 
             DrawSpriteBatch();
 
+
             if (!m_UseSharedBatch)
             {
                 m_SpriteBatch.End();
+
+                if (SaveAndRestoreDeviceState)
+                {
+                    restoreDeviceStates();
+                }
             }
+
+            base.Draw(gameTime);
         }
 
 
@@ -400,6 +490,38 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
         public Sprite ShallowClone()
         {
             return this.MemberwiseClone() as Sprite;
+        }
+
+        class DeviceStates
+        {
+            public BlendState BlendState;
+            public SamplerState SamplerState;
+            public DepthStencilState DepthStencilState;
+            public RasterizerState RasterizerState;
+        }
+
+        DeviceStates m_SavedDeviceStates = new DeviceStates();
+        protected void saveDeviceStates()
+        {
+            m_SavedDeviceStates.BlendState = GraphicsDevice.BlendState;
+            m_SavedDeviceStates.SamplerState = GraphicsDevice.SamplerStates[0];
+            m_SavedDeviceStates.DepthStencilState = GraphicsDevice.DepthStencilState;
+            m_SavedDeviceStates.RasterizerState = GraphicsDevice.RasterizerState;
+        }
+
+        private void restoreDeviceStates()
+        {
+            GraphicsDevice.BlendState = m_SavedDeviceStates.BlendState;
+            GraphicsDevice.SamplerStates[0] = m_SavedDeviceStates.SamplerState;
+            GraphicsDevice.DepthStencilState = m_SavedDeviceStates.DepthStencilState;
+            GraphicsDevice.RasterizerState = m_SavedDeviceStates.RasterizerState;
+        }
+
+        protected bool m_SaveAndRestoreDeviceState = false;
+        public bool SaveAndRestoreDeviceState
+        {
+            get { return m_SaveAndRestoreDeviceState; }
+            set { m_SaveAndRestoreDeviceState = value; }
         }
     }
 }

@@ -9,19 +9,20 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.Services
 {
     public static class SpaceInvadersServices
     {
-        public static void CreateNewPlayers(Game i_Game, params ConfSpaceShip[] i_ConfSpaceShips)
+        public static void CreateNewPlayers(GameScreen i_GameScreen, params ConfSpaceShip[] i_ConfSpaceShips)
         {
             PlayerSpaceInvaders player = null, beforePlayer = null;
-            float xSpaceShip, yLifes = 0, xLifes = (float)i_Game.GraphicsDevice.Viewport.Width - 20;
+            float xSpaceShip, yLifes = 0, xLifes = (float)i_GameScreen.Game.GraphicsDevice.Viewport.Width - 20;
             for (int i = 0; i < i_ConfSpaceShips.Length; i++)
             {
                 string nickname = "P" + (i + 1).ToString();
-                player = new PlayerSpaceInvaders(i_Game, nickname, i_ConfSpaceShips[i].SpaceShipType);
+                player = new PlayerSpaceInvaders(i_GameScreen, nickname, i_ConfSpaceShips[i].SpaceShipType);
                 foreach (Life life in player.LifesSprites)
                 {
                     life.Position = new Vector2(xLifes, yLifes);
@@ -29,7 +30,7 @@ namespace SpaceInvaders.Services
                 }
 
                 yLifes += 20;
-                xLifes = (float)i_Game.GraphicsDevice.Viewport.Width - 20;
+                xLifes = (float)i_GameScreen.Game.GraphicsDevice.Viewport.Width - 20;
                 player.SpaceShip.Configuration = i_ConfSpaceShips[i];
                 if (beforePlayer != null)
                 {
@@ -39,7 +40,7 @@ namespace SpaceInvaders.Services
                 }
 
                 beforePlayer = player;
-                i_Game.Components.Add(player);
+                i_GameScreen.Game.Components.Add(player);
                 player.ScoreMessage.TextString = string.Format("{0} Score: {1}", player.Nickname, player.Score);
             }
         }
@@ -63,11 +64,11 @@ namespace SpaceInvaders.Services
             return isAllPlayersLost;
         }
 
-        public static int GetShootingSpriteAmountOfAliveBullets(Game i_Game, ShootingSprite i_ShottingSprite)
+        public static int GetShootingSpriteAmountOfAliveBullets(GameScreen i_GameScreen, ShootingSprite i_ShottingSprite)
         {
             int aliveBullets = 0;
             string typeName;
-            foreach (GameComponent component in i_Game.Components)
+            foreach (GameComponent component in i_GameScreen)
             {
                 Bullet bullet = component as Bullet;
                 if (bullet != null)
@@ -101,10 +102,10 @@ namespace SpaceInvaders.Services
             return player;
         }
 
-        public static EnemiesMatrix GetEnemeiesMatrixComponent(Game i_Game)
+        public static EnemiesMatrix GetEnemeiesMatrixComponent(GameScreen i_GameScreen)
         {
             EnemiesMatrix enemiesMatrix = null;
-            foreach (GameComponent component in i_Game.Components)
+            foreach (GameComponent component in i_GameScreen)
             {
                 enemiesMatrix = component as EnemiesMatrix;
                 if (enemiesMatrix != null)
@@ -118,7 +119,7 @@ namespace SpaceInvaders.Services
 
         public static void GameOver(Game i_Game)
         {
-            PlayerSpaceInvaders winningPlayer = getWinningPlayer(i_Game);
+            PlayerSpaceInvaders winningPlayer = getWinningPlayer( i_Game);
             List<PlayerSpaceInvaders> otherPlayers = getAllPlayers(i_Game, winningPlayer);
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Game Over!");
@@ -180,10 +181,10 @@ namespace SpaceInvaders.Services
             return winningPlayer;
         }
 
-        public static void ChangeBarriersGroupVerticalPosition(Game i_Game, BarrierGroup i_BarrierGroup)
+        public static void ChangeBarriersGroupVerticalPosition(GameScreen i_GameScreen, BarrierGroup i_BarrierGroup)
         {
             SpaceShip spaceShip = null;
-            List<PlayerSpaceInvaders> allPlayers = getAllPlayers(i_Game);
+            List<PlayerSpaceInvaders> allPlayers = getAllPlayers(i_GameScreen.Game);
             float y;
             if (allPlayers.Count > 0)
             {

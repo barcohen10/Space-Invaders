@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -55,28 +56,30 @@ namespace SpaceInvaders.ObjectModel
             }
         }
 
-        public PlayerSpaceInvaders(Game i_Game, string i_PlayerNickname, eSpaceShipType i_SpaceShipType)
-            : base(i_Game, i_PlayerNickname)
+        public PlayerSpaceInvaders(GameScreen i_GameScreen, string i_PlayerNickname, eSpaceShipType i_SpaceShipType)
+            : base(i_GameScreen.Game, i_PlayerNickname)
         {
             m_Nickname = i_PlayerNickname;
             m_SpaceShipType = i_SpaceShipType;
-            m_ScoreText = SpritesFactory.CreateSprite(i_Game, SpritesFactory.eSpriteType.Text) as Text;
+            m_ScoreText = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.Text) as Text;
             switch (m_SpaceShipType)
             {
                 case eSpaceShipType.Blue:
-                    m_SpaceShip = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.BlueSpaceShip) as SpaceShip;
+                    m_SpaceShip = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.BlueSpaceShip) as SpaceShip;
                     m_ScoreText.TintColor = Color.Blue;
                     break;
 
                 case eSpaceShipType.Green:
-                    m_SpaceShip = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.GreenSpaceShip) as SpaceShip;
+                    m_SpaceShip = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.GreenSpaceShip) as SpaceShip;
                     m_ScoreText.TintColor = Color.Green;
                     break;
             }
 
             for (int i = 0; i < this.Lifes; i++)
             {
-                this.LifesSprites.Add(new Life(this.Game, SpaceShip.AssetName));
+                Life life = new Life(i_GameScreen, SpaceShip.AssetName);
+                life.Initialize();
+                this.LifesSprites.Add(life);
             }
         }
 

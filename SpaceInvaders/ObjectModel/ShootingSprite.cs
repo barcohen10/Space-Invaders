@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -14,10 +15,12 @@ namespace SpaceInvaders.ObjectModel
     {
         private string m_SerialNumber;
 
-        public ShootingSprite(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game)
+     
+        public ShootingSprite(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {
             m_SerialNumber = Guid.NewGuid().ToString();
+
         }
 
         public string SerialNumber 
@@ -32,7 +35,7 @@ namespace SpaceInvaders.ObjectModel
         {
             Bullet bullet = null;
 
-            bullet = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.Bullet) as Bullet;
+            bullet = SpritesFactory.CreateSprite(this.GameScreen, SpritesFactory.eSpriteType.Bullet) as Bullet;
             bullet.Initialize();
             bullet.TintColor = i_BulletColor;
             bullet.GunSerialNumber = m_SerialNumber;

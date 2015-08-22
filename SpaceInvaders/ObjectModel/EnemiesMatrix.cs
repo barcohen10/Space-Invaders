@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -18,14 +19,17 @@ namespace SpaceInvaders.ObjectModel
         private int m_TimeCount;
         private int m_JumpTwiceMilliSec;
         private SpriteJump.eJumpDirection m_JumpDirection;
+        private GameScreen m_GameScreen;
 
-        public EnemiesMatrix(Game i_Game)
-            : base(i_Game)
+
+        public EnemiesMatrix(GameScreen i_GameScreen)
+            : base(i_GameScreen.Game)
         {
             m_TimeCount = 0;
             m_JumpTwiceMilliSec = 1000;
             this.r_EnemiesMatrix = new Enemy[k_EnemiesMatrixHeight, k_EnemiesMatrixWidth];
             m_JumpDirection = SpriteJump.eJumpDirection.Right;
+            m_GameScreen = i_GameScreen;
         }
 
         public void SpeedUp(double i_Amount)
@@ -108,7 +112,7 @@ namespace SpaceInvaders.ObjectModel
                 for (int j = 0; j < k_EnemiesMatrixWidth; j++)
                 {
                     enemyTypeToCreate = (i_NumOfPinkEnemies > 0) ? SpritesFactory.eSpriteType.EnemyPink : (i_NumOfLightBlueEnemies > 0 ? SpritesFactory.eSpriteType.EnemyLightBlue : SpritesFactory.eSpriteType.EnemyYellow);
-                    enemy = SpritesFactory.CreateSprite(this.Game, enemyTypeToCreate) as Enemy;
+                    enemy = SpritesFactory.CreateSprite(m_GameScreen, enemyTypeToCreate) as Enemy;
                     this.r_EnemiesMatrix[i, j] = enemy;
                     switch (enemyTypeToCreate)
                     {
@@ -145,7 +149,7 @@ namespace SpaceInvaders.ObjectModel
             {
                 for (int j = 0; j < k_EnemiesMatrixWidth; j++)
                 {
-                    if (this.Game.Components.Contains(r_EnemiesMatrix[i, j]))
+                    if (m_GameScreen.Contains(r_EnemiesMatrix[i, j]))
                     {
                         r_EnemiesMatrix[i, j].SpriteJump.Jump(i_JumpDirection, i_DistanceToJump, i_IsJumpingBackwards);
                     }
@@ -178,7 +182,7 @@ namespace SpaceInvaders.ObjectModel
                 {
                     for (int j = 0; j < k_EnemiesMatrixWidth; j++)
                     {
-                        if (randomNumber == count && this.Game.Components.Contains(r_EnemiesMatrix[i, j]))
+                        if (randomNumber == count && m_GameScreen.Contains(r_EnemiesMatrix[i, j]))
                         {
                             r_EnemiesMatrix[i, j].ShootBullet(Color.Blue);
                             break;
@@ -200,12 +204,12 @@ namespace SpaceInvaders.ObjectModel
             int countEnemies = 0;
             foreach (Enemy enemy in r_EnemiesMatrix)
             {
-                if (this.Game.Components.Contains(enemy))
+                if (m_GameScreen.Contains(enemy))
                 {
                     countEnemies++;
                 }
 
-                if (this.Game.Components.Contains(enemy) && enemy.SpriteJump.IsTouchedEndOfTheScreen())
+                if (m_GameScreen.Contains(enemy) && enemy.SpriteJump.IsTouchedEndOfTheScreen())
                 {
                     SpaceInvadersServices.GameOver(this.Game);
                     break;

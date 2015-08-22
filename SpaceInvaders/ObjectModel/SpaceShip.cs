@@ -12,6 +12,7 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -23,8 +24,8 @@ namespace SpaceInvaders.ObjectModel
         private IInputManager m_InputManager;
         private ButtonState m_LastBTNState = ButtonState.Released;
 
-        public SpaceShip(Game i_Game, string i_AssetName)
-            : base(i_Game, i_AssetName)
+        public SpaceShip(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_GameScreen, i_AssetName)
         {
         }
 
@@ -68,7 +69,7 @@ namespace SpaceInvaders.ObjectModel
                 m_Velocity.X = 0;
             }
 
-            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.Game, this) < r_MaxAmountOfBulletsAtOnec)
+            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec)
             {
                 getAndShootBullet(Color.Red, -r_BulletVelocity);
                 m_LastBTNState = m_InputManager.MouseState.LeftButton;
@@ -100,7 +101,7 @@ namespace SpaceInvaders.ObjectModel
             if (enemy != null)
             {
                 SpaceInvadersServices.GameOver(this.Game);
-                this.Game.Components.Remove(enemy);
+                this.GameScreen.Remove(enemy);
                 enemy.Dispose();
             }
 
@@ -156,7 +157,7 @@ namespace SpaceInvaders.ObjectModel
                     this.Animations["BlinkAnimator"].Resume();
                 }
 
-                this.Game.Components.Remove(i_Bullet);
+                this.GameScreen.Remove(i_Bullet);
                 i_Bullet.Dispose();
             }
         }

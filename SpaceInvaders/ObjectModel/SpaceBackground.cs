@@ -6,13 +6,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModels;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
     public class SpaceBackground : Sprite
     {
-        public SpaceBackground(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game)
+        public SpaceBackground(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {
         }
 

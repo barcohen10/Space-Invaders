@@ -5,15 +5,17 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModels;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
     public class Life : Sprite
     {
-         public Life(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game) 
+         public Life(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen) 
         {
         }
+
 
          public override void Initialize()
          {

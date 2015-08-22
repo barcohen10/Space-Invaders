@@ -9,6 +9,7 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -81,7 +82,7 @@ namespace SpaceInvaders.ObjectModel
 
         private void shrinkAnimator_Finished(object sender, EventArgs e)
         {
-            this.Game.Components.Remove(this);
+            this.GameScreen.Remove(this);
         }
 
         public void LastAnimation()
@@ -91,8 +92,8 @@ namespace SpaceInvaders.ObjectModel
             this.Animations["RotateAnimator"].Resume();
         }
 
-        public Enemy(Game i_Game, Color i_EnemyColor, int i_TextureStartIndex, int i_TextureEndIndex, string i_AssetName)
-            : base(i_Game, i_AssetName)
+        public Enemy(GameScreen i_GameScreen, Color i_EnemyColor, int i_TextureStartIndex, int i_TextureEndIndex, string i_AssetName)
+            : base(i_GameScreen, i_AssetName)
         {
             m_TintColor = i_EnemyColor;
             m_SpriteJump = new SpriteJump(this);
@@ -100,13 +101,7 @@ namespace SpaceInvaders.ObjectModel
             r_TextureEndIndex = i_TextureEndIndex;
         }
 
-        public Enemy(Game i_Game, Color i_EnemyColor, string i_AssetName)
-            : base(i_Game, i_AssetName)
-        {
-            m_TintColor = i_EnemyColor;
-            m_SpriteJump = new SpriteJump(this);
-        }
-
+    
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -136,7 +131,7 @@ namespace SpaceInvaders.ObjectModel
 
         public void ShootBullet(Color i_Color)
         {
-            if (SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.Game, this) == 0)
+            if (SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) == 0)
             {
                 getAndShootBullet(i_Color, r_BulletVelocity);
             }
