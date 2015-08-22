@@ -50,8 +50,12 @@ artifacts/
 *.ilk
 *.meta
 *.obj
+*.xnb
+*.mgcb
+*.mgcontent
 *.pch
 *.pdb
+*.suo
 *.pgc
 *.pgd
 *.rsp
