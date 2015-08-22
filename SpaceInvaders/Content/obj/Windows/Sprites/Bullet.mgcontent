@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/Sprites/Bullet.png</SourceFile>
-  <SourceTime>2011-02-28T17:55:44+02:00</SourceTime>
-  <DestFile>C:/Users/dotan.douek/Desktop/X12/C15 Ex02 DotanDouek 301810610 BarCohen 308000322/SpaceInvaders/Content/bin/Windows/Sprites/Bullet.xnb</DestFile>
-  <DestTime>2015-08-21T15:27:51.0802948+03:00</DestTime>
+  <SourceFile>C:/Projects/MonoGame/Space-Invaders/SpaceInvaders/Content/Sprites/Bullet.png</SourceFile>
+  <SourceTime>2011-02-28T18:55:44+02:00</SourceTime>
+  <DestFile>C:/Projects/MonoGame/Space-Invaders/SpaceInvaders/Content/bin/Windows/Sprites/Bullet.xnb</DestFile>
+  <DestTime>2015-08-22T12:29:02.3350427+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T20:14:44+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
