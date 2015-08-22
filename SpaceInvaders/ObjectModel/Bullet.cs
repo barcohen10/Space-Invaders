@@ -10,13 +10,14 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
     public class Bullet : Sprite, ICollidable2D
     {
-        public Bullet(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game)
+        public Bullet(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {
         }
 
@@ -29,12 +30,12 @@ namespace SpaceInvaders.ObjectModel
             base.Update(gameTime);
             if (this.Position.Y < -this.Height)
             {
-                this.Game.Components.Remove(this);
+                this.GameScreen.Remove(this);
             }
 
             if (this.Position.Y > GraphicsDevice.Viewport.Height)
             {
-                this.Game.Components.Remove(this);
+                this.GameScreen.Remove(this);
             }
         }
 
@@ -50,7 +51,7 @@ namespace SpaceInvaders.ObjectModel
                     if (!enemy.isDying)
                     {
                         Player player = SpaceInvadersServices.GetPlayerComponent(this.Game, this.GunSerialNumber);
-                        EnemiesMatrix enemiesMatrix = SpaceInvadersServices.GetEnemeiesMatrixComponent(this.Game);
+                        EnemiesMatrix enemiesMatrix = SpaceInvadersServices.GetEnemeiesMatrixComponent(this.GameScreen);
                         enemiesMatrix.SpeedUp(0.92);
                         enemy.LastAnimation();
                         if (player != null)
@@ -61,7 +62,7 @@ namespace SpaceInvaders.ObjectModel
                         enemy.Dispose();
                     }
 
-                    this.Game.Components.Remove(this);
+                    this.GameScreen.Remove(this);
                     this.Dispose();
                 }
             }
@@ -71,7 +72,7 @@ namespace SpaceInvaders.ObjectModel
                 {
                     if (this.ShootingSpriteType.Name.Equals("SpaceShip"))
                     {
-                        this.Game.Components.Remove(this);
+                        this.GameScreen.Remove(this);
                         this.Dispose();
                     }
                     else if (this.ShootingSpriteType.Name.Equals("Enemy"))
@@ -79,7 +80,7 @@ namespace SpaceInvaders.ObjectModel
                         int randomNumber = new Random().Next(1, 10);
                         if (randomNumber == 1)
                         {
-                            this.Game.Components.Remove(this);
+                            this.GameScreen.Remove(this);
                             this.Dispose();
                         }
                     }

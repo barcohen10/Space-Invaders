@@ -1,4 +1,4 @@
-D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\C15Ex01Dotan301810610Bar000000000.exe.config
+D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\BG_Space01_1024x768.xnb
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\Bullet.xnb
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\Enemy0101_32x32.xnb
@@ -18,6 +18,7 @@ D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\S
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\Sprites\SpaceBg.xnb
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\Sprites\SpaceShip.xnb
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Content\Sprites\SpaceShip2.xnb
+D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\C15Ex01Dotan301810610Bar000000000.exe.config
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\C15Ex01Dotan301810610Bar000000000.exe
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\C15Ex01Dotan301810610Bar000000000.pdb
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\Lidgren.Network.dll
@@ -45,6 +46,5 @@ D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\SharpDX.D
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\SharpDX.DXGI.xml
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\SharpDX.Direct2D1.xml
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\bin\Windows\Debug\SharpDX.XInput.xml
-D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojResolveAssemblyReference.cache
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\obj\x86\Debug\C15Ex01Dotan301810610Bar000000000.exe
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders\obj\x86\Debug\C15Ex01Dotan301810610Bar000000000.pdb

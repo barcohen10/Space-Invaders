@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Services;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -11,10 +12,12 @@ namespace SpaceInvaders.ObjectModel
     {
         private const int k_NumOfBarries = 4;
         private List<Barrier> m_Barriers = new List<Barrier>();
+        private GameScreen m_GameScreen;
 
-        public BarrierGroup(Game i_Game)
-            : base(i_Game)
+        public BarrierGroup(GameScreen i_GameScreen)
+            : base(i_GameScreen.Game)
         {
+            m_GameScreen = i_GameScreen;
             createBarrierGroup(k_NumOfBarries);
         }
 
@@ -26,7 +29,7 @@ namespace SpaceInvaders.ObjectModel
 
             for (int i = 0; i < i_NumOfBarriers; i++)
             {
-                barrier = SpritesFactory.CreateSprite(this.Game, SpritesFactory.eSpriteType.Barrier) as Barrier;
+                barrier = SpritesFactory.CreateSprite(m_GameScreen, SpritesFactory.eSpriteType.Barrier) as Barrier;
                 barrier.Position = position;
                 position = new Vector2(position.X + (barrier.Width * 2), position.Y);
                 barrier.TouchScreenLimit += changeMovingDirection;

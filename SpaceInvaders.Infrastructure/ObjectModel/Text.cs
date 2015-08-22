@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         private SpriteFont m_Font;
         private string m_TextString = string.Empty;
 
-        public Text(Game i_Game, string i_AssetName) : base(i_AssetName, i_Game)
+        public Text(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {   
         }
 

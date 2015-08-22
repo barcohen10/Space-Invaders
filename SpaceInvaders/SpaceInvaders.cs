@@ -8,6 +8,7 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
+using C15Ex02Dotan301810610Bar308000322.Screens;
 
 namespace SpaceInvaders
 {
@@ -17,7 +18,7 @@ namespace SpaceInvaders
         private const int k_ScreenWidth = 800;
         private GraphicsDeviceManager m_Graphics;
         private SpriteBatch m_SpriteBatch;
-        private bool v_IsMouseMoveEnable = true;
+        private ScreensManager m_ScreensManager;
 
         public SpaceInvaders()
         {
@@ -26,6 +27,10 @@ namespace SpaceInvaders
             m_Graphics.PreferredBackBufferHeight = k_ScreenHeight;
             m_Graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+            IInputManager inputManager = new InputManager(this);
+            m_ScreensManager = new ScreensManager(this);
+            m_ScreensManager.SetCurrentScreen(new GamingScreen(this));
+
         }
 
         protected override void Initialize()
@@ -35,19 +40,7 @@ namespace SpaceInvaders
             this.Services.AddService(typeof(ContentManager), this.Content);
             this.Services.AddService(typeof(SpriteBatch), m_SpriteBatch);
             this.Services.AddService(typeof(CollisionServices), CollisionServices.Instance);
-            IInputManager inputManager = new InputManager(this);
-            CollisionsManager collisionsManager = new CollisionsManager(this);
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MotherShip);
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
-            EnemiesMatrix enemiesMatrix = new EnemiesMatrix(this);
-            BarrierGroup barrierGroup = new BarrierGroup(this);
-            ConfSpaceShip player1SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Green, Keys.Left, Keys.Right, new Keys[] { Keys.Enter, Keys.RightControl, Keys.LeftControl }, v_IsMouseMoveEnable);
-            ConfSpaceShip player2SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Blue, Keys.A, Keys.D, Keys.W, !v_IsMouseMoveEnable);
-            SpaceInvadersServices.CreateNewPlayers(this, player1SpaceShipConf, player2SpaceShipConf);
-            SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
-            this.Components.Add(enemiesMatrix);
             base.Initialize();
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,12 +50,7 @@ namespace SpaceInvaders
                 Exit();
             }
 
-            bool isGameOver = SpaceInvadersServices.IsAllPlayersLost(this);
-            if (isGameOver)
-            {
-                SpaceInvadersServices.GameOver(this);
-            }
-
+         
             base.Update(gameTime);
         }
 

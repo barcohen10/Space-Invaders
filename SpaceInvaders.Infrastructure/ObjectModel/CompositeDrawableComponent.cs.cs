@@ -12,8 +12,8 @@ using System.Text;
 namespace SpaceInvaders.Infrastructure.ObjectModel
 {
     public abstract class CompositeDrawableComponent<ComponentType> :
-         DrawableGameComponent, ICollection<ComponentType>
-         where ComponentType : IGameComponent
+      DrawableGameComponent, ICollection<ComponentType>
+      where ComponentType : IGameComponent
     {
         // the entire collection, for general collection methods (count, foreach, etc.):
         Collection<ComponentType> m_Components = new Collection<ComponentType>();

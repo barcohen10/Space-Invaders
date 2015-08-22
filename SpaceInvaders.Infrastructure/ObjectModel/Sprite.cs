@@ -3,6 +3,7 @@ using Infrastructure.ObjectModel.Animators;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.Managers;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using System;
 
@@ -12,7 +13,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
     {
         private SpriteSortMode m_SpriteSortModel = SpriteSortMode.Deferred;
         private BlendState m_BlendState = BlendState.AlphaBlend;
-        Color[] m_Pixels;
+        private Color[] m_Pixels;
 
         protected void UseOwnSpriteBatch(SpriteSortMode i_SpriteSortMode, BlendState i_BlendState)
         {
@@ -20,6 +21,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             m_UseSharedBatch = false;
             m_BlendState = i_BlendState;
             m_SpriteSortModel = i_SpriteSortMode;
+        }
+
+        private GameScreen m_GameScreen;
+
+        public GameScreen GameScreen 
+        {
+            get{return m_GameScreen; }
+            set { m_GameScreen = value; }
         }
 
         public Color[] Pixels
@@ -190,6 +199,21 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
                 }
             }
         }
+        public event EventHandler<EventArgs> Disposed;
+
+        protected virtual void OnDisposed()
+        {
+            if (Disposed != null)
+            {
+                Disposed(this, EventArgs.Empty);
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            OnDisposed();
+            base.Dispose(disposing);
+        }
 
         protected Color m_TintColor = Color.White;
         public Color TintColor
@@ -249,6 +273,12 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
         public Sprite(string i_AssetName, Game i_Game)
             : base(i_AssetName, i_Game, int.MaxValue)
         { }
+
+        public Sprite(string i_AssetName, GameScreen i_GameScreen)
+            : base(i_AssetName, i_GameScreen.Game, int.MaxValue)
+        {
+            m_GameScreen = i_GameScreen;
+        }
 
         /// <summary>
         /// Default initialization of bounds
@@ -350,7 +380,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
         /// <param name="i_GameTime"></param>
         public override void Draw(GameTime i_GameTime)
         {
-
             if (!m_UseSharedBatch)
             {
                 m_SpriteBatch.Begin(m_SpriteSortModel, m_BlendState);

@@ -27,6 +27,5 @@ D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\bin\Windows\
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\bin\Windows\Debug\SharpDX.XInput.xml
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\bin\Windows\Debug\SharpDX.RawInput.xml
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\bin\Windows\Debug\SharpDX.Direct3D9.xml
-D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\obj\x86\Debug\SpaceInvaders.Infrastructure.csprojResolveAssemblyReference.cache
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\obj\x86\Debug\SpaceInvaders.Infrastructure.dll
 D:\GitProjects\Monogame\Space-Invaders\SpaceInvaders.Infrastructure\obj\x86\Debug\SpaceInvaders.Infrastructure.pdb

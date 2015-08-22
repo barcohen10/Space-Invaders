@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -18,8 +19,8 @@ namespace SpaceInvaders.ObjectModel
 
         private readonly CollisionServices m_CollisionServices;
 
-        public Barrier(Game i_Game, string i_AssetName)
-            : base(i_AssetName, i_Game)
+        public Barrier(GameScreen i_GameScreen, string i_AssetName)
+            : base(i_AssetName, i_GameScreen)
         {
             this.Velocity = new Vector2(r_BarrierVelocity, 0);
             m_CollisionServices = this.Game.Services.GetService(typeof(CollisionServices)) as CollisionServices;
@@ -61,7 +62,7 @@ namespace SpaceInvaders.ObjectModel
                 {
                     Sprite barrier = this as Sprite;
                     m_CollisionServices.ClearPixelsInVerticalDirection(ref barrier, collidedPoints, collisionDirection, halfBulletHeight);
-                    this.Game.Components.Remove(bullet);
+                    this.GameScreen.Remove(bullet);
                     bullet.Dispose();
                 }
             }
@@ -71,5 +72,8 @@ namespace SpaceInvaders.ObjectModel
                 m_CollisionServices.IsPixelsIntersect(this, collidableSprite, out collidedPoints, autoPixelClear);
             }
         }
+
+
+ 
     }
 }

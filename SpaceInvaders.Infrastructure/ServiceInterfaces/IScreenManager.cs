@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.ServiceInterfaces
 {
-    public interface IScreensMananger
+    public interface IScreensManager
     {
         GameScreen ActiveScreen { get; }
         void SetCurrentScreen(GameScreen i_NewScreen);
