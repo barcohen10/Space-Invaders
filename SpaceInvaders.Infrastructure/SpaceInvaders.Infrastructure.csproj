@@ -58,6 +58,7 @@
     <Compile Include="ObjectModel\GameService.cs" />
     <Compile Include="ObjectModel\RegisteredComponent.cs" />
     <Compile Include="ObjectModel\Screens\GameScreen.cs" />
+    <Compile Include="ObjectModel\Screens\GameScreenWithTimer.cs" />
     <Compile Include="ObjectModel\Sprite.cs" />
     <Compile Include="ObjectModel\Text.cs" />
     <Compile Include="ServiceInterfaces\IAnimated.cs" />
