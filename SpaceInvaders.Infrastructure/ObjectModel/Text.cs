@@ -28,7 +28,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
 
         protected override void DrawSpriteBatch()
         {
-            m_SpriteBatch.DrawString(m_Font, TextString, this.Position, this.TintColor);
+            m_SpriteBatch.DrawString(m_Font, TextString, this.Position, this.TintColor, this.Rotation, this.RotationOrigin, this.Scales, SpriteEffects.None, this.LayerDepth);
         }
 
     }

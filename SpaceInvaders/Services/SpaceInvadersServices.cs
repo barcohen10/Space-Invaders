@@ -193,5 +193,18 @@ namespace SpaceInvaders.Services
                 i_BarrierGroup.ChangeGroupPositionY(y);
             }
         }
+
+        public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
+        {
+            List<Text> textInstructions = new List<Text>();
+            Text text;
+            foreach(string instruction in i_Instructions)
+            {
+                text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.Text) as Text;
+                text.TintColor = i_Color;
+                text.Scales = new Vector2(i_Scale);
+            }
+            return textInstructions;
+        }
     }
 }
