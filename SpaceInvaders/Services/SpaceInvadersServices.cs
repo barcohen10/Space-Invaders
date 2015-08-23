@@ -200,7 +200,7 @@ namespace SpaceInvaders.Services
             Text text;
             foreach(string instruction in i_Instructions)
             {
-                text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.Text) as Text;
+                text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
                 text.TintColor = i_Color;
                 text.Scales = new Vector2(i_Scale);
             }

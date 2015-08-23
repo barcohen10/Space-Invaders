@@ -61,7 +61,7 @@ namespace SpaceInvaders.ObjectModel
         {
             m_Nickname = i_PlayerNickname;
             m_SpaceShipType = i_SpaceShipType;
-            m_ScoreText = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.Text) as Text;
+            m_ScoreText = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
             SpritesFactory.eSpriteType lifeType = SpritesFactory.eSpriteType.LifeBlueSpaceShip;
 
             switch (m_SpaceShipType)

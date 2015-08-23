@@ -25,7 +25,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
         public override void Initialize()
         {
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
-            m_WelcomeMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.Text) as Text;
+            m_WelcomeMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SmallText) as Text;
             m_WelcomeMessage.TextString = "Welcome To Space Invaders";
             m_WelcomeMessage.Scales = new Vector2(2f);
             base.Initialize();
