@@ -246,8 +246,8 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
         {
             base.LoadContent();
 
-          //  m_GradientTexture = this.ContentManager.Load<Texture2D>(@"Screens\gradient");
-            //m_BlankTexture = this.ContentManager.Load<Texture2D>(@"Screens\blank");
+            m_GradientTexture = this.ContentManager.Load<Texture2D>(@"Screens\gradient");
+            m_BlankTexture = this.ContentManager.Load<Texture2D>(@"Screens\blank");
         }
 
         public override void Draw(GameTime gameTime)

@@ -41,6 +41,10 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 
         public override void Update(GameTime gameTime)
         {
+            if(InputManager.KeyPressed(Keys.P))
+            {
+                m_ScreensManager.SetCurrentScreen(new PauseScreen(this.Game));
+            }
             bool isGameOver = SpaceInvadersServices.IsAllPlayersLost(this.Game);
             if (isGameOver)
             {

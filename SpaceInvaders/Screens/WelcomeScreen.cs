@@ -30,7 +30,17 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            if (InputManager.KeyPressed(Keys.Escape))
+            {
+                ScreensManager.Remove(this);
+            }
+            else if(InputManager.KeyPressed(Keys.Enter))
+            {
+                ScreensManager.SetCurrentScreen(new GamingScreen(this.Game));
+            }else if(InputManager.KeyPressed(Keys.F6))
+            {
+                ScreensManager.SetCurrentScreen(new MainMenuScreen(this.Game));
+            }
            
         }
         private void initTexts()

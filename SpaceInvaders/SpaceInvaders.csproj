@@ -53,6 +53,7 @@
     <Compile Include="ObjectModel\SpriteJump.cs" />
     <Compile Include="Screens\GameOverScreen.cs" />
     <Compile Include="Screens\GamingScreen.cs" />
+    <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\WelcomeScreen.cs" />
     <Compile Include="Services\CollisionServices.cs" />
