@@ -39,7 +39,6 @@ namespace SpaceInvaders.ObjectModel
         {
             base.Initialize();
             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-        
         }
         public override void Update(GameTime gameTime)
         {

@@ -18,8 +18,8 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 
         public GamingScreen(Game i_Game):base(i_Game)
        {
-           //this.SpritesSortMode = SpriteSortMode.Immediate;
-           //this.BlendState = BlendState.AlphaBlend;
+           this.SpritesSortMode = SpriteSortMode.Immediate;
+           this.BlendState = BlendState.AlphaBlend;
        }
 
         public override void Initialize()
