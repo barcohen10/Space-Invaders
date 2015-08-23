@@ -25,6 +25,7 @@ namespace SpaceInvaders.Services
             MotherShip,
             Barrier,
             SmallText,
+            MediumText,
             BigText,
             LifeBlueSpaceShip,
             LifeGreenSpaceShip
@@ -37,8 +38,10 @@ namespace SpaceInvaders.Services
         private const string k_SpaceBGAsset = @"Sprites\SpaceBg";
         private const string k_BulletAsset = @"Sprites\Bullet";
         private const string k_BarrierAsset = @"Sprites\Barrier";
-        private const string k_CalibriSmallFontAsset = @"Fonts\CalibriFont";
+        private const string k_CalibriSmallFontAsset = @"Fonts\CalibriSmallFont";
         private const string k_CalibriBigFontAsset = @"Fonts\CalibriBigFont";
+        private const string k_CalibriMediumFontAsset = @"Fonts\CalibriMediumFont";
+
 
 
         public static Sprite CreateSprite(GameScreen i_GameScreen, eSpriteType i_SpriteType)
@@ -88,6 +91,9 @@ namespace SpaceInvaders.Services
 
                 case eSpriteType.SmallText:
                     sprite = new Text(i_GameScreen, k_CalibriSmallFontAsset);
+                    break;
+                case eSpriteType.MediumText:
+                    sprite = new Text(i_GameScreen, k_CalibriMediumFontAsset);
                     break;
                 case eSpriteType.BigText:
                     sprite = new Text(i_GameScreen, k_CalibriBigFontAsset);
