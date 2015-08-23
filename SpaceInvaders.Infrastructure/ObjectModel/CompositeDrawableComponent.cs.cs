@@ -11,9 +11,14 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel
 {
+    /// <summary>
+    /// A class to assist with being able to nest game components inside of each other, provides support for all of the
+    /// same functionality the game object performs on components with the addition of being neutral to where it resides
+    /// in the hierarchy.
+    /// </summary>
     public abstract class CompositeDrawableComponent<ComponentType> :
-      DrawableGameComponent, ICollection<ComponentType>
-      where ComponentType : IGameComponent
+        DrawableGameComponent, ICollection<ComponentType>
+        where ComponentType : IGameComponent
     {
         // the entire collection, for general collection methods (count, foreach, etc.):
         Collection<ComponentType> m_Components = new Collection<ComponentType>();
@@ -221,7 +226,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
 
             foreach (Sprite sprite in m_Sprites)
             {
-                sprite.SpriteBatch = m_SpriteBatch;
+                    sprite.SpriteBatch = m_SpriteBatch;
             }
         }
 
@@ -246,6 +251,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
                     drawable.Draw(gameTime);
                 }
             }
+
 
             m_SpriteBatch.Begin(
                 this.SpritesSortMode, this.BlendState, this.SamplerState,
