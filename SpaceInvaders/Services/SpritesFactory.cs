@@ -24,7 +24,9 @@ namespace SpaceInvaders.Services
             SpaceBackground,
             MotherShip,
             Barrier,
-            Text
+            Text,
+            LifeBlueSpaceShip,
+            LifeGreenSpaceShip
         }
 
         private const string k_EnemysAsset = @"Sprites\Enemies";
@@ -83,6 +85,14 @@ namespace SpaceInvaders.Services
 
                 case eSpriteType.Text:
                     sprite = new Text(i_GameScreen, k_CalibriFontAsset);
+                    break;
+
+                case eSpriteType.LifeBlueSpaceShip:
+                    sprite = new Life(i_GameScreen, k_BlueSpaceShipAsset);
+                    break;
+
+                case eSpriteType.LifeGreenSpaceShip:
+                    sprite = new Life(i_GameScreen, k_GreenSpaceShipAsset);
                     break;
             }
             sprite.Initialize();

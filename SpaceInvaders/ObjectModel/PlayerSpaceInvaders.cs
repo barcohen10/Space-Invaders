@@ -62,22 +62,26 @@ namespace SpaceInvaders.ObjectModel
             m_Nickname = i_PlayerNickname;
             m_SpaceShipType = i_SpaceShipType;
             m_ScoreText = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.Text) as Text;
+            SpritesFactory.eSpriteType lifeType = SpritesFactory.eSpriteType.LifeBlueSpaceShip;
+
             switch (m_SpaceShipType)
             {
                 case eSpaceShipType.Blue:
                     m_SpaceShip = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.BlueSpaceShip) as SpaceShip;
                     m_ScoreText.TintColor = Color.Blue;
+                    lifeType = SpritesFactory.eSpriteType.LifeBlueSpaceShip;
                     break;
 
                 case eSpaceShipType.Green:
                     m_SpaceShip = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.GreenSpaceShip) as SpaceShip;
                     m_ScoreText.TintColor = Color.Green;
+                    lifeType = SpritesFactory.eSpriteType.LifeGreenSpaceShip;
                     break;
             }
 
             for (int i = 0; i < this.Lifes; i++)
             {
-                Life life = new Life(i_GameScreen, SpaceShip.AssetName);
+                Life life = SpritesFactory.CreateSprite(i_GameScreen, lifeType) as Life;
                 life.Initialize();
                 this.LifesSprites.Add(life);
             }
