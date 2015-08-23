@@ -226,7 +226,10 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
 
             foreach (Sprite sprite in m_Sprites)
             {
+                if(sprite.IsUseSharedBatch)
+                {
                     sprite.SpriteBatch = m_SpriteBatch;
+                }
             }
         }
 

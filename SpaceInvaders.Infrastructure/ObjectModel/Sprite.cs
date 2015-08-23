@@ -363,13 +363,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
 
 
         private bool m_UseSharedBatch = true;
+        public bool IsUseSharedBatch { get { return m_UseSharedBatch; } }
         protected SpriteBatch m_SpriteBatch;
         public SpriteBatch SpriteBatch
         {
             set
             {
-                m_SpriteBatch = value;
-                m_UseSharedBatch = true;
+                    m_SpriteBatch = value;
+                    m_UseSharedBatch = true;
             }
         }
 

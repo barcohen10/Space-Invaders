@@ -57,9 +57,9 @@ namespace SpaceInvaders
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-          //  m_SpriteBatch.Begin();
+         // m_SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             base.Draw(gameTime);
-        //    m_SpriteBatch.End();
+         //m_SpriteBatch.End();
         }
     }
 }
