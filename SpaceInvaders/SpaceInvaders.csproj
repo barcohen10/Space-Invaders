@@ -58,6 +58,7 @@
     <Compile Include="Services\CollisionServices.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />
     <Compile Include="ObjectModel\SpaceShip.cs" />
+    <Compile Include="Services\TextServices.cs" />
     <Compile Include="SpaceInvaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

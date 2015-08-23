@@ -80,13 +80,13 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             set { m_Texture = value; }
         }
 
-        public float Width
+        public virtual float Width
         {
             get { return m_WidthBeforeScale * m_Scales.X; }
             set { m_WidthBeforeScale = value / m_Scales.X; }
         }
 
-        public float Height
+        public virtual float Height
         {
             get { return m_HeightBeforeScale * m_Scales.Y; }
             set { m_HeightBeforeScale = value / m_Scales.Y; }

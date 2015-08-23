@@ -59,7 +59,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
             this.Enabled = false;
             this.Visible = false;
         }
-
+     
         protected eScreenState m_State = eScreenState.Inactive;
 
         public eScreenState State

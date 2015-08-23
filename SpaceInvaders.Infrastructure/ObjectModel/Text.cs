@@ -30,6 +30,27 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             m_SpriteBatch.DrawString(m_Font, TextString, this.Position, this.TintColor, this.Rotation, this.RotationOrigin, this.Scales, SpriteEffects.None, this.LayerDepth);
         }
-
+        public override float Height
+        {
+            get
+            {
+                return m_Font.MeasureString(this.TextString).Y ;
+            }
+            set
+            {
+                base.Height = value;
+            }
+        }
+        public override float Width
+        {
+            get
+            {
+                return m_Font.MeasureString(this.TextString).X ;
+            }
+            set
+            {
+                base.Width = value;
+            }
+        }
     }
 }
