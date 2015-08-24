@@ -45,7 +45,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             welcomeScreenTexts.Add("[P] - Start new game");
             welcomeScreenTexts.Add("[F6] - Main menu");
             welcomeScreenTexts.Add("[Esc] - Exit game");
-            TextServices.CreateAndAdjustTexts(this, welcomeScreenTexts, SpritesFactory.eSpriteType.MediumText, topMessage.Position.X, topMessage.Position.Y + 50f);
+            TextServices.GetAndCreateTexts(this, welcomeScreenTexts, SpritesFactory.eSpriteType.MediumText, topMessage.Position.X, topMessage.Position.Y + 50f);
         }
     }
 }
