@@ -8,6 +8,7 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SpaceInvaders.Services
 {
@@ -44,6 +45,7 @@ namespace SpaceInvaders.Services
 
         public static Sprite CreateSprite(GameScreen i_GameScreen, eSpriteType i_SpriteType)
         {
+   
             Sprite sprite = null;
             int pointsEarnedWhenKilled = 0;
             switch (i_SpriteType)
