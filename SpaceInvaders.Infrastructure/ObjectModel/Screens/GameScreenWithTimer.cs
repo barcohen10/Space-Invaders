@@ -10,6 +10,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
     {
         protected TimeSpan m_ScreenTime;
         protected TimeSpan m_TimeLeft;
+
         public GameScreenWithTimer(Game i_Game, TimeSpan i_ScreenVisibleTime)
             : base(i_Game)
         {

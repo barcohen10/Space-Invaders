@@ -31,7 +31,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             }
             else if (InputManager.KeyPressed(Keys.Enter))
             {
-                ScreensManager.SetCurrentScreen(new GamingScreen(this.Game));
+                ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game, 1));
             }
             else if (InputManager.KeyPressed(Keys.F6))
             {

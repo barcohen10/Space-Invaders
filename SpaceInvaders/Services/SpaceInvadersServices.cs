@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.Managers;
 
 namespace SpaceInvaders.Services
 {
@@ -194,17 +195,17 @@ namespace SpaceInvaders.Services
             }
         }
 
-        public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
-        {
-            List<Text> textInstructions = new List<Text>();
-            Text text;
-            foreach(string instruction in i_Instructions)
-            {
-                text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
-                text.TintColor = i_Color;
-                text.Scales = new Vector2(i_Scale);
-            }
-            return textInstructions;
-        }
+        //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
+        //{
+        //    List<Text> textInstructions = new List<Text>();
+        //    Text text;
+        //    foreach(string instruction in i_Instructions)
+        //    {
+        //        text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
+        //        text.TintColor = i_Color;
+        //        text.Scales = new Vector2(i_Scale);
+        //    }
+        //    return textInstructions;
+        //}
     }
 }

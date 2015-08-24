@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using C15Ex02Dotan301810610Bar308000322.Services;
+using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
@@ -14,6 +15,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
         private int m_CurrentLevel = 0;
         private int m_CurrentCountingNum = 0;
         private Text m_CountingText;
+
         public MoveStageScreen(Game i_Game, int i_Level)
             : base(i_Game, TimeSpan.FromSeconds(3))
         {
@@ -21,6 +23,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             Finished += MoveStageScreen_Finished;
             m_CurrentCountingNum = 3;
         }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -28,30 +31,34 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
         }
         void MoveStageScreen_Finished(object sender, EventArgs e)
         {
-            this.ExitScreen();
+            this.ScreensManager.SetCurrentScreen(new GamingScreen(this.Game));
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.m_TimeLeft.TotalSeconds < m_CurrentCountingNum)
+            if (this.m_TimeLeft.TotalSeconds + 1 < m_CurrentCountingNum)
             {
                 m_CurrentCountingNum--;
                 m_CountingText.TextString = m_CurrentCountingNum.ToString();
             }
 
         }
+
         protected override void initTexts()
         {
             base.initTexts();
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
-            Text headText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MediumText) as Text;
+            Text headText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
             headText.Position = new Vector2(250, 200);
             headText.TintColor = Color.Lime;
-            headText.TextString = "Moving to level : " + m_CurrentLevel;
+            headText.TextString = "Starting level " + m_CurrentLevel;
+            TextServices.CenterTextsOnScreen(this, new List<Text>() { headText });
             m_CountingText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
-            m_CountingText.Position = new Vector2(350, 250);
+            m_CountingText.Position = new Vector2(350, 300);
             m_CountingText.TintColor = Color.White;
             m_CountingText.TextString = m_CurrentCountingNum.ToString();
+            TextServices.CenterTextsOnScreen(this, new List<Text>() { m_CountingText });
         }
     }
 }
