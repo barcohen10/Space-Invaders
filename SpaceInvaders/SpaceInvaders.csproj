@@ -58,6 +58,7 @@
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\WelcomeScreen.cs" />
     <Compile Include="Services\CollisionServices.cs" />
+    <Compile Include="Services\SoundFactory.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />
     <Compile Include="ObjectModel\SpaceShip.cs" />
     <Compile Include="Services\TextServices.cs" />

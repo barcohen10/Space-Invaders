@@ -9,6 +9,8 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
 using C15Ex02Dotan301810610Bar308000322.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace SpaceInvaders
 {
@@ -29,8 +31,7 @@ namespace SpaceInvaders
             Content.RootDirectory = "Content";
             IInputManager inputManager = new InputManager(this);
             m_ScreensManager = new ScreensManager(this);
-            m_ScreensManager.SetCurrentScreen(new MoveStageScreen(this,3));
-
+            m_ScreensManager.SetCurrentScreen(new WelcomeScreen(this));
         }
 
         protected override void Initialize()
@@ -50,16 +51,14 @@ namespace SpaceInvaders
                 Exit();
             }
 
-         
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-         // m_SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             base.Draw(gameTime);
-         //m_SpriteBatch.End();
         }
     }
 }

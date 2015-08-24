@@ -47,7 +47,5 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             welcomeScreenTexts.Add("[Esc] - Exit game");
             TextServices.CreateAndAdjustTexts(this, welcomeScreenTexts, SpritesFactory.eSpriteType.MediumText, topMessage.Position.X, topMessage.Position.Y + 50f);
         }
-
-
     }
 }

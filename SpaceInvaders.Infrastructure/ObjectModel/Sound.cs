@@ -23,11 +23,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
             m_SoundEffect = m_Game.Content.Load<SoundEffect>(i_AssetName);
             m_SoundEffectInstance = m_SoundEffect.CreateInstance();
             m_SoundEffectInstance.IsLooped = false;
+            Volume = 1f;
+            Pitch = 0;
+            Pan = 0;
+
         }
         public void Play()
         {
             m_SoundEffectInstance.Play();
-
         }
         public bool isLooped
         {
@@ -81,6 +84,29 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
                 else
                 {
                     throw new ArgumentOutOfRangeException("Out of pitch range ,Expected 0 to 1");
+                }
+            }
+        }
+        public void PlayInLoop()
+        {
+            this.isLooped = true;
+            Play();
+        }
+        public float Pan
+        {
+            get
+            {
+                return m_SoundEffectInstance.Pan;
+            }
+            set
+            {
+                if (value > -1 && value <= 1)
+                {
+                    m_SoundEffectInstance.Pan = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Out of Pan range ,Expected 0 to 1");
                 }
             }
         }
