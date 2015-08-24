@@ -171,9 +171,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
             {
                 m_InputManager = m_DummyInputManager;
             }
-
+            initTexts();
             base.Initialize();
         }
+
+        protected virtual void initTexts()
+        {
+        }
+      
 
         internal virtual void Activate()
         {

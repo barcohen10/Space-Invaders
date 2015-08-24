@@ -22,11 +22,6 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 
         }
 
-        public override void Initialize()
-        {
-            initTexts();
-            base.Initialize();
-        }
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -36,14 +31,15 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             }
             else if(InputManager.KeyPressed(Keys.Enter))
             {
-                ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game));
+                ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game,3));
             }else if(InputManager.KeyPressed(Keys.F6))
             {
                 ScreensManager.SetCurrentScreen(new MainMenuScreen(this.Game));
             }
            
         }
-        private void initTexts()
+     
+        protected override void initTexts()
         {
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             m_WelcomeMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
