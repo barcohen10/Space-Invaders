@@ -31,9 +31,9 @@ namespace C15Ex02Dotan301810610Bar308000322.Services
         private const string k_GameOverAsset = @"Sounds\GameOver";
         private const string k_LevelWinAsset = @"Sounds\LevelWin";
         private const string k_LifeDieAsset = @"Sounds\LifeDie";
-        private const string k_MenuMoveAsset = @"Fonts\MenuMove";
-        private const string k_MotherShipKillAsset = @"Fonts\MotherShipKill";
-        private const string k_SSGunShotAsset = @"Fonts\SSGunShot";
+        private const string k_MenuMoveAsset = @"Sounds\MenuMove";
+        private const string k_MotherShipKillAsset = @"Sounds\MotherShipKill";
+        private const string k_SSGunShotAsset = @"Sounds\SSGunShot";
 
         public static Sound CreateSound(GameScreen i_GameScreen, eSoundType i_eSoundType)
         {
