@@ -11,17 +11,13 @@ namespace SpaceInvaders.ObjectModel
 {
     public class EnemiesMatrix : GameComponent
     {
-        private const int k_EnemiesMatrixWidth = 9;
-        private const int k_EnemiesMatrixHeight = 5;
-        private const int k_NumOfPinkEnemies = 9, k_NumOfLightBlueEnemies = 18, k_NumOfYellowEnemies = 18;
+        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2;
         private static Random s_RandomGenerator = new Random();
         private readonly List<List<Enemy>> r_EnemiesMatrix;
         private int m_TimeCount;
         private int m_JumpTwiceMilliSec;
         private SpriteJump.eJumpDirection m_JumpDirection;
         private GameScreen m_GameScreen;
-        private bool m_IsEmpty;
-        public bool IsEmpty { get { return m_IsEmpty; } private set { m_IsEmpty = value; } }
 
 
         public EnemiesMatrix(GameScreen i_GameScreen)
@@ -32,7 +28,6 @@ namespace SpaceInvaders.ObjectModel
             this.r_EnemiesMatrix = new List<List<Enemy>>();
             m_JumpDirection = SpriteJump.eJumpDirection.Right;
             m_GameScreen = i_GameScreen;
-            m_IsEmpty = true;
         }
 
         private Enemy this[int i, int j]
@@ -56,7 +51,7 @@ namespace SpaceInvaders.ObjectModel
 
         public override void Initialize()
         {
-            createEnemiesMatrix(k_NumOfPinkEnemies, k_NumOfLightBlueEnemies, k_NumOfYellowEnemies);
+            createEnemiesMatrix(9);
             base.Initialize();
         }
 
@@ -65,52 +60,50 @@ namespace SpaceInvaders.ObjectModel
             bool isSpeedUp = false, isJumpingBackwards = false;
             float originalDistanceToJump;
             int timeToJump;
-            if (!IsEmpty)
+            originalDistanceToJump = r_EnemiesMatrix[0][0].Width / 2;
+            checkIfEnemiesWonOrLost();
+            randomEnemyShooting();
+            m_TimeCount += i_GameTime.ElapsedGameTime.Milliseconds;
+            timeToJump = m_JumpTwiceMilliSec / 2;
+            if (m_TimeCount >= timeToJump)
             {
-                originalDistanceToJump = r_EnemiesMatrix[0][0].Width / 2;
-                checkIfEnemiesWonOrLost();
-                randomEnemyShooting();
-                m_TimeCount += i_GameTime.ElapsedGameTime.Milliseconds;
-                timeToJump = m_JumpTwiceMilliSec / 2;
-                if (m_TimeCount >= timeToJump)
+                jumpAllAliveEnemies(m_JumpDirection, originalDistanceToJump, isJumpingBackwards);
+                if (m_JumpDirection.Equals(SpriteJump.eJumpDirection.DownAndLeft))
                 {
-                    jumpAllAliveEnemies(m_JumpDirection, originalDistanceToJump, isJumpingBackwards);
-                    if (m_JumpDirection.Equals(SpriteJump.eJumpDirection.DownAndLeft))
-                    {
-                        m_JumpDirection = SpriteJump.eJumpDirection.Left;
-                    }
-                    else if (m_JumpDirection.Equals(SpriteJump.eJumpDirection.DownAndRight))
-                    {
-                        m_JumpDirection = SpriteJump.eJumpDirection.Right;
-                    }
+                    m_JumpDirection = SpriteJump.eJumpDirection.Left;
+                }
+                else if (m_JumpDirection.Equals(SpriteJump.eJumpDirection.DownAndRight))
+                {
+                    m_JumpDirection = SpriteJump.eJumpDirection.Right;
+                }
 
-                    SpriteJump.SpriteOverJumped enemyOverJumpedData = getEnemyOverJumpedData();
-                    if (enemyOverJumpedData.IsTouchedScreenHorizontalBoundary)
+                SpriteJump.SpriteOverJumped enemyOverJumpedData = getEnemyOverJumpedData();
+                if (enemyOverJumpedData.IsTouchedScreenHorizontalBoundary)
+                {
+                    switch (m_JumpDirection)
                     {
-                        switch (m_JumpDirection)
-                        {
-                            case SpriteJump.eJumpDirection.Right:
-                                isJumpingBackwards = true;
-                                jumpAllAliveEnemies(enemyOverJumpedData.DirectionToJumpBackwards, enemyOverJumpedData.DistanceToJumpBackwards, isJumpingBackwards);
-                                isSpeedUp = true;
-                                m_JumpDirection = SpriteJump.eJumpDirection.DownAndLeft;
-                                break;
-                            case SpriteJump.eJumpDirection.Left:
-                                isJumpingBackwards = true;
-                                jumpAllAliveEnemies(enemyOverJumpedData.DirectionToJumpBackwards, enemyOverJumpedData.DistanceToJumpBackwards, isJumpingBackwards);
-                                isSpeedUp = true;
-                                m_JumpDirection = SpriteJump.eJumpDirection.DownAndRight;
-                                break;
-                        }
-                    }
-
-                    m_TimeCount -= timeToJump;
-                    if (isSpeedUp)
-                    {
-                        SpeedUp(0.95);
+                        case SpriteJump.eJumpDirection.Right:
+                            isJumpingBackwards = true;
+                            jumpAllAliveEnemies(enemyOverJumpedData.DirectionToJumpBackwards, enemyOverJumpedData.DistanceToJumpBackwards, isJumpingBackwards);
+                            isSpeedUp = true;
+                            m_JumpDirection = SpriteJump.eJumpDirection.DownAndLeft;
+                            break;
+                        case SpriteJump.eJumpDirection.Left:
+                            isJumpingBackwards = true;
+                            jumpAllAliveEnemies(enemyOverJumpedData.DirectionToJumpBackwards, enemyOverJumpedData.DistanceToJumpBackwards, isJumpingBackwards);
+                            isSpeedUp = true;
+                            m_JumpDirection = SpriteJump.eJumpDirection.DownAndRight;
+                            break;
                     }
                 }
+
+                m_TimeCount -= timeToJump;
+                if (isSpeedUp)
+                {
+                    SpeedUp(0.95);
+                }
             }
+
         }
         private List<Enemy> GetEnemysAsList()
         {
@@ -125,61 +118,69 @@ namespace SpaceInvaders.ObjectModel
             return enemys;
 
         }
-        public void addEnemyColumn()
-        {
-
-
-        }
-        public void Clear()
-        {
-            r_EnemiesMatrix.Clear();
-            m_IsEmpty = true;
-        }
-        private void createEnemiesMatrix(int i_NumOfPinkEnemies, int i_NumOfLightBlueEnemies, int i_NumOfYellowEnemies)
+        private void addEnemiesColumn(int i_NumOfPinkEnemies, int i_NumOfLightBlueEnemies, int i_NumOfYellowEnemies)
         {
             Enemy enemy = null;
-            int enemiesCount = 1;
+            Enemy enemyLastAdded = null;
             SpritesFactory.eSpriteType enemyTypeToCreate = SpritesFactory.eSpriteType.EnemyPink;
             Vector2 position = new Vector2(0, 0);
-
-
-
-            for (int i = 0; i < k_EnemiesMatrixHeight; i++)
+            int sumOfEnemysInOneColumn = i_NumOfPinkEnemies + i_NumOfLightBlueEnemies + i_NumOfYellowEnemies;
+            List<Enemy> currentEnemiesOnMatrix = GetEnemysAsList();
+            if (currentEnemiesOnMatrix.Count > 0)
             {
-                this.r_EnemiesMatrix.Add(new List<Enemy>());
-                for (int j = 0; j < k_EnemiesMatrixWidth; j++)
-                {
-                    m_IsEmpty = false;
-                    enemyTypeToCreate = (i_NumOfPinkEnemies > 0) ? SpritesFactory.eSpriteType.EnemyPink : (i_NumOfLightBlueEnemies > 0 ? SpritesFactory.eSpriteType.EnemyLightBlue : SpritesFactory.eSpriteType.EnemyYellow);
-                    enemy = SpritesFactory.CreateSprite(m_GameScreen, enemyTypeToCreate) as Enemy;
-                    this.r_EnemiesMatrix[i].Add(enemy);
-                    switch (enemyTypeToCreate)
-                    {
-                        case SpritesFactory.eSpriteType.EnemyPink: i_NumOfPinkEnemies--;
-                            position.Y = 3 * enemy.Width;
-                            break;
-                        case SpritesFactory.eSpriteType.EnemyLightBlue:
-                            i_NumOfLightBlueEnemies--;
-                            break;
-                        case SpritesFactory.eSpriteType.EnemyYellow:
-                            i_NumOfYellowEnemies--;
-                            break;
-                    }
-
-                    if (i % 2 == 1)
-                    {
-                        Enemy lastEnemy = r_EnemiesMatrix[i][0];
-                        if (enemy.TextureStartIndex == lastEnemy.TextureStartIndex && enemy.TextureEndIndex == lastEnemy.TextureEndIndex)
-                        {
-                            enemy.ChangeEnemyShape();
-                        }
-                    }
-
-                    enemy.Position = (enemiesCount % 9 != 0) ? new Vector2((float)(position.X + (enemy.Width * 0.6) + enemy.Width), position.Y) : new Vector2(0, position.Y);
-                    position = (enemiesCount % 9 != 0) ? enemy.Position : new Vector2(0, (float)(position.Y + ((enemy.Width * 0.6) + enemy.Width)));
-                    enemiesCount++;
-                }
+                Enemy enemyFromLastLine = currentEnemiesOnMatrix.Last();
+                position = enemyFromLastLine.Position;
+                position.X += (float)(enemyFromLastLine.Width * 0.6 + enemyFromLastLine.Width);
             }
+            for (int i = 0; i < sumOfEnemysInOneColumn; i++)
+            {
+                if (i > r_EnemiesMatrix.Count - 1)
+                {
+                    this.r_EnemiesMatrix.Add(new List<Enemy>());
+                }
+                enemyTypeToCreate = (i_NumOfPinkEnemies > 0) ? SpritesFactory.eSpriteType.EnemyPink : (i_NumOfLightBlueEnemies > 0 ? SpritesFactory.eSpriteType.EnemyLightBlue : SpritesFactory.eSpriteType.EnemyYellow);
+                enemy = SpritesFactory.CreateSprite(m_GameScreen, enemyTypeToCreate) as Enemy;
+                switch (enemyTypeToCreate)
+                {
+                    case SpritesFactory.eSpriteType.EnemyPink: i_NumOfPinkEnemies--;
+                        position.Y = 3 * enemy.Width;
+                        break;
+                    case SpritesFactory.eSpriteType.EnemyLightBlue:
+                        i_NumOfLightBlueEnemies--;
+                        break;
+                    case SpritesFactory.eSpriteType.EnemyYellow:
+                        i_NumOfYellowEnemies--;
+                        break;
+                }
+                if (enemyLastAdded != null)
+                {
+
+                    if (enemy.TextureStartIndex == enemyLastAdded.TextureStartIndex && enemy.TextureEndIndex == enemyLastAdded.TextureEndIndex)
+                    {
+                        enemy.ChangeEnemyShape();
+                    }
+                }
+                enemy.Position = new Vector2(position.X, position.Y);
+                r_EnemiesMatrix[i].Add(enemy);
+                position = new Vector2(position.X, (float)(position.Y + ((enemy.Height * 0.6) + enemy.Width)));
+                enemyLastAdded = enemy;
+            }
+        }
+
+        public void ClearMatrix()
+        {
+            r_EnemiesMatrix.Clear();
+        }
+        private void createEnemiesMatrix(int i_NumOfColumns)
+        {
+            for (int i = 0; i < i_NumOfColumns; i++)
+            {
+                addEnemiesColumn(k_NumOfPinkEnemies, k_NumOfLightBlueEnemies, k_NumOfYellowEnemies);
+            }
+        }
+        public void AddEnemiesColumn()
+        {
+            addEnemiesColumn(k_NumOfPinkEnemies, k_NumOfLightBlueEnemies, k_NumOfYellowEnemies);
         }
 
         private void jumpAllAliveEnemies(SpriteJump.eJumpDirection i_JumpDirection, float i_DistanceToJump, bool i_IsJumpingBackwards)
@@ -214,13 +215,13 @@ namespace SpaceInvaders.ObjectModel
 
         private void randomEnemyShooting()
         {
-            int randomNumber = s_RandomGenerator.Next(3000);
+            int randomNumber = s_RandomGenerator.Next(300);
             int count = 0;
             if (randomNumber <= r_EnemiesMatrix[0].Count)
             {
-                for (int i = 0; i < k_EnemiesMatrixHeight; i++)
+                for (int i = 0; i < r_EnemiesMatrix.Count; i++)
                 {
-                    for (int j = 0; j < k_EnemiesMatrixWidth; j++)
+                    for (int j = 0; j < r_EnemiesMatrix[0].Count; j++)
                     {
                         if (randomNumber == count && m_GameScreen.Contains(r_EnemiesMatrix[i][j]))
                         {
