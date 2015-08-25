@@ -18,8 +18,8 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
         public PauseScreen(Game i_Game)
             : base(i_Game)
         {
-            m_MessageSprite = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
-            m_MessageSprite.Position = new Vector2(200, 230);
+            m_MessageSprite = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MediumText) as Text;
+            m_MessageSprite.Position = new Vector2(180, 230);
             (m_MessageSprite as Text).TextString = "Click R to continue playing";
             this.IsModal = true;
             this.IsOverlayed = true;

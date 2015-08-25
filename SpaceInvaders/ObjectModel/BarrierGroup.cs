@@ -13,7 +13,8 @@ namespace SpaceInvaders.ObjectModel
         private const int k_NumOfBarries = 4;
         private List<Barrier> m_Barriers = new List<Barrier>();
         private GameScreen m_GameScreen;
-
+        private bool m_JumpBarriersOnUpdate = false;
+        public bool JumpBarriersOnUpdate { get { return m_JumpBarriersOnUpdate; } set { m_JumpBarriersOnUpdate = value; } }
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
         {
@@ -71,6 +72,28 @@ namespace SpaceInvaders.ObjectModel
             foreach (Barrier barrier in m_Barriers)
             {
                 barrier.Velocity = -barrier.Velocity;
+            }
+        }
+        public void StartJumpingBarriers()
+        {
+            if (!m_JumpBarriersOnUpdate)
+            {
+                foreach (Barrier barrier in m_Barriers)
+                {
+                    barrier.StartJumping();
+                }
+                m_JumpBarriersOnUpdate = true;
+            }
+        }
+        public void StopJumpingBarriers()
+        {
+            if (m_JumpBarriersOnUpdate)
+            {
+                foreach (Barrier barrier in m_Barriers)
+                {
+                    barrier.StopJumping();
+                }
+                m_JumpBarriersOnUpdate = false;
             }
         }
     }

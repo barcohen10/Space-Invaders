@@ -16,7 +16,6 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
    public class GamingScreen : GameScreen
     {
        private bool v_IsMouseMoveEnable = true;
-
         public GamingScreen(Game i_Game):base(i_Game)
        {
            this.SpritesSortMode = SpriteSortMode.Immediate;
@@ -45,8 +44,10 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             if(InputManager.KeyPressed(Keys.P))
             {
                 m_ScreensManager.SetCurrentScreen(new PauseScreen(this.Game));
+
             }
             bool isGameOver = SpaceInvadersServices.IsAllPlayersLost(this.Game);
+
             if (isGameOver)
             {
                 SpaceInvadersServices.GameOver(this.Game);

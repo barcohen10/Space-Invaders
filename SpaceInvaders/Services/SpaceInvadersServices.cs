@@ -117,6 +117,20 @@ namespace SpaceInvaders.Services
 
             return enemiesMatrix;
         }
+        public static BarrierGroup GetBarrierGroupComponent(GameScreen i_GameScreen)
+        {
+            BarrierGroup barrierGroup = null;
+            foreach (GameComponent component in i_GameScreen)
+            {
+                barrierGroup = component as BarrierGroup;
+                if (barrierGroup != null)
+                {
+                    break;
+                }
+            }
+            return barrierGroup;
+
+        }
 
         public static void GameOver(Game i_Game)
         {

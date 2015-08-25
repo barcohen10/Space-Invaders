@@ -36,7 +36,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             get
             {
-                return m_SoundEffectInstance.IsLooped; ;
+                return m_SoundEffectInstance.IsLooped;
             }
             set
             {

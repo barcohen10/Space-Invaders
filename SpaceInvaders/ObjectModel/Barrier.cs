@@ -19,10 +19,10 @@ namespace SpaceInvaders.ObjectModel
 
         private readonly CollisionServices m_CollisionServices;
 
+        private bool m_JumpOnUpdate = false;
         public Barrier(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {
-            this.Velocity = new Vector2(r_BarrierVelocity, 0);
             m_CollisionServices = this.Game.Services.GetService(typeof(CollisionServices)) as CollisionServices;
         }
 
@@ -43,13 +43,28 @@ namespace SpaceInvaders.ObjectModel
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            this.Position = new Vector2(MathHelper.Clamp(this.Position.X, 0, this.Game.GraphicsDevice.Viewport.Width - this.Width), Position.Y);
-            if (this.Position.X == 0 || this.Position.X == (this.Game.GraphicsDevice.Viewport.Width - this.Width))
+
+            if (m_JumpOnUpdate)
             {
-                OnTouchScreenLimit();
+                this.Position = new Vector2(MathHelper.Clamp(this.Position.X, 0, this.Game.GraphicsDevice.Viewport.Width - this.Width), Position.Y);
+                if (this.Position.X == 0 || this.Position.X == (this.Game.GraphicsDevice.Viewport.Width - this.Width))
+                {
+                    OnTouchScreenLimit();
+                }
             }
         }
+        public void StartJumping()
+        {
+                m_JumpOnUpdate = true;
+                this.Velocity = new Vector2(r_BarrierVelocity, 0);
 
+        }
+        public void StopJumping()
+        {
+            m_JumpOnUpdate = false;
+            this.Velocity = new Vector2();
+
+        }
         public override void Collided(ICollidable i_Collidable)
         {
             Bullet bullet = i_Collidable as Bullet;

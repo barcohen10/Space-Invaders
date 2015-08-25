@@ -31,7 +31,7 @@ namespace SpaceInvaders
             Content.RootDirectory = "Content";
             IInputManager inputManager = new InputManager(this);
             m_ScreensManager = new ScreensManager(this);
-            m_ScreensManager.SetCurrentScreen(new WelcomeScreen(this));
+            m_ScreensManager.SetCurrentScreen(new GamingScreen(this));
         }
 
         protected override void Initialize()
