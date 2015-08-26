@@ -1,4 +1,5 @@
-﻿using C15Ex02Dotan301810610Bar308000322.Services;
+﻿using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens;
+using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace C15Ex02Dotan301810610Bar308000322.Screens
+namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class WelcomeScreen : GameScreen
     {
@@ -43,7 +44,6 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 
         protected override void initTexts()
         {
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             m_WelcomeMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
             m_WelcomeMessage.Position = new Vector2(0, 50);
             m_WelcomeMessage.TintColor = Color.HotPink;
@@ -55,6 +55,12 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             List<Text> listMenuTexts = TextServices.GetAndCreateTexts(this, menuItems, SpritesFactory.eSpriteType.MediumText, m_WelcomeMessage.Position.X, m_WelcomeMessage.Position.Y + 100f);
             TextServices.CenterTextsOnScreen(this, listMenuTexts);
             TextServices.CenterTextsOnScreen(this, new List<Text>() { m_WelcomeMessage });
+        }
+
+        public override void Initialize()
+        {
+            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
+            base.Initialize();
         }
 
 

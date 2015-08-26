@@ -1,4 +1,4 @@
-﻿using C15Ex02Dotan301810610Bar308000322.Services;
+﻿using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace C15Ex02Dotan301810610Bar308000322.Screens
+namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class MoveStageScreen : GameScreenWithTimer
     {
@@ -25,11 +25,6 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             Finished += MoveStageScreen_Finished;
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-
-        }
         void MoveStageScreen_Finished(object sender, EventArgs e)
         {
             this.ScreensManager.Remove(this);
@@ -47,10 +42,15 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 
         }
 
+        public override void Initialize()
+        {
+            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
+            base.Initialize();
+        }
+
         protected override void initTexts()
         {
             base.initTexts();
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             Text headText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
             headText.Position = new Vector2(250, 200);
             headText.TintColor = Color.Lime;

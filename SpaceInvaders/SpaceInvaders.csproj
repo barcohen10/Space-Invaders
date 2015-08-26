@@ -8,7 +8,7 @@
     <ProjectGuid>{0DE2DD61-0C4F-4579-89BA-47E00E2C9835}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>C15Ex02Dotan301810610Bar308000322</RootNamespace>
+    <RootNamespace>C15Ex03Dotan301810610Bar308000322</RootNamespace>
     <AssemblyName>C15Ex01Dotan301810610Bar000000000</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
@@ -38,6 +38,15 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\ISpaceInvaders.cs" />
+    <Compile Include="Menu\ConcreteMenuScreens\MainMenuScreen.cs" />
+    <Compile Include="Menu\GameMenuItem.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuItem.cs" />
+    <Compile Include="Menu\MenuScreen.cs" />
+    <Compile Include="Menu\MethodKey.cs" />
+    <Compile Include="Menu\ConcreteMenuItems\TextMenuItem.cs" />
     <Compile Include="ObjectModel\Barrier.cs" />
     <Compile Include="ObjectModel\BarrierGroup.cs" />
     <Compile Include="ObjectModel\Bullet.cs" />
@@ -53,11 +62,11 @@
     <Compile Include="ObjectModel\SpriteJump.cs" />
     <Compile Include="Screens\GameOverScreen.cs" />
     <Compile Include="Screens\GamingScreen.cs" />
-    <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MoveStageScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\WelcomeScreen.cs" />
     <Compile Include="Services\CollisionServices.cs" />
+    <Compile Include="Services\SpaceInvadersMenuMethods.cs" />
     <Compile Include="Services\SoundFactory.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />
     <Compile Include="ObjectModel\SpaceShip.cs" />

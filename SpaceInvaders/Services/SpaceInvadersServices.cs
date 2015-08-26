@@ -214,6 +214,20 @@ namespace SpaceInvaders.Services
             return GetEnemeiesMatrixComponent(i_GameScreen).IsAnyEnemiesLeft();
         }
 
+        public static ScreensManager GetScreensManagerComponent(Game i_Game)
+        {
+            ScreensManager screensManager = null;
+            foreach (GameComponent component in i_Game.Components)
+            {
+                screensManager = component as ScreensManager;
+                if (screensManager != null)
+                {
+                    break;
+                }
+            }
+            return screensManager;
+        }
+
         //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
         //{
         //    List<Text> textInstructions = new List<Text>();

@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
-namespace C15Ex02Dotan301810610Bar308000322.Screens
+namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class PauseScreen : GameScreen
     {
@@ -21,6 +22,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             m_MessageSprite = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MediumText) as Text;
             m_MessageSprite.Position = new Vector2(180, 230);
             (m_MessageSprite as Text).TextString = "Click R to continue playing";
+            TextServices.CenterTextsOnScreen(this, new List<Text>() { (m_MessageSprite as Text) });
             this.IsModal = true;
             this.IsOverlayed = true;
             this.UseGradientBackground = true;
