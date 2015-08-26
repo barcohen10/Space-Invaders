@@ -60,8 +60,8 @@ namespace SpaceInvaders.ObjectModel
             bool isSpeedUp = false, isJumpingBackwards = false;
             float originalDistanceToJump;
             int timeToJump;
-            originalDistanceToJump = r_EnemiesMatrix[0][0].Width / 2;
             checkIfEnemiesWonOrLost();
+            originalDistanceToJump = r_EnemiesMatrix[0][0].Width / 2;
             randomEnemyShooting();
             m_TimeCount += i_GameTime.ElapsedGameTime.Milliseconds;
             timeToJump = m_JumpTwiceMilliSec / 2;
@@ -157,14 +157,22 @@ namespace SpaceInvaders.ObjectModel
 
                     if (enemy.TextureStartIndex == enemyLastAdded.TextureStartIndex && enemy.TextureEndIndex == enemyLastAdded.TextureEndIndex)
                     {
+
                         enemy.ChangeEnemyShape();
                     }
                 }
+
                 enemy.Position = new Vector2(position.X, position.Y);
+                enemy.TouchedEndOfTheScreen += enemy_TouchedEndOfTheScreen;
                 r_EnemiesMatrix[i].Add(enemy);
                 position = new Vector2(position.X, (float)(position.Y + ((enemy.Height * 0.6) + enemy.Width)));
                 enemyLastAdded = enemy;
             }
+        }
+
+        void enemy_TouchedEndOfTheScreen(object sender, EventArgs e)
+        {
+            SpaceInvadersServices.GameOver(this.Game);
         }
 
         public void ClearMatrix()
@@ -193,7 +201,7 @@ namespace SpaceInvaders.ObjectModel
                 }
             }
         }
-
+      
 
         private SpriteJump.SpriteOverJumped getEnemyOverJumpedData()
         {
@@ -242,24 +250,17 @@ namespace SpaceInvaders.ObjectModel
 
         private void checkIfEnemiesWonOrLost()
         {
-            int countEnemies = 0;
-            foreach (Enemy enemy in GetEnemysAsList())
-            {
-                if (m_GameScreen.Contains(enemy))
-                {
-                    countEnemies++;
-                }
 
-                if (m_GameScreen.Contains(enemy) && enemy.SpriteJump.IsTouchedEndOfTheScreen())
-                {
-                    SpaceInvadersServices.GameOver(this.Game);
-                    break;
-                }
-            }
-
-            if (countEnemies == 0)
+            if (GetEnemysAsList().Count == 0)
             {
                 SpaceInvadersServices.GameOver(this.Game);
+            }
+        }
+        public void Remove(Enemy i_Enemy)
+        {
+            foreach (List<Enemy> enemyRow in r_EnemiesMatrix)
+            {
+                enemyRow.Remove(i_Enemy);
             }
         }
     }

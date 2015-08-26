@@ -64,7 +64,21 @@ namespace SpaceInvaders.ObjectModel
         {
             (this.Animations["CellAnimator"] as CellAnimator).ChangeShape();
         }
+        public event EventHandler TouchedEndOfTheScreen;
 
+        protected virtual void OnTouchedEndOfTheScreen()
+        {
+          if(TouchedEndOfTheScreen != null)
+          {
+              TouchedEndOfTheScreen.Invoke(this,EventArgs.Empty);
+          }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            SpaceInvadersServices.GetEnemeiesMatrixComponent(this.GameScreen).Remove(this);
+        }
         public void InitAnimations()
         {
             ShrinkAnimator shrinkAnimator = new ShrinkAnimator(TimeSpan.FromSeconds(1.5));

@@ -12,28 +12,32 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
 {
     public class MoveStageScreen : GameScreenWithTimer
     {
+        private const int k_CountFromNumber=3;
         private int m_CurrentLevel = 0;
         private int m_CurrentCountingNum = 0;
         private Text m_CountingText;
 
         public MoveStageScreen(Game i_Game, int i_Level)
-            : base(i_Game, TimeSpan.FromSeconds(3))
+            : base(i_Game, TimeSpan.FromSeconds(k_CountFromNumber))
         {
             m_CurrentLevel = i_Level;
             Finished += MoveStageScreen_Finished;
-            m_CurrentCountingNum = 3;
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            m_CurrentCountingNum = k_CountFromNumber;
 
         }
         void MoveStageScreen_Finished(object sender, EventArgs e)
         {
-            this.ScreensManager.SetCurrentScreen(new GamingScreen(this.Game));
+            this.ScreensManager.Remove(this);
         }
-
+        public void SetCurrentLevel(int i_Level)
+        {
+            this.Initialize();
+        }
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
