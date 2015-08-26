@@ -524,5 +524,17 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
             get { return m_SaveAndRestoreDeviceState; }
             set { m_SaveAndRestoreDeviceState = value; }
         }
+
+        public bool IsMouseHover(IInputManager i_InputManager)
+        {
+            bool isMouseCollided = false;
+            Rectangle mouseRectangle = new Rectangle(i_InputManager.MouseState.X, i_InputManager.MouseState.Y, 32, 32);
+            if (this.Bounds.Intersects(mouseRectangle))
+            {
+                isMouseCollided = true;
+            }
+            return isMouseCollided;
+        }
+
     }
 }

@@ -204,10 +204,10 @@ namespace SpaceInvaders.ObjectModel
         {
             foreach (Enemy enemy in GetEnemysAsList())
             {
-                if ( !enemy.isDying)
+                if (!enemy.isDying)
                 {
                     enemy.SpriteJump.Jump(i_JumpDirection, i_DistanceToJump, i_IsJumpingBackwards);
-                }
+               }
             }
         }
         private SpriteJump.SpriteOverJumped getEnemyOverJumpedData()
@@ -253,6 +253,7 @@ namespace SpaceInvaders.ObjectModel
                 }
             }
         }
+
         public void Remove(Enemy i_Enemy)
         {
             foreach (List<Enemy> enemyRow in r_EnemiesMatrix)
@@ -267,7 +268,6 @@ namespace SpaceInvaders.ObjectModel
             bool isAnyLeft = (this.GetEnemysAsList().Count == 0) ? false : true;
             return isAnyLeft;
         }
-
 
         public void IncraseEnemiesRandomShotting()
         {

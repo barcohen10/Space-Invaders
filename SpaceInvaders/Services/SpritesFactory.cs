@@ -9,6 +9,7 @@ using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using Microsoft.Xna.Framework.Audio;
+using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 
 namespace SpaceInvaders.Services
 {
@@ -29,7 +30,8 @@ namespace SpaceInvaders.Services
             MediumText,
             BigText,
             LifeBlueSpaceShip,
-            LifeGreenSpaceShip
+            LifeGreenSpaceShip,
+            Mouse
         }
 
         private const string k_EnemysAsset = @"Sprites\Enemies";
@@ -39,6 +41,7 @@ namespace SpaceInvaders.Services
         private const string k_SpaceBGAsset = @"Sprites\SpaceBg";
         private const string k_BulletAsset = @"Sprites\Bullet";
         private const string k_BarrierAsset = @"Sprites\Barrier";
+        private const string k_MouseAsset = @"Sprites\Mouse";
         private const string k_CalibriSmallFontAsset = @"Fonts\CalibriSmallFont";
         private const string k_CalibriBigFontAsset = @"Fonts\CalibriBigFont";
         private const string k_CalibriMediumFontAsset = @"Fonts\CalibriMediumFont";
@@ -104,6 +107,10 @@ namespace SpaceInvaders.Services
 
                 case eSpriteType.LifeGreenSpaceShip:
                     sprite = new Life(i_GameScreen, k_GreenSpaceShipAsset);
+                    break;
+
+                case eSpriteType.Mouse:
+                    sprite = new MouseSprite(i_GameScreen, k_MouseAsset);
                     break;
             }
             sprite.Initialize();

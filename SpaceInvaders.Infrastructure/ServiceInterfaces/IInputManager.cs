@@ -50,6 +50,7 @@ namespace SpaceInvaders.Infrastructure.ServiceInterfaces
         KeyboardState KeyboardState { get; }
         MouseState MouseState { get; }
 
+
         // Allows querying buttons current state (Mouse and GamePad):
         bool ButtonIsDown(eInputButtons i_MouseButtons);
 

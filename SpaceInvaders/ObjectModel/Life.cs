@@ -24,10 +24,5 @@ namespace SpaceInvaders.ObjectModel
              base.Initialize();
              UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
          }
-
-         public override void Draw(GameTime i_GameTime)
-         {
-             base.Draw(i_GameTime);
-         }
     }
 }
