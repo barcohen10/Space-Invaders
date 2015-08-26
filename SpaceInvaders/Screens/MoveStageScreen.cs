@@ -21,23 +21,21 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             : base(i_Game, TimeSpan.FromSeconds(k_CountFromNumber))
         {
             m_CurrentLevel = i_Level;
+            m_CurrentCountingNum = k_CountFromNumber;
             Finished += MoveStageScreen_Finished;
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            m_CurrentCountingNum = k_CountFromNumber;
 
         }
         void MoveStageScreen_Finished(object sender, EventArgs e)
         {
             this.ScreensManager.Remove(this);
+            this.ScreensManager.SetCurrentScreen(this.PreviousScreen);
         }
-        public void SetCurrentLevel(int i_Level)
-        {
-            this.Initialize();
-        }
+   
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

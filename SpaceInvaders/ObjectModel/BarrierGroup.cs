@@ -11,19 +11,23 @@ namespace SpaceInvaders.ObjectModel
     public class BarrierGroup : GameComponent
     {
         private const int k_NumOfBarries = 4;
-        private List<Barrier> m_Barriers = new List<Barrier>();
+        private List<Barrier> m_Barriers;
         private GameScreen m_GameScreen;
-        private bool m_JumpBarriersOnUpdate = false;
-        public bool JumpBarriersOnUpdate { get { return m_JumpBarriersOnUpdate; } set { m_JumpBarriersOnUpdate = value; } }
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
         {
             m_GameScreen = i_GameScreen;
-            createBarrierGroup(k_NumOfBarries);
         }
-
+        public void ChangeToDefaultJumpingSpeed()
+        {
+            foreach (Barrier barrier in m_Barriers)
+            {
+                barrier.ChangeToDefaultJumpingSpeed();
+            }
+        }
         private void createBarrierGroup(int i_NumOfBarriers)
         {
+            m_Barriers = new List<Barrier>();
             Barrier barrier = null;
             Vector2 position = new Vector2(0, 0);
             float groupWidth = 0;
@@ -49,7 +53,6 @@ namespace SpaceInvaders.ObjectModel
             x -= groupWidth / 2;
             centerGroupOnScreen(new Vector2(x, 0));
         }
-
         private void centerGroupOnScreen(Vector2 i_Position)
         {
             m_Barriers[0].Position = new Vector2(i_Position.X, 0);
@@ -58,7 +61,11 @@ namespace SpaceInvaders.ObjectModel
                 m_Barriers[i].Position = new Vector2(m_Barriers[i - 1].Position.X + (m_Barriers[i - 1].Width * 2), 0);
             }
         }
-
+        public override void Initialize()
+        {
+            base.Initialize();
+            createBarrierGroup(k_NumOfBarries);
+        }
         public void ChangeGroupPositionY(float i_PositionY)
         {
             for (int i = 0; i < k_NumOfBarries; i++)
@@ -66,7 +73,6 @@ namespace SpaceInvaders.ObjectModel
                 m_Barriers[i].Position = new Vector2(m_Barriers[i].Position.X, i_PositionY);
             }
         }
-
         private void changeMovingDirection(object sender, EventArgs args)
         {
             foreach (Barrier barrier in m_Barriers)
@@ -74,26 +80,27 @@ namespace SpaceInvaders.ObjectModel
                 barrier.Velocity = -barrier.Velocity;
             }
         }
+        public void Speedup(double i_Percenteage)
+        {
+            foreach (Barrier barrier in m_Barriers)
+            {
+                barrier.SpeedUp((float)(barrier.CurrentSpeed * i_Percenteage));
+            }
+        }
         public void StartJumpingBarriers()
         {
-            if (!m_JumpBarriersOnUpdate)
+
+            foreach (Barrier barrier in m_Barriers)
             {
-                foreach (Barrier barrier in m_Barriers)
-                {
-                    barrier.StartJumping();
-                }
-                m_JumpBarriersOnUpdate = true;
+                barrier.StartJumping();
             }
         }
         public void StopJumpingBarriers()
         {
-            if (m_JumpBarriersOnUpdate)
+
+            foreach (Barrier barrier in m_Barriers)
             {
-                foreach (Barrier barrier in m_Barriers)
-                {
-                    barrier.StopJumping();
-                }
-                m_JumpBarriersOnUpdate = false;
+                barrier.StopJumping();
             }
         }
     }

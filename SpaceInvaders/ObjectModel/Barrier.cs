@@ -17,9 +17,9 @@ namespace SpaceInvaders.ObjectModel
     {
         private readonly float r_BarrierVelocity = float.Parse(ConfigurationManager.AppSettings["Barrier.Velocity"].ToString());
 
+        private float m_JumpingVelocity;
         private readonly CollisionServices m_CollisionServices;
 
-        private bool m_JumpOnUpdate = false;
         public Barrier(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {
@@ -38,30 +38,37 @@ namespace SpaceInvaders.ObjectModel
         public override void Initialize()
         {
             base.Initialize();
+            m_JumpingVelocity = r_BarrierVelocity;
             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
         }
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (m_JumpOnUpdate)
-            {
+     
                 this.Position = new Vector2(MathHelper.Clamp(this.Position.X, 0, this.Game.GraphicsDevice.Viewport.Width - this.Width), Position.Y);
                 if (this.Position.X == 0 || this.Position.X == (this.Game.GraphicsDevice.Viewport.Width - this.Width))
                 {
                     OnTouchScreenLimit();
                 }
-            }
+        }
+        public void SpeedUp(float i_Velocity)
+        {
+            m_JumpingVelocity += i_Velocity;
+            this.Velocity = new Vector2(m_JumpingVelocity, 0);
+        }
+        public float CurrentSpeed { get { return m_JumpingVelocity; } }
+        public void ChangeToDefaultJumpingSpeed()
+        {
+            m_JumpingVelocity = r_BarrierVelocity;
         }
         public void StartJumping()
         {
-                m_JumpOnUpdate = true;
-                this.Velocity = new Vector2(r_BarrierVelocity, 0);
+            this.Velocity = new Vector2(m_JumpingVelocity, 0);
 
         }
         public void StopJumping()
         {
-            m_JumpOnUpdate = false;
             this.Velocity = new Vector2();
 
         }
@@ -84,14 +91,14 @@ namespace SpaceInvaders.ObjectModel
                     bullet.Dispose();
                 }
             }
-            
-            if(enemy != null)
+
+            if (enemy != null)
             {
                 m_CollisionServices.IsPixelsIntersect(this, collidableSprite, out collidedPoints, autoPixelClear);
             }
         }
 
 
- 
+
     }
 }

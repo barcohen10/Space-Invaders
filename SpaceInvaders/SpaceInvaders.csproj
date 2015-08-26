@@ -145,6 +145,10 @@
       <Project>{807fc978-40ba-4457-b691-d0b2356cc666}</Project>
       <Name>SpaceInvaders.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpaceInvaders.Tester\SpaceInvaders.Tester.csproj">
+      <Project>{9ce320ef-5548-4663-abd0-3927165e2706}</Project>
+      <Name>SpaceInvaders.Tester</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

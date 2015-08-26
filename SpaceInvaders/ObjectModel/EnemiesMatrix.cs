@@ -7,18 +7,19 @@ using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
+
 namespace SpaceInvaders.ObjectModel
 {
     public class EnemiesMatrix : GameComponent
     {
-        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2;
+        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 9;
         private static Random s_RandomGenerator = new Random();
         private readonly List<List<Enemy>> r_EnemiesMatrix;
         private int m_TimeCount;
         private int m_JumpTwiceMilliSec;
         private SpriteJump.eJumpDirection m_JumpDirection;
         private GameScreen m_GameScreen;
-
+        private int m_NumberOfColumns;
 
         public EnemiesMatrix(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
@@ -28,6 +29,7 @@ namespace SpaceInvaders.ObjectModel
             this.r_EnemiesMatrix = new List<List<Enemy>>();
             m_JumpDirection = SpriteJump.eJumpDirection.Right;
             m_GameScreen = i_GameScreen;
+            m_NumberOfColumns = k_StartupNumOfColumns;
         }
 
         private Enemy this[int i, int j]
@@ -43,25 +45,35 @@ namespace SpaceInvaders.ObjectModel
             m_JumpTwiceMilliSec = (int)(m_JumpTwiceMilliSec * i_Amount);
             foreach (Enemy enemy in GetEnemysAsList())
             {
-
                 enemy.SetChangeShapeSpeed(m_JumpTwiceMilliSec / 2);
 
             }
         }
-
+        public void AddPointsForEnemyKilling(int i_Points)
+        {
+            foreach (Enemy enemy in GetEnemysAsList())
+            {
+                enemy.Points += i_Points;
+            }
+        }
+        public void Clear()
+        {
+            this.r_EnemiesMatrix.Clear();
+        }
         public override void Initialize()
         {
-            createEnemiesMatrix(9);
+            Clear();
+            m_JumpTwiceMilliSec = 1000;
+            createEnemiesMatrix(m_NumberOfColumns);
             base.Initialize();
         }
-
         public override void Update(GameTime i_GameTime)
         {
             bool isSpeedUp = false, isJumpingBackwards = false;
             float originalDistanceToJump;
             int timeToJump;
-            checkIfEnemiesWonOrLost();
-            originalDistanceToJump = r_EnemiesMatrix[0][0].Width / 2;
+
+            originalDistanceToJump = GetEnemysAsList()[0].Width / 2;
             randomEnemyShooting();
             m_TimeCount += i_GameTime.ElapsedGameTime.Milliseconds;
             timeToJump = m_JumpTwiceMilliSec / 2;
@@ -105,7 +117,7 @@ namespace SpaceInvaders.ObjectModel
             }
 
         }
-        private List<Enemy> GetEnemysAsList()
+        public List<Enemy> GetEnemysAsList()
         {
             List<Enemy> enemys = new List<Enemy>();
             foreach (List<Enemy> enemyRow in r_EnemiesMatrix)
@@ -175,10 +187,7 @@ namespace SpaceInvaders.ObjectModel
             SpaceInvadersServices.GameOver(this.Game);
         }
 
-        public void ClearMatrix()
-        {
-            r_EnemiesMatrix.Clear();
-        }
+
         private void createEnemiesMatrix(int i_NumOfColumns)
         {
             for (int i = 0; i < i_NumOfColumns; i++)
@@ -186,11 +195,12 @@ namespace SpaceInvaders.ObjectModel
                 addEnemiesColumn(k_NumOfPinkEnemies, k_NumOfLightBlueEnemies, k_NumOfYellowEnemies);
             }
         }
+
         public void AddEnemiesColumn()
         {
+            m_NumberOfColumns++;
             addEnemiesColumn(k_NumOfPinkEnemies, k_NumOfLightBlueEnemies, k_NumOfYellowEnemies);
         }
-
         private void jumpAllAliveEnemies(SpriteJump.eJumpDirection i_JumpDirection, float i_DistanceToJump, bool i_IsJumpingBackwards)
         {
             foreach (Enemy enemy in GetEnemysAsList())
@@ -201,8 +211,6 @@ namespace SpaceInvaders.ObjectModel
                 }
             }
         }
-      
-
         private SpriteJump.SpriteOverJumped getEnemyOverJumpedData()
         {
             SpriteJump.SpriteOverJumped enemyOverJumpedData = new SpriteJump.SpriteOverJumped() { IsTouchedScreenHorizontalBoundary = false };
@@ -220,10 +228,9 @@ namespace SpaceInvaders.ObjectModel
 
             return enemyOverJumpedData;
         }
-
         private void randomEnemyShooting()
         {
-            int randomNumber = s_RandomGenerator.Next(300);
+            int randomNumber = s_RandomGenerator.Next(m_MaxRandomNumber);
             int count = 0;
             if (randomNumber <= r_EnemiesMatrix[0].Count)
             {
@@ -247,15 +254,6 @@ namespace SpaceInvaders.ObjectModel
                 }
             }
         }
-
-        private void checkIfEnemiesWonOrLost()
-        {
-
-            if (GetEnemysAsList().Count == 0)
-            {
-                SpaceInvadersServices.GameOver(this.Game);
-            }
-        }
         public void Remove(Enemy i_Enemy)
         {
             foreach (List<Enemy> enemyRow in r_EnemiesMatrix)
@@ -263,5 +261,19 @@ namespace SpaceInvaders.ObjectModel
                 enemyRow.Remove(i_Enemy);
             }
         }
+
+        public bool IsAnyEnemiesLeft()
+        {
+
+            bool isAnyLeft = (this.GetEnemysAsList().Count == 0) ? false : true;
+            return isAnyLeft;
+        }
+
+
+        public void IncraseEnemiesRandomShotting()
+        {
+            m_MaxRandomNumber -= (int)(m_MaxRandomNumber / 5);
+        }
+        private int m_MaxRandomNumber = 300;
     }
 }

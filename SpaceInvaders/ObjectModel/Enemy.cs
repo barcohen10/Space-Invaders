@@ -18,7 +18,7 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_BulletVelocity = float.Parse(ConfigurationManager.AppSettings["Bullet.Velocity"].ToString());
 
         private SpriteJump m_SpriteJump;
-
+      
         public bool isDying
         {
             get;

@@ -31,6 +31,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             }
             else if (InputManager.KeyPressed(Keys.Enter))
             {
+                ScreensManager.SetCurrentScreen(new GamingScreen(this.Game));
                 ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game, 1));
             }
             else if (InputManager.KeyPressed(Keys.F6))
@@ -53,7 +54,7 @@ namespace C15Ex02Dotan301810610Bar308000322.Screens
             menuItems.Add("[Esc] - Exit game");
             List<Text> listMenuTexts = TextServices.GetAndCreateTexts(this, menuItems, SpritesFactory.eSpriteType.MediumText, m_WelcomeMessage.Position.X, m_WelcomeMessage.Position.Y + 100f);
             TextServices.CenterTextsOnScreen(this, listMenuTexts);
-            TextServices.CenterTextsOnScreen(this, new List<Text>() { m_WelcomeMessage});
+            TextServices.CenterTextsOnScreen(this, new List<Text>() { m_WelcomeMessage });
         }
 
 

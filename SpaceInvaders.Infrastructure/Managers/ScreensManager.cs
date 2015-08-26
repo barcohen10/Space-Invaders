@@ -66,7 +66,7 @@ namespace SpaceInvaders.Infrastructure.Managers
         private void Screen_StateChanged(object sender, StateChangedEventArgs e)
         {
             switch (e.CurrentState)
-            {
+            { 
                 case eScreenState.Activating:
                     break;
                 case eScreenState.Active:

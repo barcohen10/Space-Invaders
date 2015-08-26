@@ -134,7 +134,7 @@ namespace SpaceInvaders.Services
 
         public static void GameOver(Game i_Game)
         {
-            PlayerSpaceInvaders winningPlayer = getWinningPlayer( i_Game);
+            PlayerSpaceInvaders winningPlayer = getWinningPlayer(i_Game);
             List<PlayerSpaceInvaders> otherPlayers = getAllPlayers(i_Game, winningPlayer);
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Game Over!");
@@ -209,6 +209,11 @@ namespace SpaceInvaders.Services
             }
         }
 
+        public static bool IsAnyEnemiesLeft(GameScreen i_GameScreen)
+        {
+            return GetEnemeiesMatrixComponent(i_GameScreen).IsAnyEnemiesLeft();
+        }
+
         //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
         //{
         //    List<Text> textInstructions = new List<Text>();
@@ -221,5 +226,25 @@ namespace SpaceInvaders.Services
         //    }
         //    return textInstructions;
         //}
+
+        public static void ClearComponents<T>(GameScreen i_GameScreen)
+            where T : class
+        {
+            List<GameComponent> compsToBeDeleted = new List<GameComponent>();
+            T comp ;
+            foreach (GameComponent component in i_GameScreen)
+            {
+                comp = component as T;
+                if (comp != null)
+                {
+                    compsToBeDeleted.Add(component as GameComponent);
+
+                }
+            }
+            foreach(GameComponent item in compsToBeDeleted)
+            {
+                i_GameScreen.Remove(item);
+            }
+        }
     }
 }
