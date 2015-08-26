@@ -63,13 +63,13 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         {
             if(m_Menu.Count > 0)
             {
-                if (InputManager.KeyPressed(Keys.PageUp))
+                if (InputManager.KeyPressed(Keys.Up))
                 {
-                    m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex - 1) > 0 ? (m_ActiveMenuItemIndex - 1) : 0;
+                    m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex - 1) >= 0 ? (m_ActiveMenuItemIndex - 1) : (Menu.Count - 1);
                 }
-                if (InputManager.KeyPressed(Keys.PageDown))
+                if (InputManager.KeyPressed(Keys.Down))
                 {
-                    m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex + 1) < (Menu.Count - 1) ? (m_ActiveMenuItemIndex + 1) : (Menu.Count - 1);
+                    m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex + 1) <= (Menu.Count - 1) ? (m_ActiveMenuItemIndex + 1) : 0;
                 }
                 if (InputManager.KeyPressed(Keys.Enter))
                 {
