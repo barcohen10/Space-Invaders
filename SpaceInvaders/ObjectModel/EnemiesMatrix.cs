@@ -205,7 +205,7 @@ namespace SpaceInvaders.ObjectModel
         {
             foreach (Enemy enemy in GetEnemysAsList())
             {
-                if (m_GameScreen.Contains(enemy))
+                if (m_GameScreen.Contains(enemy) && !enemy.isDying)
                 {
                     enemy.SpriteJump.Jump(i_JumpDirection, i_DistanceToJump, i_IsJumpingBackwards);
                 }
