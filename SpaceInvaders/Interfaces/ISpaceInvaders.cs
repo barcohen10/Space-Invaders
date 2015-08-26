@@ -9,5 +9,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Interfaces
     {
         void Play();
         void Quit();
+        void OnePlayer();
+        void TwoPlayers();
     }
 }

@@ -20,6 +20,7 @@ namespace SpaceInvaders.ObjectModel
         private SpriteJump.eJumpDirection m_JumpDirection;
         private GameScreen m_GameScreen;
         private int m_NumberOfColumns;
+        private int m_MaxRandomNumber = 300;
 
         public EnemiesMatrix(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
@@ -118,15 +119,15 @@ namespace SpaceInvaders.ObjectModel
         }
         public List<Enemy> GetEnemysAsList()
         {
-            List<Enemy> enemys = new List<Enemy>();
+            List<Enemy> enemies = new List<Enemy>();
             foreach (List<Enemy> enemyRow in r_EnemiesMatrix)
             {
                 foreach (Enemy enemy in enemyRow)
                 {
-                    enemys.Add(enemy);
+                    enemies.Add(enemy);
                 }
             }
-            return enemys;
+            return enemies;
 
         }
         private void addEnemiesColumn(int i_NumOfPinkEnemies, int i_NumOfLightBlueEnemies, int i_NumOfYellowEnemies)
@@ -273,6 +274,5 @@ namespace SpaceInvaders.ObjectModel
         {
             m_MaxRandomNumber -= (int)(m_MaxRandomNumber / 5);
         }
-        private int m_MaxRandomNumber = 300;
     }
 }

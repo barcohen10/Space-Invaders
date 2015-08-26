@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using C15Ex03Dotan301810610Bar308000322.Menu;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
@@ -31,22 +32,41 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             return texts;
         }
 
-        public static void CenterTextsOnScreen(GameScreen i_GameScreen, List<Text> i_Texts)
+        public static void CenterTextsOnScreen(GameScreen i_GameScreen, List<Text> i_Texts = null, List<GameMenuItem> i_MenuItems = null)
         {
             float x = (float)i_GameScreen.GraphicsDevice.Viewport.Width / 2;
-            float largestTextWidth = 0;
-            foreach(Text text in i_Texts)
+            float largestWidth = 0;
+            if(i_Texts != null)
             {
-                if(largestTextWidth < text.Width)
+                foreach (Text text in i_Texts)
                 {
-                    largestTextWidth = text.Width;
+                    if (largestWidth < text.Width)
+                    {
+                        largestWidth = text.Width;
+                    }
+                }
+
+                x -= largestWidth / 2;
+                foreach (Text text in i_Texts)
+                {
+                    text.Position = new Vector2(x, text.Position.Y);
                 }
             }
-
-            x -= largestTextWidth / 2;
-            foreach (Text text in i_Texts)
+            else if(i_MenuItems != null)
             {
-                text.Position = new Vector2(x, text.Position.Y);
+                foreach (GameMenuItem menuItem in i_MenuItems)
+                {
+                    if (largestWidth < menuItem.Width)
+                    {
+                        largestWidth = menuItem.Width;
+                    }
+                }
+
+                x -= largestWidth / 2;
+                foreach (GameMenuItem menuItem in i_MenuItems)
+                {
+                    menuItem.Position = new Vector2(x, menuItem.Position.Y);
+                }
             }
         }
     }

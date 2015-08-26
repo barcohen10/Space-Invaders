@@ -1,4 +1,5 @@
-﻿using C15Ex03Dotan301810610Bar308000322.ObjectModel;
+﻿using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
+using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -93,11 +94,11 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     activateMenuItem();
                     Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
                 }
-                else if (isMouseHover)
+                else if (isMouseHover && m_ActiveMenuItemIndex > -1 && !(Menu[m_ActiveMenuItemIndex] as GameMenuItem).IsActive)
                 {
                     activateMenuItem();
                 }
-                else
+                else if(m_ActiveMenuItemIndex > -1 && !(Menu[m_ActiveMenuItemIndex] as GameMenuItem).IsActive)
                 {
                     m_ActiveMenuItemIndex = -1;
                     deactiveAllMenuItems();
@@ -116,11 +117,24 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     else if (InputManager.KeyPressed(Keys.Enter))
                     {
                         m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-                    }
+                    } 
 
                     if (m_ActiveMenuItemIndex > -1)
                     {
-                        activateMenuItem();
+                      activateMenuItem();
+                    if ((m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem) != null && InputManager.KeyPressed(Keys.PageUp) || InputManager.KeyPressed(Keys.PageDown))
+                    {
+                        if(InputManager.KeyPressed(Keys.PageUp))
+                        {
+                            (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).UpOption();
+                            m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.PageUp);
+                        }
+                        else
+                        {
+                            (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).DownOption();
+                            m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.PageDown);
+                        }
+                    }
                     }
                 }
               

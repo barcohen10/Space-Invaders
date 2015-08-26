@@ -12,7 +12,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
     {
         private readonly string r_ItemName;
         private Menu m_SubMenu;
-        private Dictionary<Keys, MethodKey> m_AllMethods;
+        protected Dictionary<Keys, MethodKey> m_AllMethods;
         private event ClickedEventHandler m_MethodToRun = null;
 
         public MenuItem(string i_ItemName, params MethodKey[] i_Methods)

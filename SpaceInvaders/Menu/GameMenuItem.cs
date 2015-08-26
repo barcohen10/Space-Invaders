@@ -14,6 +14,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private Text m_Text;
         private bool m_IsActive = false;
         private readonly Color r_OriginalColor;
+        protected GameScreen m_GameScreen;
 
         public GameMenuItem(string i_ItemName, GameScreen i_GameScreen, Color i_Color, params MethodKey[] i_Methods)
             : base(i_ItemName, i_Methods)
@@ -21,6 +22,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             m_Text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.BigText) as Text;
             m_Text.TextString = i_ItemName;
             m_Text.TintColor = r_OriginalColor = i_Color;
+            m_GameScreen = i_GameScreen;
         }
 
         public Text Text { get { return m_Text; } set { m_Text = value; } }
@@ -39,7 +41,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        public bool IsActive 
+        public virtual float Width
+        {
+            get
+            {
+                return Text.Width;
+            }
+        }
+
+        public virtual bool IsActive 
         { 
             get { return m_IsActive; } 
             set 
@@ -56,7 +66,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             } 
         }
 
-        private void activateMenuItem()
+        protected void activateMenuItem()
         {
             m_Text.TintColor = Color.Red;
         }
@@ -65,6 +75,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         {
             m_Text.TintColor = r_OriginalColor;
         }
+
 
     }
 }

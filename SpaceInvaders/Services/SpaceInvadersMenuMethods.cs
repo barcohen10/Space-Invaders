@@ -13,12 +13,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
     public class SpaceInvadersMenuMethods : GameComponent, ISpaceInvaders, IAction
     {
         private readonly eMethodsToRun r_MethodToRun;
-        private static Game m_Game;
+        private Game m_Game;
 
         public enum eMethodsToRun
         {
             Play,
-            Quit
+            Quit,
+            OnePlayer,
+            TwoPlayers
         }
 
         public SpaceInvadersMenuMethods(Game i_Game, eMethodsToRun i_MethodToRun)
@@ -39,6 +41,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             m_Game.Exit();
         }
 
+        void ISpaceInvaders.OnePlayer()
+        {
+        }
+
+        void ISpaceInvaders.TwoPlayers()
+        {
+        }
+
         public void RunMethod()
         {
             switch (r_MethodToRun)
@@ -51,6 +61,17 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                 case eMethodsToRun.Quit:
                     {
                         (this as ISpaceInvaders).Quit();
+                        break;
+                    }
+
+                case eMethodsToRun.OnePlayer:
+                    {
+                        (this as ISpaceInvaders).OnePlayer();
+                        break;
+                    }
+                case eMethodsToRun.TwoPlayers:
+                    {
+                        (this as ISpaceInvaders).TwoPlayers();
                         break;
                     }
             }
