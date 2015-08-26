@@ -31,7 +31,6 @@ namespace SpaceInvaders.ObjectModel
             m_GameScreen = i_GameScreen;
             m_NumberOfColumns = k_StartupNumOfColumns;
         }
-
         private Enemy this[int i, int j]
         {
             get
@@ -205,7 +204,7 @@ namespace SpaceInvaders.ObjectModel
         {
             foreach (Enemy enemy in GetEnemysAsList())
             {
-                if (m_GameScreen.Contains(enemy) && !enemy.isDying)
+                if ( !enemy.isDying)
                 {
                     enemy.SpriteJump.Jump(i_JumpDirection, i_DistanceToJump, i_IsJumpingBackwards);
                 }
@@ -238,7 +237,7 @@ namespace SpaceInvaders.ObjectModel
                 {
                     for (int j = 0; j < r_EnemiesMatrix[0].Count; j++)
                     {
-                        if (randomNumber == count && m_GameScreen.Contains(r_EnemiesMatrix[i][j]))
+                        if (randomNumber == count)
                         {
                             r_EnemiesMatrix[i][j].ShootBullet(Color.Blue);
                             break;

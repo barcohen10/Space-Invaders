@@ -18,7 +18,6 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_BulletVelocity = float.Parse(ConfigurationManager.AppSettings["Bullet.Velocity"].ToString());
 
         private SpriteJump m_SpriteJump;
-      
         public bool isDying
         {
             get;
@@ -114,7 +113,7 @@ namespace SpaceInvaders.ObjectModel
             r_TextureStartIndex = i_TextureStartIndex;
             r_TextureEndIndex = i_TextureEndIndex;
         }
-
+     
     
         public override void Update(GameTime gameTime)
         {
