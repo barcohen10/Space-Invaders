@@ -13,10 +13,10 @@ namespace SpaceInvaders.ObjectModel
 {
     public class EnemiesMatrix : GameComponent
     {
-        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 1;
-        private  int m_YellowEnemyPoints = int.Parse(ConfigurationManager.AppSettings["Scores.YellowEnemy"].ToString());
-        private  int m_LightBluePoints = int.Parse(ConfigurationManager.AppSettings["Scores.LightBlueEnemy"].ToString());
-        private  int m_PinkPoints = int.Parse(ConfigurationManager.AppSettings["Scores.PinkEnemy"].ToString());
+        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 9;
+        private int m_YellowEnemyPoints = int.Parse(ConfigurationManager.AppSettings["Scores.YellowEnemy"].ToString());
+        private int m_LightBluePoints = int.Parse(ConfigurationManager.AppSettings["Scores.LightBlueEnemy"].ToString());
+        private int m_PinkPoints = int.Parse(ConfigurationManager.AppSettings["Scores.PinkEnemy"].ToString());
 
         private static Random s_RandomGenerator = new Random();
         private readonly List<List<Enemy>> r_EnemiesMatrix;
@@ -25,12 +25,12 @@ namespace SpaceInvaders.ObjectModel
         private SpriteJump.eJumpDirection m_JumpDirection;
         private GameScreen m_GameScreen;
         private int m_NumberOfColumns;
-        private int m_MaxRandomNumber = 300;
+        private int m_RandomNumberToGet = 300;
 
         public EnemiesMatrix(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
         {
-            m_TimeCount = 0;
+
             m_JumpTwiceMilliSec = 1000;
             this.r_EnemiesMatrix = new List<List<Enemy>>();
             m_JumpDirection = SpriteJump.eJumpDirection.Right;
@@ -68,6 +68,7 @@ namespace SpaceInvaders.ObjectModel
         public override void Initialize()
         {
             Clear();
+            m_TimeCount = 0;
             m_JumpTwiceMilliSec = 1000;
             createEnemiesMatrix(m_NumberOfColumns);
             base.Initialize();
@@ -181,6 +182,7 @@ namespace SpaceInvaders.ObjectModel
                     {
 
                         enemy.ChangeEnemyShape();
+
                     }
                 }
 
@@ -235,12 +237,11 @@ namespace SpaceInvaders.ObjectModel
                     }
                 }
             }
-
             return enemyOverJumpedData;
         }
         private void randomEnemyShooting()
         {
-            int randomNumber = s_RandomGenerator.Next(m_MaxRandomNumber);
+            int randomNumber = s_RandomGenerator.Next(m_RandomNumberToGet);
             int count = 0;
             if (randomNumber <= r_EnemiesMatrix[0].Count)
             {
@@ -282,7 +283,7 @@ namespace SpaceInvaders.ObjectModel
 
         public void IncraseEnemiesRandomShotting()
         {
-            m_MaxRandomNumber -= (int)(m_MaxRandomNumber / 5);
+            m_RandomNumberToGet -= (int)(m_RandomNumberToGet / 5);
         }
     }
 }

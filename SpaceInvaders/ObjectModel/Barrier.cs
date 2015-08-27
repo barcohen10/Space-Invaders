@@ -15,7 +15,7 @@ namespace SpaceInvaders.ObjectModel
 {
     public class Barrier : Sprite, ICollidable2D
     {
-        private readonly float r_BarrierVelocity = float.Parse(ConfigurationManager.AppSettings["Barrier.Velocity"].ToString());
+        private readonly float r_DefaultBarrierVelocity = float.Parse(ConfigurationManager.AppSettings["Barrier.Velocity"].ToString());
 
         private float m_JumpingVelocity;
         private readonly CollisionServices m_CollisionServices;
@@ -38,7 +38,7 @@ namespace SpaceInvaders.ObjectModel
         public override void Initialize()
         {
             base.Initialize();
-            m_JumpingVelocity = r_BarrierVelocity;
+            m_JumpingVelocity = r_DefaultBarrierVelocity;
             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
         }
         public override void Update(GameTime gameTime)
@@ -60,7 +60,7 @@ namespace SpaceInvaders.ObjectModel
         public float CurrentSpeed { get { return m_JumpingVelocity; } }
         public void ChangeToDefaultJumpingSpeed()
         {
-            m_JumpingVelocity = r_BarrierVelocity;
+            m_JumpingVelocity = r_DefaultBarrierVelocity;
         }
         public void StartJumping()
         {
@@ -69,7 +69,7 @@ namespace SpaceInvaders.ObjectModel
         }
         public void StopJumping()
         {
-            this.Velocity = new Vector2();
+            this.Velocity = new Vector2(0,0);
 
         }
         public override void Collided(ICollidable i_Collidable)
@@ -97,8 +97,5 @@ namespace SpaceInvaders.ObjectModel
                 m_CollisionServices.IsPixelsIntersect(this, collidableSprite, out collidedPoints, autoPixelClear);
             }
         }
-
-
-
     }
 }

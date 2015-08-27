@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.Managers;
+using C15Ex03Dotan301810610Bar308000322.Screens;
+using SpaceInvaders.Infrastructure.ServiceInterfaces;
 
 namespace SpaceInvaders.Services
 {
@@ -258,6 +260,7 @@ namespace SpaceInvaders.Services
             foreach(GameComponent item in compsToBeDeleted)
             {
                 i_GameScreen.Remove(item);
+                item.Dispose();
             }
         }
     }

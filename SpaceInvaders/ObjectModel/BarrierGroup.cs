@@ -13,10 +13,13 @@ namespace SpaceInvaders.ObjectModel
         private const int k_NumOfBarries = 4;
         private List<Barrier> m_Barriers;
         private GameScreen m_GameScreen;
+        private float m_CurrentBarriersSpeed;
+
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
         {
             m_GameScreen = i_GameScreen;
+            m_Barriers = new List<Barrier>();
         }
         public void ChangeToDefaultJumpingSpeed()
         {
@@ -24,14 +27,26 @@ namespace SpaceInvaders.ObjectModel
             {
                 barrier.ChangeToDefaultJumpingSpeed();
             }
+            m_CurrentBarriersSpeed = m_Barriers[0].CurrentSpeed;
+        }
+        public bool compare(Color[] i_first, Color[] i_second)
+        {
+            bool same = true;
+            for (int i = 0; i < i_first.Length; i++)
+            {
+                if (i_first[i] != i_second[i])
+                {
+                    same = false;
+                }
+            }
+            return same;
         }
         private void createBarrierGroup(int i_NumOfBarriers)
         {
-            m_Barriers = new List<Barrier>();
             Barrier barrier = null;
             Vector2 position = new Vector2(0, 0);
             float groupWidth = 0;
-
+            m_Barriers.Clear();
             for (int i = 0; i < i_NumOfBarriers; i++)
             {
                 barrier = SpritesFactory.CreateSprite(m_GameScreen, SpritesFactory.eSpriteType.Barrier) as Barrier;
@@ -41,7 +56,6 @@ namespace SpaceInvaders.ObjectModel
                 if (i > 0)
                 {
                     barrier.Texture = new Microsoft.Xna.Framework.Graphics.Texture2D(barrier.GraphicsDevice, (int)barrier.Width, (int)barrier.Height);
-                    barrier.Texture.SetData<Color>(m_Barriers[0].Pixels);
                     barrier.Pixels = m_Barriers[0].Pixels;
                 }
 
@@ -80,11 +94,12 @@ namespace SpaceInvaders.ObjectModel
                 barrier.Velocity = -barrier.Velocity;
             }
         }
-        public void Speedup(double i_Percenteage)
+        public void Speedup(float i_Percenteage)
         {
+            m_CurrentBarriersSpeed += (m_CurrentBarriersSpeed * i_Percenteage);
             foreach (Barrier barrier in m_Barriers)
             {
-                barrier.SpeedUp((float)(barrier.CurrentSpeed * i_Percenteage));
+                barrier.SpeedUp((float)(m_CurrentBarriersSpeed));
             }
         }
         public void StartJumpingBarriers()

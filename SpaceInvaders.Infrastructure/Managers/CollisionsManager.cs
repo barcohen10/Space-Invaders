@@ -13,6 +13,10 @@ namespace SpaceInvaders.Infrastructure.Managers
     {
         protected readonly List<ICollidable> m_Collidables = new List<ICollidable>();
 
+        public void Remove(ICollidable i_Item)
+        {
+            m_Collidables.Remove(i_Item);
+        }
         public CollisionsManager(Game i_Game) :
             base(i_Game, int.MaxValue)
         { }

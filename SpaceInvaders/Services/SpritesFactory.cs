@@ -48,28 +48,26 @@ namespace SpaceInvaders.Services
 
         public static Sprite CreateSprite(GameScreen i_GameScreen, eSpriteType i_SpriteType)
         {
-   
+
             Sprite sprite = null;
-            int pointsEarnedWhenKilled = 0;
             switch (i_SpriteType)
             {
                 case eSpriteType.Bullet:
                     sprite = new Bullet(i_GameScreen, k_BulletAsset);
                     break;
                 case eSpriteType.EnemyLightBlue:
-                    sprite = new Enemy(i_GameScreen, Color.LightBlue, 2, 4, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
+                    sprite = new Enemy(i_GameScreen, Color.LightBlue, 2, 4, k_EnemysAsset);
                     break;
                 case eSpriteType.EnemyPink:
-                    sprite = new Enemy(i_GameScreen, Color.Pink, 0, 2, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
+                    sprite = new Enemy(i_GameScreen, Color.Pink, 0, 2, k_EnemysAsset);
                     break;
 
                 case eSpriteType.EnemyYellow:
-                    sprite = new Enemy(i_GameScreen, Color.Yellow, 4, 6, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
+                    sprite = new Enemy(i_GameScreen, Color.Yellow, 4, 6, k_EnemysAsset);
                     break;
 
                 case eSpriteType.MotherShip:
-                    pointsEarnedWhenKilled = int.Parse(ConfigurationManager.AppSettings["Scores.Mothership"].ToString());
-                    sprite = new MotherShip(i_GameScreen, k_MotherSpaceShipAsset) { Points = pointsEarnedWhenKilled };
+                    sprite = new MotherShip(i_GameScreen, k_MotherSpaceShipAsset);
 
                     break;
 

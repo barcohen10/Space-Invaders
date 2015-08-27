@@ -38,9 +38,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             this.Add(barrierGroup);
             base.Initialize();
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
-
         }
-
 
         public override void Update(GameTime gameTime)
         {
@@ -67,7 +65,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
         {
             m_CurrentLevel++;
 
-            //Added 30 points
             SpaceInvadersServices.ClearComponents<Enemy>(this);
             SpaceInvadersServices.ClearComponents<Barrier>(this);
             SpaceInvadersServices.ClearComponents<Bullet>(this);
@@ -76,14 +73,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             enemyMatrix.Initialize();
             barrierGroup.Initialize();
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
+
             int state = m_CurrentLevel % 5;
-            if (state >= 2 || state <= 5)
+            if (state >= 2 && state <= 5)
             {
-                barrierGroup.StartJumpingBarriers();
-                barrierGroup.Speedup(0.5);
                 enemyMatrix.AddEnemiesColumn();
                 enemyMatrix.IncraseEnemiesRandomShotting();
                 enemyMatrix.AddPointsForEnemyKilling(30);
+                barrierGroup.StartJumpingBarriers();
+                barrierGroup.Speedup(0.05f);
                 if (state == 2)
                 {
                     barrierGroup.ChangeToDefaultJumpingSpeed();
@@ -92,10 +90,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             else
             {
                 barrierGroup.StopJumpingBarriers();
-
             }
-
-
             this.ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game, m_CurrentLevel));
         }
 

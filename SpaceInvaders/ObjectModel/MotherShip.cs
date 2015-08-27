@@ -18,12 +18,13 @@ namespace SpaceInvaders.ObjectModel
     {
         private const int k_RandomNumberToGet = 333;
         private readonly float r_MotherShipVelocity = float.Parse(ConfigurationManager.AppSettings["MotherShip.Velocity"]);
-
+        private readonly int m_PointsToBeEarned= int.Parse(ConfigurationManager.AppSettings["Scores.Mothership"].ToString());
         private Random m_RandomGenerator = new Random();
 
         public MotherShip(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {
+            this.Points = m_PointsToBeEarned;
             this.Velocity = new Vector2(r_MotherShipVelocity, 0);
         }
 
