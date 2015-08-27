@@ -35,22 +35,25 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
         protected abstract void InitMenuItems();
 
-        protected void AddMenuItem(MenuItem menuItem)
+        protected void AddMenuItems(params MenuItem[] i_MenuItems)
         {
-            GameMenuItem menuItemGame = menuItem as GameMenuItem;
-            if (menuItemGame != null)
+            foreach(MenuItem menuItem in i_MenuItems)
             {
-                float y = TitleText.Position.Y + TitleText.Height + TitleText.Height / 2;
-                if (m_Menu.MenuItems != null)
+                GameMenuItem menuItemGame = menuItem as GameMenuItem;
+                if (menuItemGame != null)
                 {
-                    GameMenuItem lastItem = (m_Menu[m_Menu.Count - 1] as GameMenuItem);
-                    if (lastItem != null)
+                    float y = TitleText.Position.Y + TitleText.Height + TitleText.Height / 3;
+                    if (m_Menu.MenuItems != null)
                     {
-                        y = lastItem.Text.Position.Y + lastItem.Text.Height + lastItem.Text.Height / 2;
+                        GameMenuItem lastItem = (m_Menu[m_Menu.Count - 1] as GameMenuItem);
+                        if (lastItem != null)
+                        {
+                            y = lastItem.Text.Position.Y + lastItem.Text.Height + lastItem.Text.Height / 3;
+                        }
                     }
+                    menuItemGame.Position = new Vector2(0, y);
+                    this.Menu.AddMenuItem(menuItemGame);
                 }
-                menuItemGame.Position = new Vector2(0, y);
-                this.Menu.AddMenuItem(menuItemGame);
             }
         }
 
