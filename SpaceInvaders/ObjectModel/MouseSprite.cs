@@ -15,7 +15,6 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
     {
         private IInputManager m_InputManager;
         private bool m_IsActive = false;
-        private ButtonState m_LastBTNState = ButtonState.Released;
 
         public MouseSprite(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen) 
@@ -54,7 +53,7 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
         public override void Update(GameTime gameTime)
         {
             bool isHover = IsMouseHover(m_InputManager);
-            if (isHover && m_LastBTNState == ButtonState.Released && m_InputManager.MouseState.LeftButton == ButtonState.Pressed)
+            if (isHover && m_InputManager.MouseState.LeftButton == ButtonState.Pressed)
             {
                 IsActive = !IsActive;
                 Mouse.SetPosition((int)(this.Position.X + this.Width + this.Width / 2), (int)(this.Position.Y + this.Height / 2 ));

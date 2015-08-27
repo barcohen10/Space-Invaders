@@ -15,6 +15,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
         private List<Text> m_Options = new List<Text>();
         private int m_SelectedOptionIndex = 0;
         private Text m_Separator;
+        private MethodKey[] m_Methods;
 
         public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, List<string> i_Options, Keys i_ActivateItemKey, params MethodKey[] i_Methods)
             : base(i_ItemName, i_GameScreen, Color.White, i_Methods)
@@ -23,7 +24,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             {
                 initOptions(i_Options);
                 m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
-                m_AllMethods.Add(i_ActivateItemKey, new MethodKey() { MethodToRun = activateMenuItem, ActivateKey = i_ActivateItemKey });
+                m_Methods = i_Methods;
             }
         }
 
@@ -47,20 +48,41 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             m_Separator.TextString = "/";
             m_Separator.Position = new Vector2(x, this.Position.Y);
             optionText.Position = new Vector2(m_Separator.Position.X + m_Separator.Width + 15, this.Position.Y);
+
+            m_Options[0].RightMouseClick += UpOption;
+            m_Options[1].RightMouseClick += DownOption;
+        }
+
+        private void UpOption(object sender, EventArgs args)
+        {
+            UpOption();
         }
 
         public void UpOption()
         {
-            m_Options[m_SelectedOptionIndex].TintColor = Color.White;
-            m_SelectedOptionIndex = 0;
-            m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
+            if (IsSelected)
+            {
+                m_Options[m_SelectedOptionIndex].TintColor = Color.White;
+                m_SelectedOptionIndex = 0;
+                m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
+                this.RunMethod(m_Methods[0].ActivateKey);
+            }
         }
 
         public void DownOption()
         {
-            m_Options[m_SelectedOptionIndex].TintColor = Color.White;
-            m_SelectedOptionIndex = 1;
-            m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
+            if (IsSelected)
+            {
+                m_Options[m_SelectedOptionIndex].TintColor = Color.White;
+                m_SelectedOptionIndex = 1;
+                m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
+                this.RunMethod(m_Methods[1].ActivateKey);
+            }
+        }
+
+        private void DownOption(object sender, EventArgs args)
+        {
+            DownOption();
         }
 
         public override Vector2 Position

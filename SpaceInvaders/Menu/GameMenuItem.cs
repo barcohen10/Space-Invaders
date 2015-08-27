@@ -12,7 +12,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
     public class GameMenuItem : MenuItem
     {
         private Text m_Text;
-        private bool m_IsActive = false;
+        private bool m_IsActive = false, m_IsSelected = false;
         private readonly Color r_OriginalColor;
         protected GameScreen m_GameScreen;
 
@@ -59,11 +59,28 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                 {
                     activateMenuItem();
                 }
-                else
+                else if(!m_IsSelected)
                 {
                     deactivateMenuItem();
                 }
             } 
+        }
+
+        public bool IsSelected 
+        { 
+           get { return m_IsSelected; } 
+           set 
+           {
+               m_IsSelected = value;
+               if(m_IsSelected)
+               {
+                   m_Text.TintColor = Color.GreenYellow;
+               }
+               else
+               {
+                   m_Text.TintColor = r_OriginalColor;
+               }
+           } 
         }
 
         protected void activateMenuItem()

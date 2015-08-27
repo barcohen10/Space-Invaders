@@ -19,8 +19,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private string m_MenuTitle;
         private Text m_TitleText;
         private int m_ActiveMenuItemIndex = -1;
-        private ButtonState m_LastBTNState = ButtonState.Released;
-        private C15Ex03Dotan301810610Bar308000322.ObjectModel.MouseSprite m_Mouse;
+        private MouseSprite m_Mouse;
 
         public MenuScreen(Game i_Game, string i_MenuTitle)
             : base(i_Game)
@@ -86,23 +85,9 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         {
             if (m_Menu.Count > 0)
             {
-                if(m_Mouse.IsActive)
+                if (m_Mouse.IsActive)
                 {
-                bool isMouseHover = isMouseHoverMenuItem();
-                if (isMouseHover && m_LastBTNState == ButtonState.Released && InputManager.MouseState.LeftButton == ButtonState.Pressed)
-                {
-                    activateMenuItem();
-                    Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-                }
-                else if (isMouseHover && m_ActiveMenuItemIndex > -1 && !(Menu[m_ActiveMenuItemIndex] as GameMenuItem).IsActive)
-                {
-                    activateMenuItem();
-                }
-                else if(m_ActiveMenuItemIndex > -1 && !(Menu[m_ActiveMenuItemIndex] as GameMenuItem).IsActive)
-                {
-                    m_ActiveMenuItemIndex = -1;
-                    deactiveAllMenuItems();
-                }
+                    handleMouse();
                 }
                 else
                 {
@@ -117,27 +102,25 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     else if (InputManager.KeyPressed(Keys.Enter))
                     {
                         m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-                    } 
+                    }
 
                     if (m_ActiveMenuItemIndex > -1)
                     {
-                      activateMenuItem();
-                    if ((m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem) != null && InputManager.KeyPressed(Keys.PageUp) || InputManager.KeyPressed(Keys.PageDown))
-                    {
-                        if(InputManager.KeyPressed(Keys.PageUp))
+                        activateMenuItem();
+                        if ((m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem) != null && InputManager.KeyPressed(Keys.PageUp) || InputManager.KeyPressed(Keys.PageDown))
                         {
-                            (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).UpOption();
-                            m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.PageUp);
+                            if (InputManager.KeyPressed(Keys.PageUp))
+                            {
+                                (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).UpOption();
+                            }
+                            else
+                            {
+                                (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).DownOption();
+                            }
                         }
-                        else
-                        {
-                            (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).DownOption();
-                            m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.PageDown);
-                        }
-                    }
                     }
                 }
-              
+
             }
             base.Update(gameTime);
         }
@@ -161,14 +144,42 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        private void deactiveAllMenuItems()
+        private void selectMenuItem()
         {
-            GameMenuItem activeMenuItem;
-            for (int i = 0; i < m_Menu.Count; i++)
+            GameMenuItem activeMenuItem = m_Menu[m_ActiveMenuItemIndex] as GameMenuItem;
+
+            if (activeMenuItem != null)
             {
-                activeMenuItem = m_Menu[i] as GameMenuItem;
-                activeMenuItem.IsActive = false;
+                activeMenuItem.IsSelected = true;
+                Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
+
+                for (int i = 0; i < m_Menu.Count; i++)
+                {
+                    if (i != m_ActiveMenuItemIndex)
+                    {
+                        activeMenuItem = m_Menu[i] as GameMenuItem;
+                        activeMenuItem.IsSelected = false;
+                    }
+                }
             }
+        }
+
+        private void handleMouse()
+        {
+            bool isMouseHover = isMouseHoverMenuItem();
+            if (isMouseHover && InputManager.MouseState.LeftButton == ButtonState.Pressed)
+            {
+                selectMenuItem();
+            }
+            else if (m_ActiveMenuItemIndex > -1)
+            {
+                GameMenuItem item = (Menu[m_ActiveMenuItemIndex] as GameMenuItem);
+                if (isMouseHover && !item.IsSelected)
+                {
+                    activateMenuItem();
+                }
+            }
+
         }
 
 

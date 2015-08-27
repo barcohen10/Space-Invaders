@@ -2,6 +2,7 @@ using Infrastructure.ObjectModel.Animators;
 //*** Guy Ronen (c) 2008-2011 ***//
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
@@ -529,11 +530,26 @@ namespace SpaceInvaders.Infrastructure.ObjectModels
         {
             bool isMouseCollided = false;
             Rectangle mouseRectangle = new Rectangle(i_InputManager.MouseState.X, i_InputManager.MouseState.Y, 32, 32);
-            if (this.Bounds.Intersects(mouseRectangle))
+            if (this.Bounds.Intersects(mouseRectangle) && i_InputManager.MouseState.RightButton == ButtonState.Pressed)
+            {
+                isMouseCollided = true;
+                OnRightMouseClick();
+            }
+            else if (this.Bounds.Intersects(mouseRectangle))
             {
                 isMouseCollided = true;
             }
             return isMouseCollided;
+        }
+
+        public event EventHandler RightMouseClick;
+
+        protected void OnRightMouseClick()
+        {
+            if (RightMouseClick != null)
+            {
+                RightMouseClick(this, EventArgs.Empty);
+            }
         }
 
     }

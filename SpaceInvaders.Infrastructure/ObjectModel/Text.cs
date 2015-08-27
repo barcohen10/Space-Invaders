@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
+using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,24 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
     {
         private SpriteFont m_Font;
         private string m_TextString = string.Empty;
+        private IInputManager m_InputManager;
+
 
         public Text(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {   
+        }
+
+        public override void Initialize()
+        {
+            m_InputManager = Game.Services.GetService(typeof(IInputManager)) as IInputManager;
+            base.Initialize();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            IsMouseHover(m_InputManager);
+            base.Update(gameTime);
         }
 
         public string TextString { get { return m_TextString; } set { m_TextString = value; } }
@@ -41,6 +57,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
                 base.Height = value;
             }
         }
+
         public override float Width
         {
             get
@@ -52,5 +69,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
                 base.Width = value;
             }
         }
+
     }
 }
