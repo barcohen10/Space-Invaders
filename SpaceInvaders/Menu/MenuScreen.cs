@@ -91,34 +91,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                 }
                 else
                 {
-                    if (InputManager.KeyPressed(Keys.Up))
-                    {
-                        m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex - 1) >= 0 ? (m_ActiveMenuItemIndex - 1) : (Menu.Count - 1);
-                    }
-                    else if (InputManager.KeyPressed(Keys.Down))
-                    {
-                        m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex + 1) <= (Menu.Count - 1) ? (m_ActiveMenuItemIndex + 1) : 0;
-                    }
-                    else if (InputManager.KeyPressed(Keys.Enter))
-                    {
-                        m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-                    }
-
-                    if (m_ActiveMenuItemIndex > -1)
-                    {
-                        activateMenuItem();
-                        if ((m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem) != null && InputManager.KeyPressed(Keys.PageUp) || InputManager.KeyPressed(Keys.PageDown))
-                        {
-                            if (InputManager.KeyPressed(Keys.PageUp))
-                            {
-                                (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).UpOption();
-                            }
-                            else
-                            {
-                                (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem).DownOption();
-                            }
-                        }
-                    }
+                    handleKeyboard();
                 }
 
             }
@@ -180,6 +153,39 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                 }
             }
 
+        }
+
+        private void handleKeyboard()
+        {
+            if (InputManager.KeyPressed(Keys.Up))
+            {
+                m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex - 1) >= 0 ? (m_ActiveMenuItemIndex - 1) : (Menu.Count - 1);
+            }
+            else if (InputManager.KeyPressed(Keys.Down))
+            {
+                m_ActiveMenuItemIndex = (m_ActiveMenuItemIndex + 1) <= (Menu.Count - 1) ? (m_ActiveMenuItemIndex + 1) : 0;
+            }
+            else if (InputManager.KeyPressed(Keys.Enter))
+            {
+                m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
+            }
+
+            if (m_ActiveMenuItemIndex > -1)
+            {
+                ToggleMenuItem item = (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem);
+                activateMenuItem();
+                if (item != null)
+                {
+                    if (InputManager.KeyPressed(item.MethodAndKeys[0].ActivateKey))
+                    {
+                        item.DownOption();
+                    }
+                    else if (InputManager.KeyPressed(item.MethodAndKeys[1].ActivateKey))
+                    {
+                        item.UpOption();
+                    }
+                }
+            }
         }
 
 

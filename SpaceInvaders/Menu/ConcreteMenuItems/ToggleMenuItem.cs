@@ -30,6 +30,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 
         public List<Text> Options { get { return m_Options; } }
 
+        public MethodKey[] MethodAndKeys { get { return m_Methods; }}
+
         private void initOptions(List<string> i_Options)
         {
             float x = this.Text.Width + this.Text.Position.X + 20;
@@ -60,7 +62,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 
         public void UpOption()
         {
-            if (IsSelected)
+            if (IsSelected || IsActive)
             {
                 m_Options[m_SelectedOptionIndex].TintColor = Color.White;
                 m_SelectedOptionIndex = 0;
@@ -71,7 +73,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 
         public void DownOption()
         {
-            if (IsSelected)
+            if (IsSelected || IsActive)
             {
                 m_Options[m_SelectedOptionIndex].TintColor = Color.White;
                 m_SelectedOptionIndex = 1;
