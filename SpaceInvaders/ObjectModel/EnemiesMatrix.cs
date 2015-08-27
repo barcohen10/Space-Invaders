@@ -6,13 +6,18 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using System.Configuration;
 
 
 namespace SpaceInvaders.ObjectModel
 {
     public class EnemiesMatrix : GameComponent
     {
-        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 9;
+        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 1;
+        private  int m_YellowEnemyPoints = int.Parse(ConfigurationManager.AppSettings["Scores.YellowEnemy"].ToString());
+        private  int m_LightBluePoints = int.Parse(ConfigurationManager.AppSettings["Scores.LightBlueEnemy"].ToString());
+        private  int m_PinkPoints = int.Parse(ConfigurationManager.AppSettings["Scores.PinkEnemy"].ToString());
+
         private static Random s_RandomGenerator = new Random();
         private readonly List<List<Enemy>> r_EnemiesMatrix;
         private int m_TimeCount;
@@ -51,10 +56,10 @@ namespace SpaceInvaders.ObjectModel
         }
         public void AddPointsForEnemyKilling(int i_Points)
         {
-            foreach (Enemy enemy in GetEnemysAsList())
-            {
-                enemy.Points += i_Points;
-            }
+            m_LightBluePoints += 30;
+            m_YellowEnemyPoints += 30;
+            m_PinkPoints += 30;
+
         }
         public void Clear()
         {
@@ -156,12 +161,17 @@ namespace SpaceInvaders.ObjectModel
                 {
                     case SpritesFactory.eSpriteType.EnemyPink: i_NumOfPinkEnemies--;
                         position.Y = 3 * enemy.Width;
+                        enemy.Points = m_PinkPoints;
                         break;
                     case SpritesFactory.eSpriteType.EnemyLightBlue:
                         i_NumOfLightBlueEnemies--;
+                        enemy.Points = m_LightBluePoints;
+
                         break;
                     case SpritesFactory.eSpriteType.EnemyYellow:
                         i_NumOfYellowEnemies--;
+                        enemy.Points = m_YellowEnemyPoints;
+
                         break;
                 }
                 if (enemyLastAdded != null)
@@ -208,7 +218,7 @@ namespace SpaceInvaders.ObjectModel
                 if (!enemy.isDying)
                 {
                     enemy.SpriteJump.Jump(i_JumpDirection, i_DistanceToJump, i_IsJumpingBackwards);
-               }
+                }
             }
         }
         private SpriteJump.SpriteOverJumped getEnemyOverJumpedData()

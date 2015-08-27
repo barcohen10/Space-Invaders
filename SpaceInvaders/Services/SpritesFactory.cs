@@ -57,16 +57,13 @@ namespace SpaceInvaders.Services
                     sprite = new Bullet(i_GameScreen, k_BulletAsset);
                     break;
                 case eSpriteType.EnemyLightBlue:
-                    pointsEarnedWhenKilled = int.Parse(ConfigurationManager.AppSettings["Scores.LightBlueEnemy"].ToString());
                     sprite = new Enemy(i_GameScreen, Color.LightBlue, 2, 4, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
                     break;
                 case eSpriteType.EnemyPink:
-                    pointsEarnedWhenKilled = int.Parse(ConfigurationManager.AppSettings["Scores.PinkEnemy"].ToString());
                     sprite = new Enemy(i_GameScreen, Color.Pink, 0, 2, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
                     break;
 
                 case eSpriteType.EnemyYellow:
-                    pointsEarnedWhenKilled = int.Parse(ConfigurationManager.AppSettings["Scores.YellowEnemy"].ToString());
                     sprite = new Enemy(i_GameScreen, Color.Yellow, 4, 6, k_EnemysAsset) { Points = pointsEarnedWhenKilled };
                     break;
 
