@@ -1,7 +1,9 @@
 ﻿using C15Ex03Dotan301810610Bar308000322.Interfaces;
+using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens;
 using C15Ex03Dotan301810610Bar308000322.Screens;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.Managers;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             Play,
             Quit,
             OnePlayer,
-            TwoPlayers
+            TwoPlayers,
+            SoundOptions,
+            ScreenOptions,
+            Done
         }
 
         public SpaceInvadersMenuMethods(Game i_Game, eMethodsToRun i_MethodToRun)
@@ -48,6 +53,23 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         void ISpaceInvaders.TwoPlayers()
         {
         }
+        void ISpaceInvaders.OpenSoundOptionsScreen()
+        {
+            ScreensManager screensManager = SpaceInvadersServices.GetScreensManagerComponent(m_Game);
+            screensManager.SetCurrentScreen(new SoundOptionsScreen(m_Game));
+        }
+        void ISpaceInvaders.OpenScreenOptionsScreen()
+        {
+            ScreensManager screensManager = SpaceInvadersServices.GetScreensManagerComponent(m_Game);
+            screensManager.SetCurrentScreen(new ScreenOptionsScreen(m_Game));
+        }
+        void ISpaceInvaders.Done()
+        {
+            ScreensManager screensManager = SpaceInvadersServices.GetScreensManagerComponent(m_Game);
+            GameScreen previousScreen = screensManager.ActiveScreen.PreviousScreen;
+            screensManager.Remove(screensManager.ActiveScreen);
+            screensManager.SetCurrentScreen(previousScreen);
+        }
 
         public void RunMethod()
         {
@@ -72,6 +94,21 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                 case eMethodsToRun.TwoPlayers:
                     {
                         (this as ISpaceInvaders).TwoPlayers();
+                        break;
+                    }
+                case eMethodsToRun.SoundOptions:
+                    {
+                        (this as ISpaceInvaders).OpenSoundOptionsScreen();
+                        break;
+                    }
+                case eMethodsToRun.ScreenOptions:
+                    {
+                        (this as ISpaceInvaders).OpenScreenOptionsScreen();
+                        break;
+                    }
+                case eMethodsToRun.Done:
+                    {
+                        (this as ISpaceInvaders).Done();
                         break;
                     }
             }

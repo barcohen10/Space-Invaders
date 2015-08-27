@@ -18,7 +18,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
         private MethodKey[] m_Methods;
 
         public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, List<string> i_Options, Keys i_ActivateItemKey, params MethodKey[] i_Methods)
-            : base(i_ItemName, i_GameScreen, Color.White, i_Methods)
+            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, i_Methods)
         {
             if (i_Options.Count > 0)
             {
@@ -38,14 +38,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             Text optionText = null;
             for (int i = 0; i < 2; i++ )
             {
-                optionText = SpritesFactory.CreateSprite(m_GameScreen, SpritesFactory.eSpriteType.BigText) as Text;
+                optionText = SpritesFactory.CreateSprite(m_GameScreen, m_TextSpriteType) as Text;
                 optionText.TextString = i_Options[i];
                 optionText.Position = new Vector2(x, this.Position.Y);
                 m_Options.Add(optionText);
                 x = optionText.Width + optionText.Position.X + 30;
             }
 
-            m_Separator = SpritesFactory.CreateSprite(m_GameScreen, SpritesFactory.eSpriteType.BigText) as Text;
+            m_Separator = SpritesFactory.CreateSprite(m_GameScreen, m_TextSpriteType) as Text;
             x = optionText.Position.X - 15;
             m_Separator.TextString = "/";
             m_Separator.Position = new Vector2(x, this.Position.Y);

@@ -15,11 +15,29 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private bool m_IsActive = false, m_IsSelected = false;
         private readonly Color r_OriginalColor;
         protected GameScreen m_GameScreen;
+        protected SpritesFactory.eSpriteType m_TextSpriteType = SpritesFactory.eSpriteType.BigText;
+        
+        public enum eFontSize
+        {
+            Small,
+            Medium,
+            Big
+        }
 
-        public GameMenuItem(string i_ItemName, GameScreen i_GameScreen, Color i_Color, params MethodKey[] i_Methods)
+        public GameMenuItem(string i_ItemName, GameScreen i_GameScreen, Color i_Color, eFontSize i_FontSize = eFontSize.Big, params MethodKey[] i_Methods)
             : base(i_ItemName, i_Methods)
         {
-            m_Text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.BigText) as Text;
+
+            switch(i_FontSize)
+            {
+                case eFontSize.Medium:
+                    m_TextSpriteType = SpritesFactory.eSpriteType.MediumText;
+                    break;
+                case eFontSize.Small:
+                    m_TextSpriteType = SpritesFactory.eSpriteType.SmallText;
+                    break;
+            }
+            m_Text = SpritesFactory.CreateSprite(i_GameScreen, m_TextSpriteType) as Text;
             m_Text.TextString = i_ItemName;
             m_Text.TintColor = r_OriginalColor = i_Color;
             m_GameScreen = i_GameScreen;

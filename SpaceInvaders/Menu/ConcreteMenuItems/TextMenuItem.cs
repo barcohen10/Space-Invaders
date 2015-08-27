@@ -12,7 +12,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
     public class TextMenuItem : GameMenuItem
     {
         public TextMenuItem(string i_ItemName, GameScreen i_GameScreen, params MethodKey[] i_Methods)
-            : base(i_ItemName, i_GameScreen, Color.White, i_Methods)
+            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, i_Methods)
         {
         }
     }
