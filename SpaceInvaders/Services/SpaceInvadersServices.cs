@@ -229,7 +229,19 @@ namespace SpaceInvaders.Services
             }
             return screensManager;
         }
-
+        public static SoundManager GetSoundManager(Game i_Game)
+        {
+            SoundManager soundManager = null;
+            foreach (GameComponent component in i_Game.Components)
+            {
+                soundManager = component as SoundManager;
+                if (soundManager != null)
+                {
+                    break;
+                }
+            }
+            return soundManager;
+        }
         //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
         //{
         //    List<Text> textInstructions = new List<Text>();
@@ -247,7 +259,7 @@ namespace SpaceInvaders.Services
             where T : class
         {
             List<GameComponent> compsToBeDeleted = new List<GameComponent>();
-            T comp ;
+            T comp;
             foreach (GameComponent component in i_GameScreen)
             {
                 comp = component as T;
@@ -257,7 +269,7 @@ namespace SpaceInvaders.Services
 
                 }
             }
-            foreach(GameComponent item in compsToBeDeleted)
+            foreach (GameComponent item in compsToBeDeleted)
             {
                 i_GameScreen.Remove(item);
                 item.Dispose();
