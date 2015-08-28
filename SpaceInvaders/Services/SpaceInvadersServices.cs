@@ -231,17 +231,9 @@ namespace SpaceInvaders.Services
             return screensManager;
         }
 
-        public static SoundsManager GetSoundManager(Game i_Game)
+        public static SpaceInvadersSoundManager GetSoundManager(Game i_Game)
         {
-            SoundsManager soundManager = null;
-            foreach (GameComponent component in i_Game.Components)
-            {
-                soundManager = component as SoundsManager;
-                if (soundManager != null)
-                {
-                    break;
-                }
-            }
+            SpaceInvadersSoundManager soundManager = i_Game.Services.GetService(typeof(SpaceInvadersSoundManager)) as SpaceInvadersSoundManager;
             return soundManager;
         }
 

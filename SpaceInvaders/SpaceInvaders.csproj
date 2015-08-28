@@ -56,6 +56,7 @@
     <Compile Include="ObjectModel\ConfSpaceShip.cs" />
     <Compile Include="ObjectModel\EnemiesMatrix.cs" />
     <Compile Include="ObjectModel\Enemy.cs" />
+    <Compile Include="ServiceInterfaces\ISpaceInvadersSoundsManager.cs" />
     <Compile Include="ObjectModel\Life.cs" />
     <Compile Include="ObjectModel\MotherShip.cs" />
     <Compile Include="ObjectModel\MouseSprite.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Services\SoundFactory.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />
     <Compile Include="ObjectModel\SpaceShip.cs" />
+    <Compile Include="Services\SpaceInvadersSoundManager.cs" />
     <Compile Include="Services\TextServices.cs" />
     <Compile Include="SpaceInvaders.cs" />
     <Compile Include="ObjectModel\Program.cs" />

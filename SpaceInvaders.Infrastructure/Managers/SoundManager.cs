@@ -9,32 +9,25 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
-    public class SoundsManager : GameComponent, ISoundsManager
+    public class SoundsManager  
+ 
     {
-        private bool m_SoundOn = true;
-        private VolumeInstance m_BackgroundVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
-        private VolumeInstance m_SoundEffectVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
+        private Dictionary<string,VolumeInstance> m_VolumeInstances;
         private List<Sound> m_Sounds = new List<Sound>();
-        public SoundsManager(Game i_Game)
-            : base(i_Game)
+        public SoundsManager()
         {
-            i_Game.Components.Add(this);
+            m_VolumeInstances = new Dictionary<string, VolumeInstance>();
+            m_Sounds = new List<Sound>();
         }
-
-        public override void Update(GameTime gameTime)
+        private void updateSoundList(object sender, EventArgs e)
         {
-            base.Update(gameTime);
             foreach (Sound sound in m_Sounds)
             {
-                if (m_SoundOn)
+                foreach (KeyValuePair<string,VolumeInstance> volumeInstance in m_VolumeInstances)
                 {
-                    if (sound.GetType() == typeof(BackgroundSound))
+                    if(volumeInstance.Value.SoundType == sound.GetType())
                     {
-                        sound.Volume = m_BackgroundVolume.Volume;
-                    }
-                    else
-                    {
-                        sound.Volume = m_SoundEffectVolume.Volume;
+                        sound.Volume = volumeInstance.Value.Volume;
                     }
                 }
             }
@@ -45,35 +38,36 @@ namespace SpaceInvaders.Infrastructure.Managers
             {
                 sound.Volume = 0;
             }
-            m_SoundOn = false;
         }
-        public void Play()
-        {
-            m_SoundOn = true;
-        }
-        public void Add(Sound i_Sound)
+        public void AddSound(Sound i_Sound)
         {
             m_Sounds.Add(i_Sound);
         }
-        public void Remove(Sound i_Sound)
+        public void RemoveSound(Sound i_Sound)
         {
             m_Sounds.Remove(i_Sound);
         }
-        public void IncreaseBackgroundMusic()
+        public void AddVolumeInstance(string i_InstanceName,VolumeInstance i_VolumeInstance )
         {
-            m_BackgroundVolume.Increase();
+            i_VolumeInstance.VolumeChange += updateSoundList;
+            m_VolumeInstances.Add(i_InstanceName,i_VolumeInstance);
         }
-        public void IncreaseSoundEffect()
+        public void RemoveVolumeInstance(string i_InstanceName)
         {
-            m_SoundEffectVolume.Increase();
+            m_VolumeInstances.Remove(i_InstanceName);
         }
-        public void DecreaseBackgroundMusic()
+        public VolumeInstance this[string i_InstanceName]
         {
-            m_BackgroundVolume.Increase();
+            get
+            {
+                VolumeInstance instance =null;
+                m_VolumeInstances.TryGetValue(i_InstanceName, out instance);
+                return instance;
+            }
         }
-        public void DecreaseSoundEffect()
+        public void Play()
         {
-            m_SoundEffectVolume.Increase();
+            updateSoundList(null,EventArgs.Empty);
         }
     }
 }

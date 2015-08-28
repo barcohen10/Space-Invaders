@@ -43,8 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Managers\DummyInputManager.cs.cs" />
+    <Compile Include="ObjectModel\Sound\ConcreteSounds\SoundEffect.cs" />
     <Compile Include="ObjectModel\Sound\Configurations\VolumeInstance.cs" />
-    <Compile Include="ServiceInterfaces\ISoundManager.cs" />
     <Compile Include="Managers\ScreensManager.cs" />
     <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="ObjectModel\Animators\CompositeAnimator.cs" />
