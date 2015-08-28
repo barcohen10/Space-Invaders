@@ -9,7 +9,7 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class SpaceInvadersSoundManager : SoundsManager
+    public class SpaceInvadersSoundsManager : SoundsManager
     {
         public void Initialize()
         {

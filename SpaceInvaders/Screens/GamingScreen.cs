@@ -37,12 +37,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             ConfSpaceShip player2SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Blue, Keys.A, Keys.D, Keys.W, !v_IsMouseMoveEnable);
             SpaceInvadersServices.CreateNewPlayers(this, player1SpaceShipConf, player2SpaceShipConf);
             m_WonLevelSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.LevelWin);
+            m_GameOverSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.GameOver) ;
             this.Add(enemiesMatrix);
             this.Add(barrierGroup);
             base.Initialize();
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
         }
         private Sound m_WonLevelSound;
+        private Sound m_GameOverSound;
         public override void Update(GameTime gameTime)
         {
             if (InputManager.KeyPressed(Keys.P))
@@ -54,6 +56,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
 
             if (isGameOver)
             {
+                m_GameOverSound.Play();
                 SpaceInvadersServices.GameOver(this.Game);
             }
             bool PlayersWon = !SpaceInvadersServices.IsAnyEnemiesLeft(this);

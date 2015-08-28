@@ -41,13 +41,13 @@ namespace SpaceInvaders
         protected override void Initialize()
         {
             m_SpriteBatch = new SpriteBatch(GraphicsDevice);
-            SpaceInvadersSoundManager soundManager = new SpaceInvadersSoundManager();
+            SpaceInvadersSoundsManager soundManager = new SpaceInvadersSoundsManager();
             ScreenOptionsManager screenOptionsManager = new ScreenOptionsManager(this);
             this.Services.AddService(typeof(GraphicsDeviceManager), m_Graphics);
             this.Services.AddService(typeof(ContentManager), this.Content);
             this.Services.AddService(typeof(SpriteBatch), m_SpriteBatch);
             this.Services.AddService(typeof(CollisionServices), CollisionServices.Instance);
-            this.Services.AddService(typeof(SpaceInvadersSoundManager), soundManager);
+            this.Services.AddService(typeof(SpaceInvadersSoundsManager), soundManager);
             this.Services.AddService(typeof(ScreenOptionsManager), screenOptionsManager);
             m_BackgroundMusic = SoundFactory.CreateSound(this, SoundFactory.eSoundType.BackgroundMusic) as Sound;
             m_BackgroundMusic.Play();

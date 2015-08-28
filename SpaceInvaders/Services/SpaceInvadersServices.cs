@@ -148,6 +148,7 @@ namespace SpaceInvaders.Services
                 playerScores.Add(line);
             }
             GetScreensManagerComponent(i_Game).SetCurrentScreen(new GameOverScreen(i_Game, playerScores));
+
         }
 
         //private static void gameOverMessageBox(Game i_Game, string i_Message)
@@ -229,9 +230,9 @@ namespace SpaceInvaders.Services
             return screensManager;
         }
 
-        public static SpaceInvadersSoundManager GetSoundManager(Game i_Game)
+        public static SpaceInvadersSoundsManager GetSoundManager(Game i_Game)
         {
-            SpaceInvadersSoundManager soundManager = i_Game.Services.GetService(typeof(SpaceInvadersSoundManager)) as SpaceInvadersSoundManager;
+            SpaceInvadersSoundsManager soundManager = i_Game.Services.GetService(typeof(SpaceInvadersSoundsManager)) as SpaceInvadersSoundsManager;
             return soundManager;
         }
 

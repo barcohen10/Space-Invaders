@@ -15,7 +15,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
     public class GameOverScreen : TitleScreen
     {
         private List<string> m_PlayersScore;
-
         public GameOverScreen(Game i_Game, List<string> i_PlayersScore)
             : base(i_Game, "Game Over", Color.Red, "[P] - Start new game", "[F6] - Main menu", "[Esc] - Exit game")
         {

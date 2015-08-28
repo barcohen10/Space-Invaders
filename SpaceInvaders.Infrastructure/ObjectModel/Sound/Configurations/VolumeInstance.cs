@@ -12,7 +12,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
         float m_MaxValue;
         float m_JumpingScale;
         private Type m_SoundType;
-      public Type SoundType { get { return m_SoundType; } }
+        public Type SoundType { get { return m_SoundType; } }
         public event EventHandler<EventArgs> VolumeChange;
 
         protected virtual void OnVolumeChange()
@@ -22,7 +22,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
                 VolumeChange(this, EventArgs.Empty);
             }
         }
-        public VolumeInstance(float i_SoundStartValue, float i_ValidMinValue, float i_ValidMaxValue, float i_JumpingScale,Type i_SoundType)
+        public VolumeInstance(float i_SoundStartValue, float i_ValidMinValue, float i_ValidMaxValue, float i_JumpingScale, Type i_SoundType)
         {
             m_Volume = i_SoundStartValue;
             m_MinValue = i_ValidMinValue;
@@ -30,7 +30,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             m_JumpingScale = i_JumpingScale;
             m_SoundType = i_SoundType;
         }
-        
+
         public float Volume { get { return m_Volume; } }
         private bool validValue(float i_value)
         {
