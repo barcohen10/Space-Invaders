@@ -139,27 +139,25 @@ namespace SpaceInvaders.Services
         {
             PlayerSpaceInvaders winningPlayer = getWinningPlayer(i_Game);
             List<PlayerSpaceInvaders> otherPlayers = getAllPlayers(i_Game, winningPlayer);
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("Game Over!");
+            List<string> playerScores = new List<string>();
             string line = string.Format("{0} Won! {0} score is: {1}", winningPlayer.Nickname, winningPlayer.Score);
-            builder.AppendLine(line);
+            playerScores.Add(line);
             foreach (PlayerSpaceInvaders player in otherPlayers)
             {
                 line = string.Format("{0} Lost! {0} score is: {1}", player.Nickname, player.Score);
-                builder.AppendLine(line);
+                playerScores.Add(line);
             }
-
-            gameOverMessageBox(i_Game, builder.ToString());
+            GetScreensManagerComponent(i_Game).SetCurrentScreen(new GameOverScreen(i_Game, playerScores));
         }
 
-        private static void gameOverMessageBox(Game i_Game, string i_Message)
-        {
-            DialogResult dialogResult = MessageBox.Show(i_Message);
-            if (dialogResult == DialogResult.OK)
-            {
-                i_Game.Exit();
-            }
-        }
+        //private static void gameOverMessageBox(Game i_Game, string i_Message)
+        //{
+        //    DialogResult dialogResult = MessageBox.Show(i_Message);
+        //    if (dialogResult == DialogResult.OK)
+        //    {
+        //        i_Game.Exit();
+        //    }
+        //}
 
         private static List<PlayerSpaceInvaders> getAllPlayers(Game i_Game, params PlayerSpaceInvaders[] i_PlayersToIgnore)
         {

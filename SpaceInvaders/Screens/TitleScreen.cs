@@ -15,6 +15,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
         private string m_Title;
         private Color m_TitleColor;
         private List<string> m_Instructions;
+        protected List<Text> m_InstructionsText;
 
         public TitleScreen(Game i_Game, string i_Title, Color i_TitleColor, params string[] i_Instructions)
             : base(i_Game)
@@ -36,8 +37,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             titleText.Position = new Vector2(0, 50);
             titleText.TintColor = m_TitleColor;
             titleText.TextString = m_Title;
-            List<Text> listMenuTexts = TextServices.GetAndCreateTexts(this, m_Instructions, SpritesFactory.eSpriteType.MediumText, titleText.Position.X, titleText.Position.Y + 100f);
-            TextServices.CenterTextsOnScreen(this, listMenuTexts);
+            m_InstructionsText = TextServices.GetAndCreateTexts(this, m_Instructions, SpritesFactory.eSpriteType.MediumText, titleText.Position.X, titleText.Position.Y + 100f);
+            TextServices.CenterTextsOnScreen(this, m_InstructionsText);
             TextServices.CenterTextsOnScreen(this, new List<Text>() { titleText });
         }
 

@@ -14,10 +14,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class GameOverScreen : TitleScreen
     {
-        public GameOverScreen(Game i_Game)
+        private List<string> m_PlayersScore;
+
+        public GameOverScreen(Game i_Game, List<string> i_PlayersScore)
             : base(i_Game, "Game Over", Color.Red, "[P] - Start new game", "[F6] - Main menu", "[Esc] - Exit game")
         {
+            m_PlayersScore = i_PlayersScore;
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -33,6 +37,22 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             {
                 ScreensManager.SetCurrentScreen(new MainMenuScreen(this.Game));
             }
+        }
+
+        protected override void initTexts()
+        {
+            base.initTexts();
+            Vector2 scorePosition = new Vector2(30, m_InstructionsText[m_InstructionsText.Count - 1].Position.Y + m_InstructionsText[m_InstructionsText.Count - 1].Height * 1.5f);
+            Text playerScoreText;
+            foreach(string playerScore in m_PlayersScore)
+            {
+                playerScoreText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
+                playerScoreText.TintColor = Color.Red;
+                playerScoreText.Position = scorePosition;
+                playerScoreText.TextString = playerScore;
+                scorePosition = new Vector2(scorePosition.X, scorePosition.Y + playerScoreText.Height * 1.3f);
+            }
+
         }
     }
 }
