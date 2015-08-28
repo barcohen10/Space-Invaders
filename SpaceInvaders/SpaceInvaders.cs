@@ -50,6 +50,8 @@ namespace SpaceInvaders
             this.Services.AddService(typeof(SpaceInvadersSoundsManager), soundManager);
             this.Services.AddService(typeof(ScreenOptionsManager), screenOptionsManager);
             m_BackgroundMusic = SoundFactory.CreateSound(this, SoundFactory.eSoundType.BackgroundMusic) as Sound;
+            m_BackgroundMusic.Volume = 0.3f;
+            m_BackgroundMusic.isLooped = true;
             m_BackgroundMusic.Play();
             base.Initialize();
         }

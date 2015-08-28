@@ -14,7 +14,8 @@ namespace SpaceInvaders.ObjectModel
         private List<Barrier> m_Barriers;
         private GameScreen m_GameScreen;
         private float m_CurrentBarriersSpeed;
-
+        private Color[] m_OriginalPixels;
+        private bool m_FirstRun = true;
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)
         {
@@ -50,13 +51,21 @@ namespace SpaceInvaders.ObjectModel
             for (int i = 0; i < i_NumOfBarriers; i++)
             {
                 barrier = SpritesFactory.CreateSprite(m_GameScreen, SpritesFactory.eSpriteType.Barrier) as Barrier;
+                if(m_FirstRun)
+                {
+                    m_OriginalPixels = barrier.Pixels.Clone() as Color[];
+                    m_FirstRun = false;
+                }else if (i ==0)
+                {
+                    barrier.Pixels = m_OriginalPixels.Clone() as Color[];
+                }
                 barrier.Position = position;
                 position = new Vector2(position.X + (barrier.Width * 2), position.Y);
                 barrier.TouchScreenLimit += changeMovingDirection;
                 if (i > 0)
                 {
                     barrier.Texture = new Microsoft.Xna.Framework.Graphics.Texture2D(barrier.GraphicsDevice, (int)barrier.Width, (int)barrier.Height);
-                    barrier.Pixels = m_Barriers[0].Pixels;
+                    barrier.Pixels = m_OriginalPixels.Clone() as Color[];
                 }
 
                 m_Barriers.Add(barrier);
