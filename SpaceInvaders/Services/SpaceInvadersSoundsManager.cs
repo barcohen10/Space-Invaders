@@ -11,7 +11,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
 {
     public class SpaceInvadersSoundsManager : SoundsManager
     {
-        public void Initialize()
+
+        public SpaceInvadersSoundsManager()
         {
             this.AddVolumeInstance("Background", new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(BackgroundSound)));
             this.AddVolumeInstance("SoundEffect", new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(SoundEffect)));
