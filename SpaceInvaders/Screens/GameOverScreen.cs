@@ -12,10 +12,10 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
-    public class GameOverScreen : GameScreen
+    public class GameOverScreen : TitleScreen
     {
         public GameOverScreen(Game i_Game)
-            : base(i_Game)
+            : base(i_Game, "Game Over", Color.Red, "[P] - Start new game", "[F6] - Main menu", "[Esc] - Exit game")
         {
         }
         public override void Update(GameTime gameTime)
@@ -33,19 +33,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             {
                 ScreensManager.SetCurrentScreen(new MainMenuScreen(this.Game));
             }
-        }
-        protected override void initTexts()
-        {
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
-            Text topMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
-            topMessage.Position = new Vector2(250, 200);
-            topMessage.TintColor = Color.HotPink;
-            topMessage.TextString = "GameOver";
-            List<string> welcomeScreenTexts = new List<string>();
-            welcomeScreenTexts.Add("[P] - Start new game");
-            welcomeScreenTexts.Add("[F6] - Main menu");
-            welcomeScreenTexts.Add("[Esc] - Exit game");
-            TextServices.GetAndCreateTexts(this, welcomeScreenTexts, SpritesFactory.eSpriteType.MediumText, topMessage.Position.X, topMessage.Position.Y + 50f);
         }
     }
 }
