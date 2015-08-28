@@ -28,7 +28,6 @@ namespace SpaceInvaders
         private Sound m_BackgroundMusic;
         public SpaceInvaders()
         {
-            m_BackgroundMusic = SoundFactory.CreateSound(this, SoundFactory.eSoundType.BackgroundMusic) as Sound;
             m_Graphics = new GraphicsDeviceManager(this);
             m_Graphics.PreferredBackBufferWidth = k_ScreenWidth;
             m_Graphics.PreferredBackBufferHeight = k_ScreenHeight;
@@ -50,6 +49,7 @@ namespace SpaceInvaders
             this.Services.AddService(typeof(CollisionServices), CollisionServices.Instance);
             this.Services.AddService(typeof(SpaceInvadersSoundManager), soundManager);
             this.Services.AddService(typeof(ScreenOptionsManager), screenOptionsManager);
+            m_BackgroundMusic = SoundFactory.CreateSound(this, SoundFactory.eSoundType.BackgroundMusic) as Sound;
             m_BackgroundMusic.Play();
             base.Initialize();
         }
