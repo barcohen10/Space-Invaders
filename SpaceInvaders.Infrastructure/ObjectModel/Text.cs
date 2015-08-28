@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
@@ -27,6 +28,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             m_InputManager = Game.Services.GetService(typeof(IInputManager)) as IInputManager;
             base.Initialize();
+            InitAnimations();
         }
 
         public override void Update(GameTime gameTime)
@@ -46,6 +48,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             m_SpriteBatch.DrawString(m_Font, TextString, this.Position, this.TintColor, this.Rotation, this.RotationOrigin, this.Scales, SpriteEffects.None, this.LayerDepth);
         }
+
         public override float Height
         {
             get
@@ -68,6 +71,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
             {
                 base.Width = value;
             }
+        }
+
+        public void InitAnimations()
+        {
+            PulseAnimator pulseAnimator = new PulseAnimator("pulse", TimeSpan.Zero, 1.1f, 2);
+            this.Animations.Add(pulseAnimator);
+            this.Animations.Enabled = true;
+            this.Animations["pulse"].Pause();
         }
 
     }

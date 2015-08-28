@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
 using System;
@@ -67,21 +68,21 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        public virtual bool IsActive 
-        { 
-            get { return m_IsActive; } 
-            set 
+        public virtual bool IsActive
+        {
+            get { return m_IsActive; }
+            set
             {
-                m_IsActive = value;
-                if(m_IsActive)
+                if (value && !m_IsActive)
                 {
                     activateMenuItem();
                 }
-                else if(!m_IsSelected)
+                else if (!m_IsSelected && !value)
                 {
                     deactivateMenuItem();
                 }
-            } 
+                m_IsActive = value;
+            }
         }
 
         public bool IsSelected 
@@ -93,10 +94,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                if(m_IsSelected)
                {
                    m_Text.TintColor = Color.GreenYellow;
+                   m_Text.Animations["pulse"].Pause();
                }
                else
                {
                    m_Text.TintColor = r_OriginalColor;
+                   m_Text.Animations["pulse"].Pause();
                }
            } 
         }
@@ -104,13 +107,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         protected void activateMenuItem()
         {
             m_Text.TintColor = Color.Red;
+            m_Text.Animations["pulse"].Reset();
+            m_Text.Animations["pulse"].Resume();
         }
 
         private void deactivateMenuItem()
         {
             m_Text.TintColor = r_OriginalColor;
+            m_Text.Animations["pulse"].Pause();
         }
-
 
     }
 }

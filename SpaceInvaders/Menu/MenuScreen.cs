@@ -20,6 +20,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private Text m_TitleText;
         private int m_ActiveMenuItemIndex = -1;
         private MouseSprite m_Mouse;
+        private ButtonState m_LastBTNState = ButtonState.Released;
 
         public MenuScreen(Game i_Game, string i_MenuTitle)
             : base(i_Game)
@@ -126,16 +127,23 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
             if (activeMenuItem != null)
             {
-                activeMenuItem.IsSelected = true;
-                Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-
-                for (int i = 0; i < m_Menu.Count; i++)
+                if (!activeMenuItem.IsSelected)
                 {
-                    if (i != m_ActiveMenuItemIndex)
+                    activeMenuItem.IsSelected = true;
+                    Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
+
+                    for (int i = 0; i < m_Menu.Count; i++)
                     {
-                        activeMenuItem = m_Menu[i] as GameMenuItem;
-                        activeMenuItem.IsSelected = false;
+                        if (i != m_ActiveMenuItemIndex)
+                        {
+                            activeMenuItem = m_Menu[i] as GameMenuItem;
+                            activeMenuItem.IsSelected = false;
+                        }
                     }
+                }
+                else
+                {
+                    activeMenuItem.IsSelected = false;
                 }
             }
         }
@@ -143,7 +151,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private void handleMouse()
         {
             bool isMouseHover = isMouseHoverMenuItem();
-            if (isMouseHover && InputManager.MouseState.LeftButton == ButtonState.Pressed)
+            if (isMouseHover && InputManager.MouseState.LeftButton == ButtonState.Pressed && m_LastBTNState == ButtonState.Released)
             {
                 selectMenuItem();
             }
@@ -155,6 +163,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     activateMenuItem();
                 }
             }
+            m_LastBTNState = InputManager.MouseState.LeftButton;
 
         }
 
