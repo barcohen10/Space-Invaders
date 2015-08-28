@@ -230,12 +230,13 @@ namespace SpaceInvaders.Services
             }
             return screensManager;
         }
-        public static SoundManager GetSoundManager(Game i_Game)
+
+        public static SoundsManager GetSoundManager(Game i_Game)
         {
-            SoundManager soundManager = null;
+            SoundsManager soundManager = null;
             foreach (GameComponent component in i_Game.Components)
             {
-                soundManager = component as SoundManager;
+                soundManager = component as SoundsManager;
                 if (soundManager != null)
                 {
                     break;
@@ -243,6 +244,7 @@ namespace SpaceInvaders.Services
             }
             return soundManager;
         }
+
         public static ScreenOptionsManager GetScreenOptionsManager(Game i_Game)
         {
             ScreenOptionsManager screenOptionsManager = null;

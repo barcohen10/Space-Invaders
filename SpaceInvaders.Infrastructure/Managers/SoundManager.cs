@@ -9,13 +9,13 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
-    public class SoundManager : GameComponent, ISoundManager
+    public class SoundsManager : GameComponent, ISoundsManager
     {
         private bool m_SoundOn = true;
         private VolumeInstance m_BackgroundVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
         private VolumeInstance m_SoundEffectVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
         private List<Sound> m_Sounds = new List<Sound>();
-        public SoundManager(Game i_Game)
+        public SoundsManager(Game i_Game)
             : base(i_Game)
         {
             i_Game.Components.Add(this);

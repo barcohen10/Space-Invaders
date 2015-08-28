@@ -40,7 +40,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         private const string k_SSGunShotAsset = @"Sounds\SSGunShot";
         public static Sound CreateSound(GameScreen i_GameScreen, eSoundType i_eSoundType)
         {
-            SoundManager m_soundManager = SpaceInvadersServices.GetSoundManager(i_GameScreen.Game);
+            SoundsManager m_soundManager = SpaceInvadersServices.GetSoundManager(i_GameScreen.Game);
             Sound sound = null;
             switch (i_eSoundType)
             {
