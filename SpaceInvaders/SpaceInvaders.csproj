@@ -68,6 +68,7 @@
     <Compile Include="Screens\GamingScreen.cs" />
     <Compile Include="Screens\MoveStageScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
+    <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Screens\WelcomeScreen.cs" />
     <Compile Include="Services\CollisionServices.cs" />
     <Compile Include="Services\SpaceInvadersMenuMethods.cs" />

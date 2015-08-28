@@ -13,14 +13,11 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
-    public class WelcomeScreen : GameScreen
+    public class WelcomeScreen : TitleScreen
     {
-        private Text m_WelcomeMessage;
-
         public WelcomeScreen(Game i_Game)
-            : base(i_Game)
+            : base(i_Game, "Welcome To Space Invaders", Color.HotPink, "[Enter] - Start game", "[F6] - Main menu", "[Esc] - Exit game")
         {
-
         }
 
         public override void Update(GameTime gameTime)
@@ -42,27 +39,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
 
         }
 
-        protected override void initTexts()
-        {
-            m_WelcomeMessage = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
-            m_WelcomeMessage.Position = new Vector2(0, 50);
-            m_WelcomeMessage.TintColor = Color.HotPink;
-            m_WelcomeMessage.TextString = "Welcome To Space Invaders";
-            List<string> menuItems = new List<string>();
-            menuItems.Add("[Enter] - Start game");
-            menuItems.Add("[F6] - Main menu");
-            menuItems.Add("[Esc] - Exit game");
-            List<Text> listMenuTexts = TextServices.GetAndCreateTexts(this, menuItems, SpritesFactory.eSpriteType.MediumText, m_WelcomeMessage.Position.X, m_WelcomeMessage.Position.Y + 100f);
-            TextServices.CenterTextsOnScreen(this, listMenuTexts);
-            TextServices.CenterTextsOnScreen(this, new List<Text>() { m_WelcomeMessage });
-        }
-
         public override void Initialize()
         {
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             base.Initialize();
         }
-
-
     }
 }

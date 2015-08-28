@@ -178,7 +178,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
         protected virtual void initTexts()
         {
         }
-      
 
         internal virtual void Activate()
         {
