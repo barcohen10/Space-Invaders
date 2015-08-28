@@ -70,14 +70,12 @@ namespace SpaceInvaders.ObjectModel
             {
                 m_Velocity.X = 0;
             }
-
-            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec)
+            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || ((m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec))
             {
                 m_ShootSound.Play();
                 getAndShootBullet(Color.Red, -r_BulletVelocity);
-                m_LastBTNState = m_InputManager.MouseState.LeftButton;
             }
-
+            m_LastBTNState = m_InputManager.MouseState.LeftButton;
             if (Configuration.IsMouseMovementEnable)
             {
                 if (Math.Abs(m_InputManager.MousePositionDelta.X) > 0)
@@ -97,7 +95,7 @@ namespace SpaceInvaders.ObjectModel
             bullet.Position = new Vector2(m_Position.X + (Width / 2) - bullet.Width + 3, (m_Position.Y - (bullet.Height / 2)) - 4);
             return bullet;
         }
-        
+
         public override void Collided(ICollidable i_Collidable)
         {
             Enemy enemy = i_Collidable as Enemy;
