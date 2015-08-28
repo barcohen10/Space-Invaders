@@ -25,6 +25,7 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_MaxAmountOfBulletsAtOnec = float.Parse(ConfigurationManager.AppSettings["Bullet.MaxAmountOfBulletsAtOnce"].ToString());
         private IInputManager m_InputManager;
         private ButtonState m_LastBTNState = ButtonState.Released;
+
         public SpaceShip(GameScreen i_GameScreen, string i_AssetName)
             : base(i_GameScreen, i_AssetName)
         {

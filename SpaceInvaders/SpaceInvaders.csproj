@@ -40,6 +40,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Interfaces\ISpaceInvaders.cs" />
+    <Compile Include="Menu\ConcreteMenuItems\RangeMenuItem\Bar.cs" />
+    <Compile Include="Menu\ConcreteMenuItems\RangeMenuItem\Range.cs" />
+    <Compile Include="Menu\ConcreteMenuItems\RangeMenuItem\Rectangle.cs" />
     <Compile Include="Menu\ConcreteMenuItems\ToggleMenuItem.cs" />
     <Compile Include="Menu\ConcreteMenuScreens\MainMenuScreen.cs" />
     <Compile Include="Menu\ConcreteMenuScreens\ScreenOptionsScreen.cs" />
