@@ -48,31 +48,31 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                     sound = new BackgroundSound(i_GameScreen, k_BackgroundMusicAsset);
                     break;
                 case eSoundType.BarrierHit:
-                    sound = new Sound(i_GameScreen, k_BarrierHitAsset);
+                    sound = new SoundEffect(i_GameScreen, k_BarrierHitAsset);
                     break;
                 case eSoundType.EnemyGunShot:
-                    sound = new Sound(i_GameScreen, k_EnemyGunShotAsset);
+                    sound = new SoundEffect(i_GameScreen, k_EnemyGunShotAsset);
                     break;
                 case eSoundType.EnemyKill:
-                    sound = new Sound(i_GameScreen, k_EnemyKillAsset);
+                    sound = new SoundEffect(i_GameScreen, k_EnemyKillAsset);
                     break;
                 case eSoundType.GameOver:
-                    sound = new Sound(i_GameScreen, k_GameOverAsset);
+                    sound = new SoundEffect(i_GameScreen, k_GameOverAsset);
                     break;
                 case eSoundType.LevelWin:
-                    sound = new Sound(i_GameScreen, k_LevelWinAsset);
+                    sound = new SoundEffect(i_GameScreen, k_LevelWinAsset);
                     break;
                 case eSoundType.LifeDie:
-                    sound = new Sound(i_GameScreen, k_LifeDieAsset);
+                    sound = new SoundEffect(i_GameScreen, k_LifeDieAsset);
                     break;
                 case eSoundType.MenuMove:
-                    sound = new Sound(i_GameScreen, k_MenuMoveAsset);
+                    sound = new SoundEffect(i_GameScreen, k_MenuMoveAsset);
                     break;
                 case eSoundType.MotherShipKill:
-                    sound = new Sound(i_GameScreen, k_MotherShipKillAsset);
+                    sound = new SoundEffect(i_GameScreen, k_MotherShipKillAsset);
                     break;
                 case eSoundType.SSGunShot:
-                    sound = new Sound(i_GameScreen, k_SSGunShotAsset);
+                    sound = new SoundEffect(i_GameScreen, k_SSGunShotAsset);
                     break;
             }
             m_soundManager.AddSound(sound);
