@@ -237,15 +237,8 @@ namespace SpaceInvaders.Services
 
         public static ScreenOptionsManager GetScreenOptionsManager(Game i_Game)
         {
-            ScreenOptionsManager screenOptionsManager = null;
-            foreach (GameComponent component in i_Game.Components)
-            {
-                screenOptionsManager = component as ScreenOptionsManager;
-                if (screenOptionsManager != null)
-                {
-                    break;
-                }
-            }
+            ScreenOptionsManager screenOptionsManager = i_Game.Services.GetService(typeof(ScreenOptionsManager)) as ScreenOptionsManager;
+
             return screenOptionsManager;
         }
         //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
