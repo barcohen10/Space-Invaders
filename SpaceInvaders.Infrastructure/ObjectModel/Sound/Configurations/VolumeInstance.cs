@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
 {
-  public  class VolumeConfiguration
+  public  class VolumeInstance
     {
       float m_Volume;
       float m_MinValue;
       float m_MaxValue;
       float m_JumpingScale;
-      public VolumeConfiguration(float i_SoundStartValue,float i_ValidMinValue,float i_ValidMaxValue,float i_JumpingScale)
+      public VolumeInstance(float i_SoundStartValue, float i_ValidMinValue, float i_ValidMaxValue, float i_JumpingScale)
       {
           m_Volume = i_SoundStartValue;
           m_MinValue=i_ValidMinValue;

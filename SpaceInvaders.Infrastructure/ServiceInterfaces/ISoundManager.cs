@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SpaceInvaders.Infrastructure.ServiceInterfaces
 {
-    interface ISoundManager
+   public interface ISoundManager
     {
         void DecreaseBackgroundMusic();
         void DecreaseSoundEffect();

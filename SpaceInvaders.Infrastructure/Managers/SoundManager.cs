@@ -12,15 +12,14 @@ namespace SpaceInvaders.Infrastructure.Managers
     public class SoundManager : GameComponent, ISoundManager
     {
         private bool m_SoundOn = true;
-        private VolumeConfiguration m_BackgroundVolume = new VolumeConfiguration(0.5f, 0, 1, 0.1f);
-        private VolumeConfiguration m_SoundEffectVolume = new VolumeConfiguration(0.5f, 0, 1, 0.1f);
+        private VolumeInstance m_BackgroundVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
+        private VolumeInstance m_SoundEffectVolume = new VolumeInstance(0.5f, 0, 1, 0.1f);
         private List<Sound> m_Sounds = new List<Sound>();
         public SoundManager(Game i_Game)
             : base(i_Game)
         {
             i_Game.Components.Add(this);
         }
-
 
         public override void Update(GameTime gameTime)
         {
