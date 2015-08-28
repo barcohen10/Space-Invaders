@@ -42,6 +42,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             {
                 m_Volume += m_JumpingScale;
             }
+            OnVolumeChange();
         }
         public void Decrease()
         {
@@ -49,6 +50,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             {
                 m_Volume -= m_JumpingScale;
             }
+            OnVolumeChange();
         }
 
     }
