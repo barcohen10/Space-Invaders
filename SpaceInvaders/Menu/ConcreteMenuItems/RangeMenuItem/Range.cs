@@ -45,12 +45,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
         {
             MathHelper.Clamp(m_Value + m_Jump, m_Min, m_Max);
             m_TotalJumps++;
+            m_Bar.Position = new Vector2(m_Bar.Position.X + m_DistanceToJump, m_Bar.Position.Y);
         }
 
         public void DecreaseJump()
         {
             MathHelper.Clamp(m_Value - m_Jump, m_Min, m_Max);
             m_TotalJumps--;
+            m_Bar.Position = new Vector2(m_Bar.Position.X - m_DistanceToJump, m_Bar.Position.Y);
         }
 
         private void initRangeComponent()
