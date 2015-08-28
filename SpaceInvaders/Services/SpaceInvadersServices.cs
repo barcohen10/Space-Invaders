@@ -13,6 +13,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.Managers;
 using C15Ex03Dotan301810610Bar308000322.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace SpaceInvaders.Services
 {
@@ -241,6 +242,19 @@ namespace SpaceInvaders.Services
                 }
             }
             return soundManager;
+        }
+        public static ScreenOptionsManager GetScreenOptionsManager(Game i_Game)
+        {
+            ScreenOptionsManager screenOptionsManager = null;
+            foreach (GameComponent component in i_Game.Components)
+            {
+                screenOptionsManager = component as ScreenOptionsManager;
+                if (screenOptionsManager != null)
+                {
+                    break;
+                }
+            }
+            return screenOptionsManager;
         }
         //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
         //{

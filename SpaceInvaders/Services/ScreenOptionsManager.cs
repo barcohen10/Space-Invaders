@@ -6,13 +6,14 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class ScreenOptionsManager
+    public class ScreenOptionsManager : GameComponent
     {
         private Game m_Game;
         private GraphicsDeviceManager m_GraphicsDeviceManager;
-        public ScreenOptionsManager(Game i_Game)
+        public ScreenOptionsManager(Game i_Game):base(i_Game)
         {
             m_Game = i_Game;
+            i_Game.Components.Add(this);
             m_GraphicsDeviceManager = i_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;
         }
         public void ToggleMouseVisibility()
