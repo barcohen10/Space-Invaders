@@ -10,6 +10,8 @@ using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -114,6 +116,7 @@ namespace SpaceInvaders.ObjectModel
             m_SpriteJump = new SpriteJump(this);
             r_TextureStartIndex = i_TextureStartIndex;
             r_TextureEndIndex = i_TextureEndIndex;
+            m_ShootSound = SoundFactory.CreateSound(this.GameScreen, SoundFactory.eSoundType.EnemyGunShot) as Sound;
         }
      
     
@@ -149,6 +152,8 @@ namespace SpaceInvaders.ObjectModel
             if (SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) == 0)
             {
                 getAndShootBullet(i_Color, r_BulletVelocity);
+                m_ShootSound.Play();
+
             }
         }
 

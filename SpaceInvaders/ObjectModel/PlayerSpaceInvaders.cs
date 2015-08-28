@@ -7,6 +7,8 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -59,6 +61,7 @@ namespace SpaceInvaders.ObjectModel
         public PlayerSpaceInvaders(GameScreen i_GameScreen, string i_PlayerNickname, eSpaceShipType i_SpaceShipType)
             : base(i_GameScreen.Game, i_PlayerNickname)
         {
+            m_LoseLifeSound = SoundFactory.CreateSound(this.Game, SoundFactory.eSoundType.LifeDie) as Sound;
             m_Nickname = i_PlayerNickname;
             m_SpaceShipType = i_SpaceShipType;
             m_ScoreText = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
@@ -86,11 +89,12 @@ namespace SpaceInvaders.ObjectModel
                 this.LifesSprites.Add(life);
             }
         }
-
+        private Sound m_LoseLifeSound;
         public override void LoseLife()
         {
             if (Lifes > 0)
             {
+                m_LoseLifeSound.Play();
                 this.LifesSprites[Lifes - 1].Visible = false;
                 base.LoseLife();
             }

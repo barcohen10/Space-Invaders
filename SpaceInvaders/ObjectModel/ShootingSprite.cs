@@ -8,13 +8,14 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
 namespace SpaceInvaders.ObjectModel
 {
     public abstract class ShootingSprite : Sprite
     {
         private string m_SerialNumber;
-
+       protected Sound m_ShootSound;
      
         public ShootingSprite(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)

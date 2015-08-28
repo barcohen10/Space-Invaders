@@ -11,6 +11,8 @@ using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -20,12 +22,13 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_MotherShipVelocity = float.Parse(ConfigurationManager.AppSettings["MotherShip.Velocity"]);
         private readonly int m_PointsToBeEarned= int.Parse(ConfigurationManager.AppSettings["Scores.Mothership"].ToString());
         private Random m_RandomGenerator = new Random();
-
+        private Sound m_SoundWhenKilled;
         public MotherShip(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {
             this.Points = m_PointsToBeEarned;
             this.Velocity = new Vector2(r_MotherShipVelocity, 0);
+            m_SoundWhenKilled = SoundFactory.CreateSound(this.GameScreen, SoundFactory.eSoundType.MotherShipKill) as Sound;
         }
 
         public override void Initialize()
@@ -121,6 +124,7 @@ namespace SpaceInvaders.ObjectModel
             {
                 this.Velocity = new Vector2(0);
                 isDying = true;
+                m_SoundWhenKilled.Play();
                 LastAnimation();
                 PlayerSpaceInvaders player = SpaceInvadersServices.GetPlayerComponent(this.Game, bullet.GunSerialNumber);
                 if (player != null)

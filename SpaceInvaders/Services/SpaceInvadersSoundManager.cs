@@ -1,5 +1,4 @@
-﻿using C15Ex03Dotan301810610Bar308000322.ServiceInterfaces;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
@@ -10,7 +9,7 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class SpaceInvadersSoundManager : SoundsManager, ISpaceInvadersSoundsManager
+    public class SpaceInvadersSoundManager : SoundsManager
     {
         public void Initialize()
         {

@@ -10,13 +10,15 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace SpaceInvaders.ObjectModel
 {
     public class Barrier : Sprite, ICollidable2D
     {
         private readonly float r_DefaultBarrierVelocity = float.Parse(ConfigurationManager.AppSettings["Barrier.Velocity"].ToString());
-
+        private Sound m_HitSound;
         private float m_JumpingVelocity;
         private readonly CollisionServices m_CollisionServices;
 
@@ -24,6 +26,7 @@ namespace SpaceInvaders.ObjectModel
             : base(i_AssetName, i_GameScreen)
         {
             m_CollisionServices = this.Game.Services.GetService(typeof(CollisionServices)) as CollisionServices;
+            m_HitSound = SoundFactory.CreateSound(this.GameScreen, SoundFactory.eSoundType.BarrierHit) as Sound;
         }
 
         public event EventHandler TouchScreenLimit;
@@ -85,6 +88,7 @@ namespace SpaceInvaders.ObjectModel
                 int halfBulletHeight = (int)(bullet.Height * 0.55);
                 if (m_CollisionServices.IsPixelsIntersect(this, collidableSprite, out collidedPoints, !autoPixelClear))
                 {
+                    m_HitSound.Play();
                     Sprite barrier = this as Sprite;
                     m_CollisionServices.ClearPixelsInVerticalDirection(ref barrier, collidedPoints, collisionDirection, halfBulletHeight);
                     this.GameScreen.Remove(bullet);

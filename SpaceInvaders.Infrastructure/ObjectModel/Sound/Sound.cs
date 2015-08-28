@@ -10,15 +10,26 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
     public class Sound
     {
         private Game m_Game;
-        private GameScreen m_GameScreen;
         private string m_AssetName;
         private SoundEffect m_SoundEffect;
         private SoundEffectInstance m_SoundEffectInstance;
 
         public Sound(GameScreen i_GameScreen, string i_AssetName)
         {
-            m_GameScreen = i_GameScreen;
             m_Game = i_GameScreen.Game;
+            m_AssetName = i_AssetName;
+            m_SoundEffect = m_Game.Content.Load<SoundEffect>(i_AssetName);
+            m_SoundEffectInstance = m_SoundEffect.CreateInstance();
+            m_SoundEffectInstance.IsLooped = false;
+            Volume = 1f;
+            Pitch = 0;
+            Pan = 0;
+
+        }
+
+        public Sound(Game i_Game, string i_AssetName)
+        {
+            m_Game = i_Game;
             m_AssetName = i_AssetName;
             m_SoundEffect = m_Game.Content.Load<SoundEffect>(i_AssetName);
             m_SoundEffectInstance = m_SoundEffect.CreateInstance();

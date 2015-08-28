@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using C15Ex03Dotan301810610Bar308000322.Services;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using System;
@@ -34,12 +36,13 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             ConfSpaceShip player1SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Green, Keys.Left, Keys.Right, new Keys[] { Keys.Enter, Keys.RightControl, Keys.LeftControl }, v_IsMouseMoveEnable);
             ConfSpaceShip player2SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Blue, Keys.A, Keys.D, Keys.W, !v_IsMouseMoveEnable);
             SpaceInvadersServices.CreateNewPlayers(this, player1SpaceShipConf, player2SpaceShipConf);
+            m_WonLevelSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.LevelWin);
             this.Add(enemiesMatrix);
             this.Add(barrierGroup);
             base.Initialize();
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
         }
-
+        private Sound m_WonLevelSound;
         public override void Update(GameTime gameTime)
         {
             if (InputManager.KeyPressed(Keys.P))
@@ -56,6 +59,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             bool PlayersWon = !SpaceInvadersServices.IsAnyEnemiesLeft(this);
             if (PlayersWon)
             {
+                m_WonLevelSound.Play();
                 moveLevel();
             }
             base.Update(gameTime);

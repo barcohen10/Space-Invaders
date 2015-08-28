@@ -13,5 +13,10 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds
       {
 
       }
+      public SoundEffect(Game i_Game, string i_AssetName)
+          : base(i_Game, i_AssetName)
+      {
+
+      }
     }
 }

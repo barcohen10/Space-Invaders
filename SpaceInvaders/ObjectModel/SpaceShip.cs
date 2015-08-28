@@ -13,6 +13,8 @@ using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -23,10 +25,10 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_MaxAmountOfBulletsAtOnec = float.Parse(ConfigurationManager.AppSettings["Bullet.MaxAmountOfBulletsAtOnce"].ToString());
         private IInputManager m_InputManager;
         private ButtonState m_LastBTNState = ButtonState.Released;
-
         public SpaceShip(GameScreen i_GameScreen, string i_AssetName)
             : base(i_GameScreen, i_AssetName)
         {
+            m_ShootSound = SoundFactory.CreateSound(this.GameScreen, SoundFactory.eSoundType.LifeDie) as Sound;
         }
 
         public ConfSpaceShip Configuration { get; set; }
@@ -71,6 +73,7 @@ namespace SpaceInvaders.ObjectModel
 
             if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec)
             {
+                m_ShootSound.Play();
                 getAndShootBullet(Color.Red, -r_BulletVelocity);
                 m_LastBTNState = m_InputManager.MouseState.LeftButton;
             }
@@ -94,7 +97,7 @@ namespace SpaceInvaders.ObjectModel
             bullet.Position = new Vector2(m_Position.X + (Width / 2) - bullet.Width + 3, (m_Position.Y - (bullet.Height / 2)) - 4);
             return bullet;
         }
-
+        
         public override void Collided(ICollidable i_Collidable)
         {
             Enemy enemy = i_Collidable as Enemy;
@@ -136,7 +139,6 @@ namespace SpaceInvaders.ObjectModel
             SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber).SpaceShip.Visible = false;
             SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber).SpaceShip.Enabled = false;
         }
-
         private void handleBulletCollision(Bullet i_Bullet)
         {
             PlayerSpaceInvaders player = SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber);

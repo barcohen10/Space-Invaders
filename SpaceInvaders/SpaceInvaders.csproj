@@ -56,7 +56,6 @@
     <Compile Include="ObjectModel\ConfSpaceShip.cs" />
     <Compile Include="ObjectModel\EnemiesMatrix.cs" />
     <Compile Include="ObjectModel\Enemy.cs" />
-    <Compile Include="ServiceInterfaces\ISpaceInvadersSoundsManager.cs" />
     <Compile Include="ObjectModel\Life.cs" />
     <Compile Include="ObjectModel\MotherShip.cs" />
     <Compile Include="ObjectModel\MouseSprite.cs" />
