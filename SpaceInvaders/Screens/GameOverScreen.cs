@@ -17,7 +17,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
         public GameOverScreen(Game i_Game)
             : base(i_Game)
         {
-          
         }
         public override void Update(GameTime gameTime)
         {

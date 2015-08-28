@@ -12,6 +12,7 @@ using C15Ex03Dotan301810610Bar308000322.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens;
+using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 
 namespace SpaceInvaders
 {
@@ -38,10 +39,12 @@ namespace SpaceInvaders
         protected override void Initialize()
         {
             m_SpriteBatch = new SpriteBatch(GraphicsDevice);
+            SoundManager soundManager = new SoundManager(this);
             this.Services.AddService(typeof(GraphicsDeviceManager), m_Graphics);
             this.Services.AddService(typeof(ContentManager), this.Content);
             this.Services.AddService(typeof(SpriteBatch), m_SpriteBatch);
             this.Services.AddService(typeof(CollisionServices), CollisionServices.Instance);
+            this.Services.AddService(typeof(SoundManager), soundManager);
             base.Initialize();
         }
 

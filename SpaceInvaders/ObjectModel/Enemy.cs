@@ -51,6 +51,7 @@ namespace SpaceInvaders.ObjectModel
         public override void Initialize()
         {
             base.Initialize();
+
             InitAnimations();
         }
 
@@ -109,6 +110,7 @@ namespace SpaceInvaders.ObjectModel
             : base(i_GameScreen, i_AssetName)
         {
             m_TintColor = i_EnemyColor;
+            this.isDying = false;
             m_SpriteJump = new SpriteJump(this);
             r_TextureStartIndex = i_TextureStartIndex;
             r_TextureEndIndex = i_TextureEndIndex;

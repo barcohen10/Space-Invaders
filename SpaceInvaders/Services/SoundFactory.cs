@@ -1,5 +1,9 @@
-﻿using SpaceInvaders.Infrastructure.ObjectModel;
+﻿using SpaceInvaders.Infrastructure.Managers;
+using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
+using SpaceInvaders.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,15 +38,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         private const string k_MenuMoveAsset = @"Sounds\MenuMove";
         private const string k_MotherShipKillAsset = @"Sounds\MotherShipKill";
         private const string k_SSGunShotAsset = @"Sounds\SSGunShot";
-
         public static Sound CreateSound(GameScreen i_GameScreen, eSoundType i_eSoundType)
         {
-
+            SoundManager m_soundManager = SpaceInvadersServices.GetSoundManager(i_GameScreen.Game);
             Sound sound = null;
             switch (i_eSoundType)
             {
                 case eSoundType.BackgroundMusic:
-                    sound = new Sound(i_GameScreen, k_BackgroundMusicAsset);
+                    sound = new BackgroundSound(i_GameScreen, k_BackgroundMusicAsset);
                     break;
                 case eSoundType.BarrierHit:
                     sound = new Sound(i_GameScreen, k_BarrierHitAsset);
@@ -72,6 +75,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                     sound = new Sound(i_GameScreen, k_SSGunShotAsset);
                     break;
             }
+            m_soundManager.Add(sound);
             return sound;
         }
     }

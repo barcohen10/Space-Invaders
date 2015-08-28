@@ -178,7 +178,7 @@ namespace SpaceInvaders.ObjectModel
                 if (enemyLastAdded != null)
                 {
 
-                    if (enemy.TextureStartIndex == enemyLastAdded.TextureStartIndex && enemy.TextureEndIndex == enemyLastAdded.TextureEndIndex)
+                    if (enemy.TextureStartIndex == enemyLastAdded.TextureStartIndex && enemy.TextureEndIndex == enemyLastAdded.TextureEndIndex  )
                     {
 
                         enemy.ChangeEnemyShape();

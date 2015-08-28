@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Audio;
-namespace SpaceInvaders.Infrastructure.ObjectModel
+namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
 {
     public class Sound
     {
