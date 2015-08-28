@@ -67,7 +67,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             }
             set
             {
-                if (value > 0 && value <= 1)
+                if (value >= 0 && value <= 1)
                 {
                     m_SoundEffectInstance.Volume = value;
                 }
