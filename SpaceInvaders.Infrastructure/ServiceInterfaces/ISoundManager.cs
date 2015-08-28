@@ -3,10 +3,10 @@ namespace SpaceInvaders.Infrastructure.ServiceInterfaces
 {
     interface ISoundManager
     {
-        void DecraseBackgroundMusic();
-        void DecraseSoundEffect();
-        void IncraseBackgroundMusic();
-        void IncraseSoundEffect();
+        void DecreaseBackgroundMusic();
+        void DecreaseSoundEffect();
+        void IncreaseBackgroundMusic();
+        void IncreaseSoundEffect();
         void Mute();
         void Play();
     }

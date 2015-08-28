@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Managers\DummyInputManager.cs.cs" />
+    <Compile Include="ObjectModel\Sound\Configurations\VolumeConfiguration.cs" />
     <Compile Include="ServiceInterfaces\ISoundManager.cs" />
     <Compile Include="Managers\ScreensManager.cs" />
     <Compile Include="Managers\SoundManager.cs" />

@@ -9,13 +9,19 @@ using System.Text;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
-    public class SoundManager : GameComponent,ISoundManager
+    public class SoundManager : GameComponent, ISoundManager
     {
-        private float m_soundEffectVolume = 0.5f;
-        private float m_BackgroundVolume = 0.5f;
         private bool m_SoundOn = true;
-
+        private VolumeConfiguration m_BackgroundVolume = new VolumeConfiguration(0.5f, 0, 1, 0.1f);
+        private VolumeConfiguration m_SoundEffectVolume = new VolumeConfiguration(0.5f, 0, 1, 0.1f);
         private List<Sound> m_Sounds = new List<Sound>();
+        public SoundManager(Game i_Game)
+            : base(i_Game)
+        {
+            i_Game.Components.Add(this);
+        }
+
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -25,19 +31,14 @@ namespace SpaceInvaders.Infrastructure.Managers
                 {
                     if (sound.GetType() == typeof(BackgroundSound))
                     {
-                        sound.Volume = m_BackgroundVolume;
+                        sound.Volume = m_BackgroundVolume.Volume;
                     }
                     else
                     {
-                        sound.Volume = m_soundEffectVolume;
+                        sound.Volume = m_SoundEffectVolume.Volume;
                     }
                 }
             }
-        }
-        public SoundManager(Game i_Game)
-            : base(i_Game)
-        {
-            i_Game.Components.Add(this);
         }
         public void Mute()
         {
@@ -51,22 +52,6 @@ namespace SpaceInvaders.Infrastructure.Managers
         {
             m_SoundOn = true;
         }
-        public void IncraseBackgroundMusic()
-        {
-            m_BackgroundVolume += 0.1f;
-        }
-        public void DecraseBackgroundMusic()
-        {
-            m_BackgroundVolume -= 0.1f;
-        }
-        public void IncraseSoundEffect()
-        {
-            m_soundEffectVolume += 0.1f;
-        }
-        public void DecraseSoundEffect()
-        {
-            m_soundEffectVolume -= 0.1f;
-        }
         public void Add(Sound i_Sound)
         {
             m_Sounds.Add(i_Sound);
@@ -74,6 +59,22 @@ namespace SpaceInvaders.Infrastructure.Managers
         public void Remove(Sound i_Sound)
         {
             m_Sounds.Remove(i_Sound);
+        }
+        public void IncreaseBackgroundMusic()
+        {
+            m_BackgroundVolume.Increase();
+        }
+        public void IncreaseSoundEffect()
+        {
+            m_SoundEffectVolume.Increase();
+        }
+        public void DecreaseBackgroundMusic()
+        {
+            m_BackgroundVolume.Increase();
+        }
+        public void DecreaseSoundEffect()
+        {
+            m_SoundEffectVolume.Increase();
         }
     }
 }
