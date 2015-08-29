@@ -21,7 +21,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         public void DecreaseBackgroundMusic()
         {
             this["Background"].Decrease();
-
         }
 
         public void DecreaseSoundEffect()

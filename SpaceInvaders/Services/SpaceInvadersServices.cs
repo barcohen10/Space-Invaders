@@ -242,18 +242,6 @@ namespace SpaceInvaders.Services
 
             return screenOptionsManager;
         }
-        //public static List<Text> GetTextInstructions(GameScreen i_GameScreen, Color i_Color, float i_Scale, params string[] i_Instructions)
-        //{
-        //    List<Text> textInstructions = new List<Text>();
-        //    Text text;
-        //    foreach(string instruction in i_Instructions)
-        //    {
-        //        text = SpritesFactory.CreateSprite(i_GameScreen, SpritesFactory.eSpriteType.SmallText) as Text;
-        //        text.TintColor = i_Color;
-        //        text.Scales = new Vector2(i_Scale);
-        //    }
-        //    return textInstructions;
-        //}
 
         public static void ClearComponents<T>(GameScreen i_GameScreen)
             where T : class

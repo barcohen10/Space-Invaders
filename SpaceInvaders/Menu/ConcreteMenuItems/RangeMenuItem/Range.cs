@@ -28,8 +28,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
 
         public override void Initialize()
         {
-            base.Initialize();
             initRangeComponent();
+            base.Initialize();
         }
 
         public Vector2 Position
@@ -37,7 +37,11 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
            set
             {
                m_Rectangle.Position = value;
-               m_Bar.Position = new Vector2(m_Rectangle.Position.X + (m_TotalJumps * m_DistanceToJump), m_Rectangle.Position.Y - m_Bar.Height / 3);
+               m_Bar.Position = new Vector2(m_Rectangle.Position.X + (m_TotalJumps * m_DistanceToJump), m_Rectangle.Position.Y - 7);
+            }
+            get
+            {
+                return m_Rectangle.Position;
             }
         }
 
