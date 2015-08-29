@@ -75,7 +75,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
 
         public void InitAnimations()
         {
-            PulseAnimator pulseAnimator = new PulseAnimator("pulse", TimeSpan.Zero, 1.1f, 2);
+            PulseAnimator pulseAnimator = new PulseAnimator("pulse", TimeSpan.Zero, 1.03f, 2);
             this.Animations.Add(pulseAnimator);
             this.Animations.Enabled = true;
             this.Animations["pulse"].Pause();
