@@ -28,7 +28,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
                 new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.OnePlayer).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageUp });
             TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.Done).RunMethod, ActivateKey = Keys.Enter });
             AddMenuItems(mouseVisabilityItem, fullScreenItem, allowResizingItem, doneItem);
-            // TextServices.CenterTextsOnScreen(this, null, new List<GameMenuItem>() { toggleSoundItem, doneItem});
         }
     }
 }

@@ -11,12 +11,19 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
 {
     public class SpaceInvadersSoundsManager : SoundsManager
     {
+        private VolumeInstance m_BackgroundSound, m_SoundEffect;
 
         public SpaceInvadersSoundsManager()
         {
-            this.AddVolumeInstance("Background", new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(BackgroundSound)));
-            this.AddVolumeInstance("SoundEffect", new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(SoundEffect)));
+            m_BackgroundSound = new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(BackgroundSound));
+            m_SoundEffect = new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(SoundEffect));
+            this.AddVolumeInstance("Background", m_BackgroundSound);
+            this.AddVolumeInstance("SoundEffect", m_SoundEffect);
         }
+
+        public VolumeInstance BackgroundSound { get { return m_BackgroundSound; } set { m_BackgroundSound = value; } }
+
+        public VolumeInstance SoundEffect { get { return m_SoundEffect; } set { m_SoundEffect = value; } }
 
         public void DecreaseBackgroundMusic()
         {

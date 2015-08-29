@@ -18,7 +18,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
         public override void Initialize()
         {
             base.Initialize();
-            Scales *= new Vector2(0.49f);
         }
     }
 }

@@ -75,7 +75,7 @@
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Screens\WelcomeScreen.cs" />
     <Compile Include="Services\CollisionServices.cs" />
-    <Compile Include="Services\ScreenOptionsManager.cs" />
+    <Compile Include="Services\ScreenOptionsMng.cs" />
     <Compile Include="Services\SpaceInvadersMenuMethods.cs" />
     <Compile Include="Services\SoundFactory.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />

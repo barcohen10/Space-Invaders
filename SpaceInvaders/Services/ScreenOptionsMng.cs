@@ -6,11 +6,12 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class ScreenOptionsManager 
+    public class ScreenOptionsMng 
     {
         private Game m_Game;
         private GraphicsDeviceManager m_GraphicsDeviceManager;
-        public ScreenOptionsManager(Game i_Game)
+
+        public ScreenOptionsMng(Game i_Game)
         {
             m_Game = i_Game;
             m_GraphicsDeviceManager = i_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;

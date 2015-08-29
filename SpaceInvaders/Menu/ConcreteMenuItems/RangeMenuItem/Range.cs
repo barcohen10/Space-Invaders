@@ -24,12 +24,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             m_Min = i_Min;
             m_Max = i_Max;
             m_Jump = i_Jump;
+            m_TotalJumps = i_Value / i_Jump;
         }
 
         public override void Initialize()
         {
             initRangeComponent();
             base.Initialize();
+
         }
 
         public Vector2 Position
@@ -47,17 +49,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
 
         public void IncreaseJump()
         {
-            MathHelper.Clamp(m_Value + m_Jump, m_Min, m_Max);
+            m_Value = MathHelper.Clamp(m_Value + m_Jump, m_Min, m_Max);
             m_TotalJumps++;
-            m_DistanceToJump = m_Rectangle.Width / (m_Max / m_Jump);
             m_Bar.Position = new Vector2(MathHelper.Clamp(m_Bar.Position.X + m_DistanceToJump, m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Bar.Position.Y);
         }
 
         public void DecreaseJump()
         {
-            MathHelper.Clamp(m_Value - m_Jump, m_Min, m_Max);
+            m_Value = MathHelper.Clamp(m_Value - m_Jump, m_Min, m_Max);
             m_TotalJumps--;
-            m_DistanceToJump = m_Rectangle.Width / (m_Max / m_Jump);
             m_Bar.Position = new Vector2(MathHelper.Clamp(m_Bar.Position.X - m_DistanceToJump, m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Bar.Position.Y);
         }
 
@@ -65,9 +65,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
         {
             m_Rectangle = new Rectangle(m_GameScreen, k_RectangleAsset);
             m_Bar = new Bar(m_GameScreen, k_BarAsset);
-            m_Rectangle.Initialize();
             m_Bar.Initialize();
+            m_Rectangle.Initialize();
             m_Rectangle.Position = new Vector2(m_Rectangle.Position.X, m_Bar.Height / 3);
+            m_Rectangle.Scales *= new Vector2(0.24f);
+            m_DistanceToJump = m_Rectangle.Width / (m_Max / m_Jump);
+            m_Bar.Position = new Vector2(m_Bar.Position.X + (m_TotalJumps * m_DistanceToJump), m_Bar.Position.Y);
             m_GameScreen.Add(m_Rectangle);
             m_GameScreen.Add(m_Bar);
         }

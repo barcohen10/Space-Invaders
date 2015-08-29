@@ -236,9 +236,9 @@ namespace SpaceInvaders.Services
             return soundManager;
         }
 
-        public static ScreenOptionsManager GetScreenOptionsManager(Game i_Game)
+        public static ScreenOptionsMng GetScreenOptionsManager(Game i_Game)
         {
-            ScreenOptionsManager screenOptionsManager = i_Game.Services.GetService(typeof(ScreenOptionsManager)) as ScreenOptionsManager;
+            ScreenOptionsMng screenOptionsManager = i_Game.Services.GetService(typeof(ScreenOptionsMng)) as ScreenOptionsMng;
 
             return screenOptionsManager;
         }
