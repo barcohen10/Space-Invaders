@@ -64,15 +64,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             m_MenuItems.Add(i_MenuItem);
         }
 
-        private void checkIfValueInRange(int i_Value, int i_Max)
-        {
-            if (!(i_Value >= 0 && i_Value <= i_Max))
-            {
-                string errorMessage = string.Format("Error! your choice must be between 0 to {0}", i_Max);
-                throw new Exception(errorMessage);
-            }
-        }
-
         private int getIndexOfMenuItem(string i_ItemName)
         {
             int indexOfItem = 0;

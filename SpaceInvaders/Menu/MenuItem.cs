@@ -11,14 +11,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
     public class MenuItem
     {
         private readonly string r_ItemName;
-        private Menu m_SubMenu;
         protected Dictionary<Keys, MethodKey> m_AllMethods;
         private event ClickedEventHandler m_MethodToRun = null;
 
         public MenuItem(string i_ItemName, params MethodKey[] i_Methods)
         {
             r_ItemName = i_ItemName;
-            m_SubMenu = new Menu(i_ItemName);
             m_AllMethods = new Dictionary<Keys, MethodKey>();
 
             foreach(MethodKey methodKey in i_Methods)
@@ -30,16 +28,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         public string ItemName
         {
             get { return r_ItemName; }
-        }
-
-        public Menu SubMenuItem
-        {
-            get { return m_SubMenu; }
-        }
-
-        public virtual void AddSubMenuItem(MenuItem i_MenuItem)
-        {
-            m_SubMenu.AddMenuItem(i_MenuItem);
         }
 
         /// <summary>
