@@ -85,26 +85,26 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        public bool IsSelected 
-        { 
-           get { return m_IsSelected; } 
-           set 
-           {
-               m_IsSelected = value;
-               if(m_IsSelected)
-               {
-                   m_Text.TintColor = Color.GreenYellow;
-                   m_Text.Animations["pulse"].Reset();
-                   m_Text.Animations["pulse"].Pause();
-               }
-               else
-               {
-                   m_Text.TintColor = r_OriginalColor;
-                   m_Text.Animations["pulse"].Reset();
-                   m_Text.Animations["pulse"].Pause();
-               }
-           } 
-        }
+        //public bool IsSelected 
+        //{ 
+        //   get { return m_IsSelected; } 
+        //   set 
+        //   {
+        //       m_IsSelected = value;
+        //       if(m_IsSelected)
+        //       {
+        //           m_Text.TintColor = Color.GreenYellow;
+        //           m_Text.Animations["pulse"].Reset();
+        //           m_Text.Animations["pulse"].Pause();
+        //       }
+        //       else
+        //       {
+        //           m_Text.TintColor = r_OriginalColor;
+        //           m_Text.Animations["pulse"].Reset();
+        //           m_Text.Animations["pulse"].Pause();
+        //       }
+        //   } 
+        //}
 
         protected void activateMenuItem()
         {

@@ -65,7 +65,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 
         public void ToggleRight()
         {
-            if (IsSelected || IsActive)
+            if (IsActive)
             {
                 m_Options[m_SelectedOptionIndex].TintColor = Color.White;
                 m_SelectedOptionIndex = 1;
@@ -76,7 +76,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 
         public void ToggleLeft()
         {
-            if (IsSelected || IsActive)
+            if (IsActive)
             {
                 m_Options[m_SelectedOptionIndex].TintColor = Color.White;
                 m_SelectedOptionIndex = 0;
