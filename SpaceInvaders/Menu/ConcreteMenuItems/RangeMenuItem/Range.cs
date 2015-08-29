@@ -45,18 +45,18 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             }
         }
 
-        public void AddJump()
+        public void IncreaseJump()
         {
             MathHelper.Clamp(m_Value + m_Jump, m_Min, m_Max);
             m_TotalJumps++;
-            m_Bar.Position = new Vector2(m_Bar.Position.X + m_DistanceToJump, m_Bar.Position.Y);
+            m_Bar.Position = new Vector2(MathHelper.Clamp(m_Bar.Position.X + m_DistanceToJump, m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Bar.Position.Y);
         }
 
         public void DecreaseJump()
         {
             MathHelper.Clamp(m_Value - m_Jump, m_Min, m_Max);
             m_TotalJumps--;
-            m_Bar.Position = new Vector2(m_Bar.Position.X - m_DistanceToJump, m_Bar.Position.Y);
+            m_Bar.Position = new Vector2(MathHelper.Clamp(m_Bar.Position.X - m_DistanceToJump, m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Bar.Position.Y);
         }
 
         private void initRangeComponent()

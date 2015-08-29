@@ -1,4 +1,5 @@
 ﻿using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
+using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem;
 using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
@@ -187,20 +188,36 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
             if (m_ActiveMenuItemIndex > -1)
             {
-                ToggleMenuItem item = (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem);
                 activateMenuItem();
-                if (item != null)
+                ToggleMenuItem toggleItem = (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem);
+                if (toggleItem != null)
                 {
-                    if (InputManager.KeyPressed(item.MethodAndKeys[0].ActivateKey))
+                    if (InputManager.KeyPressed(toggleItem.ToggleRightMethod.ActivateKey))
                     {
-                        item.DownOption();
+                        toggleItem.ToggleRight();
                     }
-                    else if (InputManager.KeyPressed(item.MethodAndKeys[1].ActivateKey))
+                    else if (InputManager.KeyPressed(toggleItem.ToggleLeftMethod.ActivateKey))
                     {
-                        item.UpOption();
+                        toggleItem.ToggleLeft();
+                    }
+                }
+                else
+                {
+                    RangeMenuItem rangeItem = (m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem);
+                    if(rangeItem != null)
+                    {
+                        if (InputManager.KeyPressed(rangeItem.DecreaseMethod.ActivateKey))
+                        {
+                            rangeItem.DecreaseJump();
+                        }
+                        else if (InputManager.KeyPressed(rangeItem.IncreaseMethod.ActivateKey))
+                        {
+                            rangeItem.IncreaseJump();
+                        }
                     }
                 }
             }
+           
         }
 
 
