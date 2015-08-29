@@ -14,19 +14,32 @@ namespace SpaceInvaders.Infrastructure.Managers
     {
         private Dictionary<string,VolumeInstance> m_VolumeInstances;
         private List<Sound> m_Sounds = new List<Sound>();
-        private bool m_IsVolumeInstancesMute = false;
 
         public SoundsManager()
         {
             m_VolumeInstances = new Dictionary<string, VolumeInstance>();
             m_Sounds = new List<Sound>();
         }
+        private bool isMuted()
+        {
+            bool muted = true;
+            foreach (Sound sound in m_Sounds)
+            {
+                if(sound.Volume != 0)
+                {
+                    muted = false;
+                    break;
+                }
+            }
+            return muted;
+
+        }
         public string SoundStatus 
         { 
             get 
             {
                 string result = "Off";
-                if (m_IsVolumeInstancesMute)
+                if (!isMuted())
                 {
                     result = "On";
                 }
@@ -86,22 +99,8 @@ namespace SpaceInvaders.Infrastructure.Managers
             updateSoundList(null,EventArgs.Empty);
         }
 
-        public void MuteAllVolumeInstances()
-        {
-            m_IsVolumeInstancesMute = true;
-            foreach(VolumeInstance volume in m_VolumeInstances.Values)
-            {
-                volume.Mute();
-            }
-        }
 
-        public void UnMuteAllVolumeInstances()
-        {
-            m_IsVolumeInstancesMute = false;
-            foreach (VolumeInstance volume in m_VolumeInstances.Values)
-            {
-                volume.UnMute();
-            }
-        }
+
+      
     }
 }
