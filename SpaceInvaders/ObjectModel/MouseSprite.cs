@@ -45,7 +45,7 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
         {
             m_InputManager = Game.Services.GetService(typeof(IInputManager)) as IInputManager;
             TintColor = Color.White;
-            Scales *= new Vector2(0.45f);
+            Scales *= new Vector2(0.7f);
             Position = Vector2.Zero;
             base.Initialize();
         }
