@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,24 +33,15 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
         }
 
         public float Volume { get { return m_Volume; } }
-        private bool validValue(float i_value)
-        {
-            return (i_value >= m_MinValue && i_value <= m_MaxValue);
-        }
+
         public void Increase()
         {
-            if (validValue(m_Volume + m_JumpingScale))
-            {
-                m_Volume += m_JumpingScale;
-            }
+            m_Volume = MathHelper.Clamp(m_Volume + m_JumpingScale, m_MinValue, m_MaxValue);
             OnVolumeChange();
         }
         public void Decrease()
         {
-            if (validValue(m_Volume - m_JumpingScale))
-            {
-                m_Volume -= m_JumpingScale;
-            }
+            m_Volume = MathHelper.Clamp(m_Volume - m_JumpingScale, m_MinValue, m_MaxValue);
             OnVolumeChange();
         }
 

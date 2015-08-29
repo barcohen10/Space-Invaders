@@ -39,7 +39,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
            set
             {
                m_Rectangle.Position = value;
-               m_Bar.Position = new Vector2(m_Rectangle.Position.X + (m_TotalJumps * m_DistanceToJump), m_Rectangle.Position.Y - 7);
+               m_Bar.Position = new Vector2(MathHelper.Clamp(m_Rectangle.Position.X + (m_TotalJumps * m_DistanceToJump), m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Rectangle.Position.Y - 7);
             }
             get
             {
@@ -69,8 +69,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             m_Rectangle.Initialize();
             m_Rectangle.Position = new Vector2(m_Rectangle.Position.X, m_Bar.Height / 3);
             m_Rectangle.Scales *= new Vector2(0.24f);
+            m_Bar.Scales *= new Vector2(0.25f);
             m_DistanceToJump = m_Rectangle.Width / (m_Max / m_Jump);
-            m_Bar.Position = new Vector2(m_Bar.Position.X + (m_TotalJumps * m_DistanceToJump), m_Bar.Position.Y);
             m_GameScreen.Add(m_Rectangle);
             m_GameScreen.Add(m_Bar);
         }
