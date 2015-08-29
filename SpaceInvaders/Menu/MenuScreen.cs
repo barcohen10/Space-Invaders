@@ -128,24 +128,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
             if (activeMenuItem != null)
             {
-                if (!activeMenuItem.IsSelected)
-                {
-                    activeMenuItem.IsSelected = true;
-                    Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
-
-                    for (int i = 0; i < m_Menu.Count; i++)
-                    {
-                        if (i != m_ActiveMenuItemIndex)
-                        {
-                            activeMenuItem = m_Menu[i] as GameMenuItem;
-                            activeMenuItem.IsSelected = false;
-                        }
-                    }
-                }
-                else
-                {
-                    activeMenuItem.IsSelected = false;
-                }
+                Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
             }
         }
 
@@ -159,7 +142,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             else if (m_ActiveMenuItemIndex > -1)
             {
                 GameMenuItem item = (Menu[m_ActiveMenuItemIndex] as GameMenuItem);
-                if (isMouseHover && !item.IsSelected)
+                if (isMouseHover && !item.IsActive)
                 {
                     activateMenuItem();
                 }
