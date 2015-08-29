@@ -28,7 +28,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         {
             m_Menu = new Menu(i_MenuTitle);
             m_MenuTitle = i_MenuTitle;
-            this.Game.IsMouseVisible = true;
         }
 
         protected Menu Menu { get { return m_Menu; } set { m_Menu = value; } }

@@ -14,10 +14,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             m_Game = i_Game;
         }
 
-        public string MouseVisible 
+        public string MouseVisibleStatus
         { 
             get 
-            { 
+            {
                 string result = "Invisible";
 
                 if( m_Game.IsMouseVisible)

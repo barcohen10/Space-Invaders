@@ -21,15 +21,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
         }
         protected override void InitMenuItems()
         {
-            ToggleMenuItem mouseVisabilityItem = new ToggleMenuItem("Mouse Visability:", this, m_ScreenOptionsMng.MouseVisible, new List<string>() { "Visible", "Invisible" }, Keys.Enter,
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOff, ActivateKey = Keys.PageDown },
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOn, ActivateKey = Keys.PageUp });
+            ToggleMenuItem mouseVisabilityItem = new ToggleMenuItem("Mouse Visability:", this, m_ScreenOptionsMng.MouseVisibleStatus, new List<string>() { "Visible", "Invisible" }, Keys.Enter,
+       new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOff, ActivateKey = Keys.PageDown },
+       new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOn, ActivateKey = Keys.PageUp });
             ToggleMenuItem fullScreenItem = new ToggleMenuItem("Full Screen Mode:", this, m_ScreenOptionsMng.FullScreenMode, new List<string>() { "On", "Off" }, Keys.Enter,
                 new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown },
                 new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
             ToggleMenuItem allowResizingItem = new ToggleMenuItem("Allow Window Resizing:", this, m_ScreenOptionsMng.AllowWindowResizingMode, new List<string>() { "On", "Off" }, Keys.Enter,
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown },
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.DisallowWindowResizing, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.AllowWindowResizing, ActivateKey = Keys.PageUp });
             TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = this.done, ActivateKey = Keys.Enter });
             AddMenuItems(mouseVisabilityItem, fullScreenItem, allowResizingItem, doneItem);
         }
