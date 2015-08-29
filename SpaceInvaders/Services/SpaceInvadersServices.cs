@@ -230,9 +230,9 @@ namespace SpaceInvaders.Services
             return screensManager;
         }
 
-        public static SpaceInvadersSoundsManager GetSoundManager(Game i_Game)
+        public static SpaceInvadersSoundsMng GetSoundManager(Game i_Game)
         {
-            SpaceInvadersSoundsManager soundManager = i_Game.Services.GetService(typeof(SpaceInvadersSoundsManager)) as SpaceInvadersSoundsManager;
+            SpaceInvadersSoundsMng soundManager = i_Game.Services.GetService(typeof(SpaceInvadersSoundsMng)) as SpaceInvadersSoundsMng;
             return soundManager;
         }
 

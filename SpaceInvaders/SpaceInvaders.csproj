@@ -80,7 +80,7 @@
     <Compile Include="Services\SoundFactory.cs" />
     <Compile Include="Services\SpaceInvadersServices.cs" />
     <Compile Include="ObjectModel\SpaceShip.cs" />
-    <Compile Include="Services\SpaceInvadersSoundsManager.cs" />
+    <Compile Include="Services\SpaceInvadersSoundsMng.cs" />
     <Compile Include="Services\TextServices.cs" />
     <Compile Include="SpaceInvaders.cs" />
     <Compile Include="ObjectModel\Program.cs" />

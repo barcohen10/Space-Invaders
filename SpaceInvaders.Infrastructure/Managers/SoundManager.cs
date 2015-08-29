@@ -14,11 +14,26 @@ namespace SpaceInvaders.Infrastructure.Managers
     {
         private Dictionary<string,VolumeInstance> m_VolumeInstances;
         private List<Sound> m_Sounds = new List<Sound>();
+        private bool m_IsVolumeInstancesMute = false;
+
         public SoundsManager()
         {
             m_VolumeInstances = new Dictionary<string, VolumeInstance>();
             m_Sounds = new List<Sound>();
         }
+        public string SoundStatus 
+        { 
+            get 
+            {
+                string result = "Off";
+                if (m_IsVolumeInstancesMute)
+                {
+                    result = "On";
+                }
+                return result; 
+            } 
+        }
+
         private void updateSoundList(object sender, EventArgs e)
         {
             foreach (Sound sound in m_Sounds)
@@ -32,6 +47,7 @@ namespace SpaceInvaders.Infrastructure.Managers
                 }
             }
         }
+
         public void Mute()
         {
             foreach (Sound sound in m_Sounds)
@@ -47,7 +63,7 @@ namespace SpaceInvaders.Infrastructure.Managers
         {
             m_Sounds.Remove(i_Sound);
         }
-        public void AddVolumeInstance(string i_InstanceName,VolumeInstance i_VolumeInstance )
+        public void AddVolumeInstance(string i_InstanceName, VolumeInstance i_VolumeInstance )
         {
             i_VolumeInstance.VolumeChange += updateSoundList;
             m_VolumeInstances.Add(i_InstanceName,i_VolumeInstance);
@@ -68,6 +84,24 @@ namespace SpaceInvaders.Infrastructure.Managers
         public void Play()
         {
             updateSoundList(null,EventArgs.Empty);
+        }
+
+        public void MuteAllVolumeInstances()
+        {
+            m_IsVolumeInstancesMute = true;
+            foreach(VolumeInstance volume in m_VolumeInstances.Values)
+            {
+                volume.Mute();
+            }
+        }
+
+        public void UnMuteAllVolumeInstances()
+        {
+            m_IsVolumeInstancesMute = false;
+            foreach (VolumeInstance volume in m_VolumeInstances.Values)
+            {
+                volume.UnMute();
+            }
         }
     }
 }

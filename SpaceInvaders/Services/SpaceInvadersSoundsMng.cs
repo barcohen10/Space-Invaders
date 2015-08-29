@@ -9,11 +9,12 @@ using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class SpaceInvadersSoundsManager : SoundsManager
+    public class SpaceInvadersSoundsMng : SoundsManager
     {
         private VolumeInstance m_BackgroundSound, m_SoundEffect;
+        private bool m_IsMute = false;
 
-        public SpaceInvadersSoundsManager()
+        public SpaceInvadersSoundsMng()
         {
             m_BackgroundSound = new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(BackgroundSound));
             m_SoundEffect = new VolumeInstance(0.5f, 0, 1f, 0.1f, typeof(SoundEffect));
@@ -43,7 +44,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         public void IncreaseSoundEffect()
         {
             this["SoundEffect"].Increase();
-
         }
 
     }

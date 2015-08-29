@@ -16,12 +16,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
         private int m_SelectedOptionIndex = 0;
         private Text m_Separator;
         private MethodKey m_ToggleRightMethod, m_ToggleLeftMethod;
+        private string m_SelectedOption;
 
-        public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, List<string> i_Options, Keys i_ActivateItemKey, MethodKey i_ToggleRightMethod, MethodKey i_ToggleLeftMethod)
+        public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, string i_SelectedOption, List<string> i_Options, Keys i_ActivateItemKey, MethodKey i_ToggleRightMethod, MethodKey i_ToggleLeftMethod)
             : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[]{i_ToggleRightMethod, i_ToggleLeftMethod})
         {
             if (i_Options.Count > 0)
             {
+                m_SelectedOption = i_SelectedOption;
                 initOptions(i_Options);
                 m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
                 m_ToggleRightMethod = i_ToggleRightMethod;
@@ -46,6 +48,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
                 optionText.Position = new Vector2(x, this.Position.Y);
                 m_Options.Add(optionText);
                 x = optionText.Width + optionText.Position.X + 30;
+                if(i_Options[i].Equals(m_SelectedOption))
+                {
+                    m_SelectedOptionIndex = i;
+                }
             }
 
             m_Separator = SpritesFactory.CreateSprite(m_GameScreen, m_TextSpriteType) as Text;
@@ -108,7 +114,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
                 m_Separator.Position = new Vector2(m_Separator.Position.X + addToX, m_Separator.Position.Y + addToY);
             }
         }
-
 
     }
 }
