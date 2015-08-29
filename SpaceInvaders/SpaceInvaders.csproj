@@ -141,16 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <Content Include="Sounds\BarrierHit.wav" />
-    <Content Include="Sounds\BGMusic.wav" />
-    <Content Include="Sounds\EnemyGunShot.wav" />
-    <Content Include="Sounds\EnemyKill.wav" />
-    <Content Include="Sounds\GameOver.wav" />
-    <Content Include="Sounds\LevelWin.wav" />
-    <Content Include="Sounds\LifeDie.wav" />
-    <Content Include="Sounds\MenuMove.wav" />
-    <Content Include="Sounds\MotherShipKill.wav" />
-    <Content Include="Sounds\SSGunShot.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

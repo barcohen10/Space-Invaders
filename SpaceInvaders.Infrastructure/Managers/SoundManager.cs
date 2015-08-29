@@ -101,6 +101,17 @@ namespace SpaceInvaders.Infrastructure.Managers
 
 
 
-      
+
+
+        public void SetSound(Sound sound)
+        {
+            foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
+            {
+                if (volumeInstance.Value.SoundType == sound.GetType())
+                {
+                    sound.Volume = volumeInstance.Value.Volume;
+                }
+            }
+        }
     }
 }
