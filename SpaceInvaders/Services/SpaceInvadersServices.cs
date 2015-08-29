@@ -14,6 +14,7 @@ using SpaceInvaders.Infrastructure.Managers;
 using C15Ex03Dotan301810610Bar308000322.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using C15Ex03Dotan301810610Bar308000322.Services;
+using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 
 namespace SpaceInvaders.Services
 {
@@ -242,7 +243,12 @@ namespace SpaceInvaders.Services
 
             return screenOptionsManager;
         }
+        public static MultiPlayerConfiguration GetMultiPlayerConfiguration(Game i_Game)
+        {
+            MultiPlayerConfiguration multiPlayerConfiguration = i_Game.Services.GetService(typeof(MultiPlayerConfiguration)) as MultiPlayerConfiguration;
 
+            return multiPlayerConfiguration;
+        }
         public static void ClearComponents<T>(GameScreen i_GameScreen)
             where T : class
         {
