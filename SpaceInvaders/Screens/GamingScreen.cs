@@ -1,4 +1,5 @@
-﻿using C15Ex03Dotan301810610Bar308000322.Services;
+﻿using C15Ex03Dotan301810610Bar308000322.ObjectModel;
+using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +18,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class GamingScreen : GameScreen
     {
-        private bool v_IsMouseMoveEnable = true;
         private int m_CurrentLevel = 1;
         public GamingScreen(Game i_Game)
             : base(i_Game)
@@ -25,7 +25,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             this.SpritesSortMode = SpriteSortMode.Immediate;
             this.BlendState = BlendState.AlphaBlend;
         }
-
+        private MultiPlayerConfiguration m_MultiPlayerConfiguration;
         public override void Initialize()
         {
             CollisionsManager collisionsManager = new CollisionsManager(this.Game);
@@ -33,9 +33,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             EnemiesMatrix enemiesMatrix = new EnemiesMatrix(this);
             BarrierGroup barrierGroup = new BarrierGroup(this);
-            ConfSpaceShip player1SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Green, Keys.Left, Keys.Right, new Keys[] { Keys.Enter, Keys.RightControl, Keys.LeftControl }, v_IsMouseMoveEnable);
-            ConfSpaceShip player2SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Blue, Keys.A, Keys.D, Keys.W, !v_IsMouseMoveEnable);
-            SpaceInvadersServices.CreateNewPlayers(this, player1SpaceShipConf, player2SpaceShipConf);
+            m_MultiPlayerConfiguration = SpaceInvadersServices.GetMultiPlayerConfiguration(this.Game);
+            m_MultiPlayerConfiguration.CreatePlayers(this);
             m_WonLevelSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.LevelWin);
             m_GameOverSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.GameOver) ;
             this.Add(enemiesMatrix);

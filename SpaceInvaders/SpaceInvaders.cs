@@ -43,12 +43,15 @@ namespace SpaceInvaders
             m_SpriteBatch = new SpriteBatch(GraphicsDevice);
             SpaceInvadersSoundsManager soundManager = new SpaceInvadersSoundsManager();
             ScreenOptionsMng screenOptionsManager = new ScreenOptionsMng(this);
+            MultiPlayerConfiguration multiPlayerConfiguration = new MultiPlayerConfiguration();
             this.Services.AddService(typeof(GraphicsDeviceManager), m_Graphics);
             this.Services.AddService(typeof(ContentManager), this.Content);
             this.Services.AddService(typeof(SpriteBatch), m_SpriteBatch);
             this.Services.AddService(typeof(CollisionServices), CollisionServices.Instance);
             this.Services.AddService(typeof(SpaceInvadersSoundsManager), soundManager);
             this.Services.AddService(typeof(ScreenOptionsMng), screenOptionsManager);
+            this.Services.AddService(typeof(MultiPlayerConfiguration), multiPlayerConfiguration);
+
             m_BackgroundMusic = SoundFactory.CreateSound(this, SoundFactory.eSoundType.BackgroundMusic) as Sound;
             m_BackgroundMusic.Volume = 0.3f;
             m_BackgroundMusic.isLooped = true;

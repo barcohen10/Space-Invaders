@@ -63,6 +63,7 @@
     <Compile Include="ObjectModel\Life.cs" />
     <Compile Include="ObjectModel\MotherShip.cs" />
     <Compile Include="ObjectModel\MouseSprite.cs" />
+    <Compile Include="ObjectModel\MultiPlayerConfiguration.cs" />
     <Compile Include="ObjectModel\Player.cs" />
     <Compile Include="ObjectModel\PlayerSpaceInvaders.cs" />
     <Compile Include="ObjectModel\ShootingSprite.cs" />
