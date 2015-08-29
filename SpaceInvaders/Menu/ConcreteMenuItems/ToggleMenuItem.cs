@@ -15,22 +15,25 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
         private List<Text> m_Options = new List<Text>();
         private int m_SelectedOptionIndex = 0;
         private Text m_Separator;
-        private MethodKey[] m_Methods;
+        private MethodKey m_ToggleRightMethod, m_ToggleLeftMethod;
 
-        public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, List<string> i_Options, Keys i_ActivateItemKey, params MethodKey[] i_Methods)
-            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, i_Methods)
+        public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, List<string> i_Options, Keys i_ActivateItemKey, MethodKey i_ToggleRightMethod, MethodKey i_ToggleLeftMethod)
+            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[]{i_ToggleRightMethod, i_ToggleLeftMethod})
         {
             if (i_Options.Count > 0)
             {
                 initOptions(i_Options);
                 m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
-                m_Methods = i_Methods;
+                m_ToggleRightMethod = i_ToggleRightMethod;
+                m_ToggleLeftMethod = i_ToggleLeftMethod;
             }
         }
 
         public List<Text> Options { get { return m_Options; } }
 
-        public MethodKey[] MethodAndKeys { get { return m_Methods; }}
+        public MethodKey ToggleRightMethod { get { return m_ToggleRightMethod; } }
+
+        public MethodKey ToggleLeftMethod { get { return m_ToggleLeftMethod; } }
 
         private void initOptions(List<string> i_Options)
         {
@@ -51,40 +54,40 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             m_Separator.Position = new Vector2(x, this.Position.Y);
             optionText.Position = new Vector2(m_Separator.Position.X + m_Separator.Width + 15, this.Position.Y);
 
-            m_Options[0].RightMouseClick += UpOption;
-            m_Options[1].RightMouseClick += DownOption;
+            m_Options[0].RightMouseClick += ToggleLeft;
+            m_Options[1].RightMouseClick += ToggleRight;
         }
 
-        private void UpOption(object sender, EventArgs args)
+        private void ToggleRight(object sender, EventArgs args)
         {
-            UpOption();
+            ToggleRight();
         }
 
-        public void UpOption()
-        {
-            if (IsSelected || IsActive)
-            {
-                m_Options[m_SelectedOptionIndex].TintColor = Color.White;
-                m_SelectedOptionIndex = 0;
-                m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
-                this.RunMethod(m_Methods[0].ActivateKey);
-            }
-        }
-
-        public void DownOption()
+        public void ToggleRight()
         {
             if (IsSelected || IsActive)
             {
                 m_Options[m_SelectedOptionIndex].TintColor = Color.White;
                 m_SelectedOptionIndex = 1;
                 m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
-                this.RunMethod(m_Methods[1].ActivateKey);
+                this.RunMethod(m_ToggleRightMethod.ActivateKey);
             }
         }
 
-        private void DownOption(object sender, EventArgs args)
+        public void ToggleLeft()
         {
-            DownOption();
+            if (IsSelected || IsActive)
+            {
+                m_Options[m_SelectedOptionIndex].TintColor = Color.White;
+                m_SelectedOptionIndex = 0;
+                m_Options[m_SelectedOptionIndex].TintColor = Color.Aqua;
+                this.RunMethod(m_ToggleLeftMethod.ActivateKey);
+            }
+        }
+
+        private void ToggleLeft(object sender, EventArgs args)
+        {
+            ToggleLeft();
         }
 
         public override Vector2 Position

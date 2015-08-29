@@ -20,7 +20,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
         protected override void InitMenuItems()
         {
             TextMenuItem screenOptionsItem = new TextMenuItem("Screen Options", this, new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.ScreenOptions).RunMethod, ActivateKey = Keys.Enter });
-            ToggleMenuItem playersItem = new ToggleMenuItem("Players:", this, new List<string>() { "One", "Two" }, Keys.Enter, 
+            ToggleMenuItem playersItem = new ToggleMenuItem("Players:", this, new List<string>() { "One", "Two" }, Keys.Enter,
                 new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.TwoPlayers).RunMethod, ActivateKey = Keys.PageDown }, 
                 new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.OnePlayer).RunMethod, ActivateKey = Keys.PageUp });
             TextMenuItem soundOptionsItem = new TextMenuItem("Sound Options", this, new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.SoundOptions).RunMethod, ActivateKey = Keys.Enter });
