@@ -203,6 +203,13 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
            
         }
 
+        protected void done()
+        {
+            GameScreen previousScreen = ScreensManager.ActiveScreen.PreviousScreen;
+            ScreensManager.Remove(ScreensManager.ActiveScreen);
+            ScreensManager.SetCurrentScreen(previousScreen);
+        }
+
 
     }
 }

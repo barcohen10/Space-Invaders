@@ -22,15 +22,15 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
         protected override void InitMenuItems()
         {
             ToggleMenuItem mouseVisabilityItem = new ToggleMenuItem("Mouse Visability:", this, m_ScreenOptionsMng.MouseVisible, new List<string>() { "Visible", "Invisible" }, Keys.Enter,
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.TwoPlayers).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageDown },
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.OnePlayer).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageUp });
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOff, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOn, ActivateKey = Keys.PageUp });
             ToggleMenuItem fullScreenItem = new ToggleMenuItem("Full Screen Mode:", this, m_ScreenOptionsMng.FullScreenMode, new List<string>() { "On", "Off" }, Keys.Enter,
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.TwoPlayers).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageDown },
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.OnePlayer).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageUp });
-            ToggleMenuItem allowResizingItem = new ToggleMenuItem("Allow Window Resizing:", this, m_ScreenOptionsMng.AllowWindowResizing, new List<string>() { "On", "Off" }, Keys.Enter,
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.TwoPlayers).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageDown },
-                new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.OnePlayer).RunMethod, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageUp });
-            TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.Done).RunMethod, ActivateKey = Keys.Enter });
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
+            ToggleMenuItem allowResizingItem = new ToggleMenuItem("Allow Window Resizing:", this, m_ScreenOptionsMng.AllowWindowResizingMode, new List<string>() { "On", "Off" }, Keys.Enter,
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
+            TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = this.done, ActivateKey = Keys.Enter });
             AddMenuItems(mouseVisabilityItem, fullScreenItem, allowResizingItem, doneItem);
         }
     }

@@ -45,7 +45,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             }
         }
 
-        public string AllowWindowResizing
+        public string AllowWindowResizingMode
         {
             get
             {
@@ -59,17 +59,40 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             }
         }
 
-        public void ToggleMouseVisibility()
+        public void MouseVisibilityOn()
         {
-            m_Game.IsMouseVisible = !m_Game.IsMouseVisible;
+            m_Game.IsMouseVisible = true;
         }
-        public void ToggleFullScreenMode()
+
+        public void MouseVisibilityOff()
         {
-            m_GraphicsDeviceManager.ToggleFullScreen();
+            m_Game.IsMouseVisible = false;
         }
-        public void ToggleAllowWindowResizing()
+
+        public void FullScreenOn()
         {
-            m_Game.Window.AllowUserResizing = !m_Game.Window.AllowUserResizing;
+            if(!m_GraphicsDeviceManager.IsFullScreen)
+            {
+                m_GraphicsDeviceManager.ToggleFullScreen();
+            }
+        }
+
+        public void FullScreenOff()
+        {
+            if (m_GraphicsDeviceManager.IsFullScreen)
+            {
+                m_GraphicsDeviceManager.ToggleFullScreen();
+            }
+        }
+
+        public void AllowWindowResizing()
+        {
+            m_Game.Window.AllowUserResizing = true;
+        }
+
+        public void DisallowWindowResizing()
+        {
+            m_Game.Window.AllowUserResizing = false;
         }
     }
 }

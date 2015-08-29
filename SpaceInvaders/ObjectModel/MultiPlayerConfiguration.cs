@@ -11,7 +11,7 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
 {
     public class MultiPlayerConfiguration
     {
-        private ePlayers m_PlayerCount;
+        private ePlayers m_PlayerCount = ePlayers.One;
         private bool v_IsMouseMoveEnable = true;
         public enum ePlayers
         {
@@ -25,7 +25,6 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
             if (m_PlayerCount.Equals(ePlayers.One))
             {
                 SpaceInvadersServices.CreateNewPlayers(i_GameScreen, player1SpaceShipConf);
-
             }
             else
             {
@@ -35,7 +34,17 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
 
         }
 
-        public ePlayers Players { get { return m_PlayerCount; } set { m_PlayerCount = value; } }
+        public ePlayers NumberOfPlayers { get { return m_PlayerCount; } set { m_PlayerCount = value; } }
+
+        public void ChangeToOnePlayer()
+        {
+            m_PlayerCount = ePlayers.One;
+        }
+
+        public void ChangeToTwoPlayers()
+        {
+            m_PlayerCount = ePlayers.Two;
+        }
   
     }
 }

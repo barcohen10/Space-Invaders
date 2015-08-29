@@ -31,7 +31,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
             RangeMenuItem soundsEffectsVolumeItem = new RangeMenuItem("Sounds Effects Vol:", this, (int)(m_SpaceInvadersSoundsManager.SoundEffect.Volume * 100), 0, 100, 10, 
                 new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.DecreaseSoundEffect, ActivateKey = Keys.PageUp }, 
                 new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.IncreaseSoundEffect, ActivateKey = Keys.PageDown });
-            TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = new SpaceInvadersMenuMethods(this.Game, SpaceInvadersMenuMethods.eMethodsToRun.Done).RunMethod, ActivateKey = Keys.Enter });
+            TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = done, ActivateKey = Keys.Enter });
             AddMenuItems(toggleSoundItem, backgroundVolumeItem, soundsEffectsVolumeItem, doneItem);
         }
     }
