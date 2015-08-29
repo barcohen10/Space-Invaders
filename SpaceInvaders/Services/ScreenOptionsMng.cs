@@ -9,12 +9,9 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
     public class ScreenOptionsMng 
     {
         private Game m_Game;
-        private GraphicsDeviceManager m_GraphicsDeviceManager;
-
         public ScreenOptionsMng(Game i_Game)
         {
             m_Game = i_Game;
-            m_GraphicsDeviceManager = i_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;
         }
 
         public string MouseVisible 
@@ -36,8 +33,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             get
             {
                 string result = "Off";
-
-                if (m_GraphicsDeviceManager.IsFullScreen)
+                GraphicsDeviceManager graphicManager = m_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;
+                if (graphicManager.IsFullScreen)
                 {
                     result = "On";
                 }
@@ -71,17 +68,20 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
 
         public void FullScreenOn()
         {
-            if(!m_GraphicsDeviceManager.IsFullScreen)
+            GraphicsDeviceManager graphicManager = m_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;
+
+            if (!graphicManager.IsFullScreen)
             {
-                m_GraphicsDeviceManager.ToggleFullScreen();
+                graphicManager.ToggleFullScreen();
             }
         }
 
         public void FullScreenOff()
         {
-            if (m_GraphicsDeviceManager.IsFullScreen)
+            GraphicsDeviceManager graphicManager = m_Game.Services.GetService(typeof(GraphicsDeviceManager)) as GraphicsDeviceManager;
+            if (graphicManager.IsFullScreen)
             {
-                m_GraphicsDeviceManager.ToggleFullScreen();
+                graphicManager.ToggleFullScreen();
             }
         }
 

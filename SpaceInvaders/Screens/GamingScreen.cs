@@ -50,6 +50,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             {
                 m_ScreensManager.SetCurrentScreen(new PauseScreen(this.Game));
             }
+
             bool isGameOver = SpaceInvadersServices.IsAllPlayersLost(this.Game);
 
             if (isGameOver)
