@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Audio;
 namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
 {
-    public class Sound
+    public class Sound 
     {
         private Game m_Game;
         private string m_AssetName;

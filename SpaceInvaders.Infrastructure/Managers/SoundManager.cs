@@ -110,6 +110,7 @@ namespace SpaceInvaders.Infrastructure.Managers
                 if (volumeInstance.Value.SoundType == sound.GetType())
                 {
                     sound.Volume = volumeInstance.Value.Volume;
+                    break;
                 }
             }
         }
