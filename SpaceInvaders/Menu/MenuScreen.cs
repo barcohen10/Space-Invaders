@@ -23,6 +23,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private int m_ActiveMenuItemIndex = -1;
         private MouseSprite m_Mouse;
         private ButtonState m_LastBTNState = ButtonState.Released;
+        private int m_LastMouseWheelValue = 0;
+
         public MenuScreen(Game i_Game, string i_MenuTitle)
             : base(i_Game)
         {
@@ -101,7 +103,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             base.Update(gameTime);
         }
 
-        private void activateMenuItem()
+        private void activateCurrentMenuItem()
         {
             GameMenuItem activeMenuItem = m_Menu[m_ActiveMenuItemIndex] as GameMenuItem;
 
@@ -121,7 +123,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        private void selectMenuItem()
+        private void runMenuItemMethod()
         {
             GameMenuItem activeMenuItem = m_Menu[m_ActiveMenuItemIndex] as GameMenuItem;
 
@@ -136,14 +138,30 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             bool isMouseHover = isMouseHoverMenuItem();
             if (isMouseHover && InputManager.MouseState.LeftButton == ButtonState.Pressed && m_LastBTNState == ButtonState.Released)
             {
-                selectMenuItem();
+                runMenuItemMethod();
             }
             else if (m_ActiveMenuItemIndex > -1)
             {
                 GameMenuItem item = (Menu[m_ActiveMenuItemIndex] as GameMenuItem);
                 if (isMouseHover && !item.IsActive)
                 {
-                    activateMenuItem();
+                    activateCurrentMenuItem();
+                }
+                else if(isMouseHover)
+                {
+                    RangeMenuItem rangeItem = (m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem);
+                    if (rangeItem != null)
+                    {
+                        if(InputManager.MouseState.ScrollWheelValue > m_LastMouseWheelValue)
+                        {
+                            rangeItem.IncreaseJump();
+                        }
+                        else if(InputManager.MouseState.ScrollWheelValue < m_LastMouseWheelValue)
+                        {
+                            rangeItem.DecreaseJump();
+                        }
+                        m_LastMouseWheelValue = InputManager.MouseState.ScrollWheelValue;
+                    }
                 }
             }
             m_LastBTNState = InputManager.MouseState.LeftButton;
@@ -170,7 +188,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
             if (m_ActiveMenuItemIndex > -1)
             {
-                activateMenuItem();
+                activateCurrentMenuItem();
                 ToggleMenuItem toggleItem = (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem);
                 if (toggleItem != null)
                 {
