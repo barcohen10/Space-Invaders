@@ -14,7 +14,7 @@ namespace SpaceInvaders.Infrastructure.Managers
     {
         private Dictionary<string,VolumeInstance> m_VolumeInstances;
         private List<Sound> m_Sounds = new List<Sound>();
-
+        private bool m_Muted = false;
         public SoundsManager()
         {
             m_VolumeInstances = new Dictionary<string, VolumeInstance>();
@@ -46,7 +46,7 @@ namespace SpaceInvaders.Infrastructure.Managers
                 return result; 
             } 
         }
-
+//Fix sounds 
         private void updateSoundList(object sender, EventArgs e)
         {
             foreach (Sound sound in m_Sounds)
@@ -103,7 +103,7 @@ namespace SpaceInvaders.Infrastructure.Managers
 
 
 
-        public void SetSound(Sound sound)
+        public void ConfigureSound(Sound sound)
         {
             foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
             {

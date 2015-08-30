@@ -23,14 +23,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private int m_ActiveMenuItemIndex = -1;
         private MouseSprite m_Mouse;
         private ButtonState m_LastBTNState = ButtonState.Released;
-        private Sound m_LoadMenuSound;
         public MenuScreen(Game i_Game, string i_MenuTitle)
             : base(i_Game)
         {
             m_Menu = new Menu(i_MenuTitle);
             m_MenuTitle = i_MenuTitle;
         }
-
         protected Menu Menu { get { return m_Menu; } set { m_Menu = value; } }
 
         protected Text TitleText { get { return m_TitleText; } set { m_TitleText = value; } }
@@ -79,8 +77,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         {
             m_Mouse = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.Mouse) as C15Ex03Dotan301810610Bar308000322.ObjectModel.MouseSprite;
             m_TitleText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
-            m_LoadMenuSound = SoundFactory.CreateSound(this.Game, SoundFactory.eSoundType.MenuMove);
-            m_LoadMenuSound.Play();
             m_TitleText.TextString = m_MenuTitle;
             m_TitleText.Position = new Vector2(0, 20);
             TextServices.CenterTextsOnScreen(this, new List<Text>() { m_TitleText });
@@ -119,6 +115,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     {
                         activeMenuItem = m_Menu[i] as GameMenuItem;
                         activeMenuItem.IsActive = false;
+
                     }
                 }
             }
@@ -210,7 +207,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             GameScreen previousScreen = ScreensManager.ActiveScreen.PreviousScreen;
             ScreensManager.Remove(ScreensManager.ActiveScreen);
             ScreensManager.SetCurrentScreen(previousScreen);
-            m_LoadMenuSound.Play();
         }
 
 

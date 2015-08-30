@@ -25,12 +25,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
             ToggleMenuItem toggleSoundItem = new ToggleMenuItem("Toggle Sound:", this, m_SpaceInvadersSoundsManager.SoundStatus, new List<string>() { "On", "Off" }, Keys.Enter,
                 new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.Mute, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageDown },
                 new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.Play, ActivateKey = Microsoft.Xna.Framework.Input.Keys.PageUp });
-            RangeMenuItem backgroundVolumeItem = new RangeMenuItem("Background Music Vol:", this, (int)(m_SpaceInvadersSoundsManager.BackgroundSound.Volume * 100), 0, 100, 10, 
-                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.DecreaseBackgroundMusic, ActivateKey = Keys.PageUp }, 
-                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.IncreaseBackgroundMusic, ActivateKey = Keys.PageDown });
-            RangeMenuItem soundsEffectsVolumeItem = new RangeMenuItem("Sounds Effects Vol:", this, (int)(m_SpaceInvadersSoundsManager.SoundEffect.Volume * 100), 0, 100, 10, 
-                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.DecreaseSoundEffect, ActivateKey = Keys.PageUp }, 
-                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.IncreaseSoundEffect, ActivateKey = Keys.PageDown });
+            RangeMenuItem backgroundVolumeItem = new RangeMenuItem("Background Music Vol:", this, (int)(m_SpaceInvadersSoundsManager.BackgroundSound.Volume * 100), 0, 100, 10,
+                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.DecreaseBackgroundMusic, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.IncreaseBackgroundMusic, ActivateKey = Keys.PageUp });
+            RangeMenuItem soundsEffectsVolumeItem = new RangeMenuItem("Sounds Effects Vol:", this, (int)(m_SpaceInvadersSoundsManager.SoundEffect.Volume * 100), 0, 100, 10,
+                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.DecreaseSoundEffect, ActivateKey = Keys.PageDown },
+                new MethodKey() { MethodToRun = m_SpaceInvadersSoundsManager.IncreaseSoundEffect, ActivateKey = Keys.PageUp });
             TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = done, ActivateKey = Keys.Enter });
             AddMenuItems(toggleSoundItem, backgroundVolumeItem, soundsEffectsVolumeItem, doneItem);
         }

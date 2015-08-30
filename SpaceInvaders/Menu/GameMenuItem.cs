@@ -1,7 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using C15Ex03Dotan301810610Bar308000322.Services;
+using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
         private readonly Color r_OriginalColor;
         protected GameScreen m_GameScreen;
         protected SpritesFactory.eSpriteType m_TextSpriteType = SpritesFactory.eSpriteType.BigText;
+        private Sound m_MoveBetweenItemsSound;
         
         public enum eFontSize
         {
@@ -42,6 +45,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             m_Text.TextString = i_ItemName;
             m_Text.TintColor = r_OriginalColor = i_Color;
             m_GameScreen = i_GameScreen;
+            m_MoveBetweenItemsSound = SoundFactory.CreateSound(this.m_GameScreen, SoundFactory.eSoundType.MenuMove);
         }
 
         public Text Text { get { return m_Text; } set { m_Text = value; } }
@@ -85,30 +89,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
         }
 
-        //public bool IsSelected 
-        //{ 
-        //   get { return m_IsSelected; } 
-        //   set 
-        //   {
-        //       m_IsSelected = value;
-        //       if(m_IsSelected)
-        //       {
-        //           m_Text.TintColor = Color.GreenYellow;
-        //           m_Text.Animations["pulse"].Reset();
-        //           m_Text.Animations["pulse"].Pause();
-        //       }
-        //       else
-        //       {
-        //           m_Text.TintColor = r_OriginalColor;
-        //           m_Text.Animations["pulse"].Reset();
-        //           m_Text.Animations["pulse"].Pause();
-        //       }
-        //   } 
-        //}
-
         protected void activateMenuItem()
         {
             m_Text.TintColor = Color.Red;
+            m_MoveBetweenItemsSound.Play();
             m_Text.Animations["pulse"].Reset();
             m_Text.Animations["pulse"].Resume();
         }

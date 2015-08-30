@@ -76,7 +76,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                     sound = new SoundEffect(i_Game, k_SSGunShotAsset);
                     break;
             }
-            m_soundManager.SetSound(sound);
+            m_soundManager.ConfigureSound(sound);
             m_soundManager.AddSound(sound);
             return sound;
         }
