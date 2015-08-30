@@ -19,6 +19,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
     public class GamingScreen : GameScreen
     {
         private int m_CurrentLevel = 1;
+        private static bool m_FirstRun = true;
         public GamingScreen(Game i_Game)
             : base(i_Game)
         {
@@ -26,9 +27,17 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             this.BlendState = BlendState.AlphaBlend;
         }
         private MultiPlayerConfiguration m_MultiPlayerConfiguration;
+        private void initilizeOnFirstRun()
+        {
+            if (m_FirstRun)
+            {
+                CollisionsManager collisionsManager = new CollisionsManager(this.Game);
+                m_FirstRun = false;
+            }
+        }
         public override void Initialize()
         {
-            CollisionsManager collisionsManager = new CollisionsManager(this.Game);
+            initilizeOnFirstRun();
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MotherShip);
             SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             EnemiesMatrix enemiesMatrix = new EnemiesMatrix(this);
@@ -36,7 +45,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             m_MultiPlayerConfiguration = SpaceInvadersServices.GetMultiPlayerConfiguration(this.Game);
             m_MultiPlayerConfiguration.CreatePlayers(this);
             m_WonLevelSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.LevelWin);
-            m_GameOverSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.GameOver) ;
+            m_GameOverSound = SoundFactory.CreateSound(this, SoundFactory.eSoundType.GameOver);
             this.Add(enemiesMatrix);
             this.Add(barrierGroup);
             base.Initialize();

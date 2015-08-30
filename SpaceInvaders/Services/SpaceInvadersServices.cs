@@ -145,8 +145,11 @@ namespace SpaceInvaders.Services
             playerScores.Add(line);
             foreach (PlayerSpaceInvaders player in otherPlayers)
             {
-                line = string.Format("{0} Lost! {0} score is: {1}", player.Nickname, player.Score);
-                playerScores.Add(line);
+                if (winningPlayer.Nickname != player.Nickname)
+                {
+                    line = string.Format("{0} Lost! {0} score is: {1}", player.Nickname, player.Score);
+                    playerScores.Add(line);
+                }
             }
             GetScreensManagerComponent(i_Game).SetCurrentScreen(new GameOverScreen(i_Game, playerScores));
 
