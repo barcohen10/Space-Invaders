@@ -20,7 +20,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
         public MainMenuScreen(Game i_Game) : base(i_Game, "Main Menu")
         {
             m_MultiPlayerConfiguration = SpaceInvadersServices.GetMultiPlayerConfiguration(this.Game);
-            this.Game.IsMouseVisible = true;
+            this.Game.IsMouseVisible = false;
         }
 
         protected override void InitMenuItems()
