@@ -23,17 +23,7 @@ namespace SpaceInvaders.Infrastructure.Managers
 
         private bool isMuted()
         {
-            bool muted = true;
-            foreach (Sound sound in m_Sounds)
-            {
-                if (sound.Volume != 0)
-                {
-                    muted = false;
-                    break;
-                }
-            }
-
-            return muted;
+            return m_Muted;
         }
 
         public string SoundStatus
@@ -66,9 +56,10 @@ namespace SpaceInvaders.Infrastructure.Managers
 
         public void Mute()
         {
-            foreach (Sound sound in m_Sounds)
+            m_Muted = true;
+            foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
             {
-                sound.Volume = 0;
+                volumeInstance.Value.Mute();
             }
         }
 
@@ -105,7 +96,11 @@ namespace SpaceInvaders.Infrastructure.Managers
 
         public void Play()
         {
-            updateSoundList(null, EventArgs.Empty);
+            m_Muted = false;
+            foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
+            {
+                volumeInstance.Value.UnMute();
+            }
         }
 
         public void ConfigureSound(Sound sound)

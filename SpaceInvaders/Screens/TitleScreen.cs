@@ -6,7 +6,6 @@ using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.Services;
 
 namespace SpaceInvaders.Screens
 {

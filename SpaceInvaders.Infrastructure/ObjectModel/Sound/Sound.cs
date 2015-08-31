@@ -22,7 +22,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             Volume = 1f;
             Pitch = 0;
             Pan = 0;
-
         }
 
         public Sound(Game i_Game, string i_AssetName)

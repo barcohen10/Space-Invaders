@@ -11,7 +11,6 @@ using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
-using SpaceInvaders.Services;
 
 namespace SpaceInvaders.ObjectModel
 {

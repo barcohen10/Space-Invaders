@@ -9,7 +9,6 @@ using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using Microsoft.Xna.Framework.Audio;
-using SpaceInvaders.ObjectModel;
 
 namespace SpaceInvaders.Services
 {

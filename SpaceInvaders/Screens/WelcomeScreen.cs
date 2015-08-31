@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
-using SpaceInvaders.Services;
 
 namespace SpaceInvaders.Screens
 {

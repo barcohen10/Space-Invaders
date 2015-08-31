@@ -9,7 +9,6 @@ using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
-using SpaceInvaders.Services;
 
 namespace SpaceInvaders.Menu.ConcreteMenuScreens
 {

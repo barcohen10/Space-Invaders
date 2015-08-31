@@ -10,7 +10,6 @@ using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
 namespace SpaceInvaders.ObjectModel

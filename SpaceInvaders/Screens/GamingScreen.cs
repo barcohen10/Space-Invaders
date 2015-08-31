@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
-using SpaceInvaders.ObjectModel;
-using SpaceInvaders.Services;
+
 
 namespace SpaceInvaders.Screens
 {

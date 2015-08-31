@@ -14,7 +14,6 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
-using SpaceInvaders.ObjectModel;
 
 namespace SpaceInvaders.Services
 {

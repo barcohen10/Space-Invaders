@@ -14,7 +14,6 @@ using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
-using SpaceInvaders.Services;
 
 namespace SpaceInvaders.ObjectModel
 {
