@@ -6,6 +6,7 @@ using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using Microsoft.Xna.Framework.Input;
 
 namespace SpaceInvaders.Screens
 {
@@ -33,6 +34,10 @@ namespace SpaceInvaders.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (InputManager.KeyPressed(Keys.P))
+            {
+                m_ScreensManager.SetCurrentScreen(new PauseScreen(this.Game));
+            }
             if (this.m_TimeLeft.TotalSeconds + 1 < m_CurrentCountingNum)
             {
                 m_CurrentCountingNum--;
