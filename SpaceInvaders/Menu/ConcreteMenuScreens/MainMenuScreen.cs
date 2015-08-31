@@ -20,7 +20,7 @@ namespace SpaceInvaders.Menu.ConcreteMenuScreens
             : base(i_Game, "Main Menu")
         {
             m_MultiPlayerConfiguration = SpaceInvadersServices.GetMultiPlayerConfiguration(this.Game);
-            this.Game.IsMouseVisible = false;
+            this.Game.IsMouseVisible = true;
         }
 
         protected override void InitMenuItems()
