@@ -103,13 +103,13 @@ namespace SpaceInvaders.Infrastructure.Managers
             }
         }
 
-        public void ConfigureSound(Sound sound)
+        public void SetSoundByInstanceType(Sound i_Sound)
         {
             foreach (KeyValuePair<string, VolumeInstance> volumeInstance in this.m_VolumeInstances)
             {
-                if (volumeInstance.Value.SoundType == sound.GetType())
+                if (volumeInstance.Value.SoundType == i_Sound.GetType())
                 {
-                    sound.Volume = volumeInstance.Value.Volume;
+                    i_Sound.Volume = volumeInstance.Value.Volume;
                     break;
                 }
             }
