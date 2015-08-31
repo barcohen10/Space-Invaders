@@ -16,7 +16,6 @@ namespace SpaceInvaders.ObjectModel
         {
         }
 
-
          public override void Initialize()
          {
              Opacity = 0.5f;

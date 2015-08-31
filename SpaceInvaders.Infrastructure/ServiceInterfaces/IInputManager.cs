@@ -80,10 +80,15 @@ namespace SpaceInvaders.Infrastructure.ServiceInterfaces
 
         // Allows querying all kind of analog input DELTAs:
         Vector2 MousePositionDelta { get; }
+
         int ScrollWheelDelta { get; }
+
         Vector2 LeftThumbDelta { get; }
+
         Vector2 RightThumbDelta { get; }
+
         float LeftTrigerDelta { get; }
+
         float RightTrigerDelta { get; }
     }
 }

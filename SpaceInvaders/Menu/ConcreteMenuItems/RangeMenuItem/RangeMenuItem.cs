@@ -1,19 +1,19 @@
-﻿using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
 {
     public class RangeMenuItem : GameMenuItem
     {
         private Range m_Range;
-        MethodKey m_DecreaseMethod, m_IncreaseMethod;
+        private MethodKey m_DecreaseMethod, m_IncreaseMethod;
 
         public RangeMenuItem(string i_ItemName, GameScreen i_GameScreen, int i_Value, int i_Min, int i_Max, int i_Jump, MethodKey i_DecreaseMethod, MethodKey i_IncreaseMethod)
-            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[] {i_DecreaseMethod, i_IncreaseMethod})
+            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[] { i_DecreaseMethod, i_IncreaseMethod })
         {
             float x = this.Text.Width + this.Text.Position.X + 20;
             m_Range = new Range(i_GameScreen, i_Value, i_Min, i_Max, i_Jump);
@@ -29,6 +29,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             {
                 return base.Position;
             }
+
             set
             {
                 float addToX = value.X - base.Position.X;
@@ -38,9 +39,21 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             }
         }
 
-        public MethodKey DecreaseMethod { get { return m_DecreaseMethod; } }
+        public MethodKey DecreaseMethod 
+        { 
+            get 
+            {
+                return m_DecreaseMethod;
+            }
+        }
 
-        public MethodKey IncreaseMethod { get { return m_IncreaseMethod; } }
+        public MethodKey IncreaseMethod
+        { 
+            get
+            { 
+                return m_IncreaseMethod;
+            } 
+        }
 
         public void IncreaseJump()
         {
@@ -53,7 +66,5 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
             m_Range.DecreaseJump();
             this.RunMethod(m_DecreaseMethod.ActivateKey);
         }
-
-
     }
 }

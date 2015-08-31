@@ -48,10 +48,8 @@ namespace SpaceInvaders.Services
         private const string k_CalibriBigFontAsset = @"Fonts\CalibriBigFont";
         private const string k_CalibriMediumFontAsset = @"Fonts\CalibriMediumFont";
 
-
         public static Sprite CreateSprite(GameScreen i_GameScreen, eSpriteType i_SpriteType)
         {
-
             Sprite sprite = null;
             switch (i_SpriteType)
             {
@@ -110,6 +108,7 @@ namespace SpaceInvaders.Services
                     sprite = new MouseSprite(i_GameScreen, k_MouseAsset);
                     break;
             }
+
             sprite.Initialize();
             i_GameScreen.Add(sprite);
             return sprite;

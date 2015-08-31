@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.ObjectModel;
-using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.Infrastructure.ServiceInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ServiceInterfaces;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
@@ -110,6 +110,7 @@ namespace SpaceInvaders.Infrastructure.Managers
         }
 
         public event EventHandler<StateChangedEventArgs> ScreenStateChanged;
+
         protected virtual void OnScreenStateChanged(object sender, StateChangedEventArgs e)
         {
             if (ScreenStateChanged != null)

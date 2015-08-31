@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
 {
@@ -19,7 +19,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
         private string m_SelectedOption;
 
         public ToggleMenuItem(string i_ItemName, GameScreen i_GameScreen, string i_SelectedOption, List<string> i_Options, Keys i_ActivateItemKey, MethodKey i_ToggleRightMethod, MethodKey i_ToggleLeftMethod)
-            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[]{i_ToggleRightMethod, i_ToggleLeftMethod})
+            : base(i_ItemName, i_GameScreen, Color.White, GameMenuItem.eFontSize.Medium, new MethodKey[] { i_ToggleRightMethod, i_ToggleLeftMethod })
         {
             if (i_Options.Count > 0)
             {
@@ -31,24 +31,42 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             }
         }
 
-        public List<Text> Options { get { return m_Options; } }
+        public List<Text> Options 
+        { 
+            get
+            {
+                return m_Options; 
+            } 
+        }
 
-        public MethodKey ToggleRightMethod { get { return m_ToggleRightMethod; } }
+        public MethodKey ToggleRightMethod 
+        { 
+            get
+            { 
+                return m_ToggleRightMethod;
+            } 
+        }
 
-        public MethodKey ToggleLeftMethod { get { return m_ToggleLeftMethod; } }
+        public MethodKey ToggleLeftMethod 
+        { 
+            get
+            { 
+                return m_ToggleLeftMethod; 
+            } 
+        }
 
         private void initOptions(List<string> i_Options)
         {
             float x = this.Text.Width + this.Text.Position.X + 20;
             Text optionText = null;
-            for (int i = 0; i < 2; i++ )
+            for (int i = 0; i < 2; i++)
             {
                 optionText = SpritesFactory.CreateSprite(m_GameScreen, m_TextSpriteType) as Text;
                 optionText.TextString = i_Options[i];
                 optionText.Position = new Vector2(x, this.Position.Y);
                 m_Options.Add(optionText);
                 x = optionText.Width + optionText.Position.X + 30;
-                if(i_Options[i].Equals(m_SelectedOption))
+                if (i_Options[i].Equals(m_SelectedOption))
                 {
                     m_SelectedOptionIndex = i;
                 }
@@ -102,18 +120,19 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems
             {
                 return base.Position;
             }
+
             set
             {
                 float addToX = value.X - base.Position.X;
                 float addToY = value.Y - base.Position.Y;
                 base.Position = value;
-                foreach(Text option in m_Options)
+                foreach (Text option in m_Options)
                 {
                     option.Position = new Vector2(option.Position.X + addToX, option.Position.Y + addToY);
                 }
+
                 m_Separator.Position = new Vector2(m_Separator.Position.X + addToX, m_Separator.Position.Y + addToY);
             }
         }
-
     }
 }

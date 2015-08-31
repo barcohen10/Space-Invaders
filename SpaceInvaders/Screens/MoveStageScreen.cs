@@ -1,18 +1,18 @@
-﻿using C15Ex03Dotan301810610Bar308000322.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class MoveStageScreen : GameScreenWithTimer
     {
-        private const int k_CountFromNumber=3;
+        private const int k_CountFromNumber = 3;
         private int m_CurrentLevel = 0;
         private int m_CurrentCountingNum = 0;
         private Text m_CountingText;
@@ -25,12 +25,12 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             Finished += MoveStageScreen_Finished;
         }
 
-        void MoveStageScreen_Finished(object sender, EventArgs e)
+        private void MoveStageScreen_Finished(object sender, EventArgs e)
         {
             this.ScreensManager.Remove(this);
             this.ScreensManager.SetCurrentScreen(this.PreviousScreen);
         }
-   
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -39,7 +39,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
                 m_CurrentCountingNum--;
                 m_CountingText.TextString = m_CurrentCountingNum.ToString();
             }
-
         }
 
         public override void Initialize()

@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using C15Ex03Dotan301810610Bar308000322.Services;
 
 namespace C15Ex03Dotan301810610Bar308000322.Screens
@@ -16,7 +16,9 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
     public class PauseScreen : GameScreen
     {
         private Text m_MessageSprite;
+
         public PauseScreen(Game i_Game)
+
             : base(i_Game)
         {
             m_MessageSprite = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.MediumText) as Text;
@@ -28,6 +30,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             this.UseGradientBackground = true;
             this.BlackTintAlpha = 0.4f;
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -36,8 +39,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             {
                 this.ExitScreen();
             }
-
-
         }
     }
 }

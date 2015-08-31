@@ -20,6 +20,7 @@ namespace SpaceInvaders.ObjectModel
         private readonly float r_BulletVelocity = float.Parse(ConfigurationManager.AppSettings["Bullet.Velocity"].ToString());
 
         private SpriteJump m_SpriteJump;
+
         public bool isDying
         {
             get;
@@ -66,14 +67,15 @@ namespace SpaceInvaders.ObjectModel
         {
             (this.Animations["CellAnimator"] as CellAnimator).ChangeShape();
         }
+
         public event EventHandler TouchedEndOfTheScreen;
 
         protected virtual void OnTouchedEndOfTheScreen()
         {
-          if(TouchedEndOfTheScreen != null)
-          {
-              TouchedEndOfTheScreen.Invoke(this,EventArgs.Empty);
-          }
+            if (TouchedEndOfTheScreen != null)
+            {
+                TouchedEndOfTheScreen.Invoke(this, EventArgs.Empty);
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -81,6 +83,7 @@ namespace SpaceInvaders.ObjectModel
             base.Dispose(disposing);
             SpaceInvadersServices.GetEnemeiesMatrixComponent(this.GameScreen).Remove(this);
         }
+
         public void InitAnimations()
         {
             ShrinkAnimator shrinkAnimator = new ShrinkAnimator(TimeSpan.FromSeconds(1.5));
@@ -118,8 +121,7 @@ namespace SpaceInvaders.ObjectModel
             r_TextureEndIndex = i_TextureEndIndex;
             m_ShootSound = SoundFactory.CreateSound(this.GameScreen, SoundFactory.eSoundType.EnemyGunShot) as Sound;
         }
-     
-    
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -153,7 +155,6 @@ namespace SpaceInvaders.ObjectModel
             {
                 getAndShootBullet(i_Color, r_BulletVelocity);
                 m_ShootSound.Play();
-
             }
         }
 

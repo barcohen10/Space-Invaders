@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
 namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
 {
@@ -31,19 +31,19 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
         {
             initRangeComponent();
             base.Initialize();
-
         }
 
         public Vector2 Position
         {
+            get
+            {
+                return m_Rectangle.Position;
+            }
+
            set
             {
                m_Rectangle.Position = value;
                m_Bar.Position = new Vector2(MathHelper.Clamp(m_Rectangle.Position.X + (m_TotalJumps * m_DistanceToJump), m_Rectangle.Position.X, m_Rectangle.Position.X + m_Rectangle.Width - m_Bar.Width), m_Rectangle.Position.Y - 7);
-            }
-            get
-            {
-                return m_Rectangle.Position;
             }
         }
 

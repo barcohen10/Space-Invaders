@@ -1,11 +1,11 @@
-﻿using SpaceInvaders.Infrastructure.ObjectModel;
-using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.Services;
-using  Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceInvaders.Infrastructure.ObjectModel;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Services;
+using Microsoft.Xna.Framework;
 using C15Ex03Dotan301810610Bar308000322.Menu;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
@@ -19,13 +19,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             float dynamicPositionY = i_PositionY;
             foreach (string text in i_Texts)
             {
-               spriteText = SpritesFactory.CreateSprite(i_GameScreen, i_SpriteType) as Text;
+                spriteText = SpritesFactory.CreateSprite(i_GameScreen, i_SpriteType) as Text;
                 if (spriteText != null)
                 {
                     spriteText.Position = new Vector2(i_PositionX, dynamicPositionY);
                     spriteText.TextString = text;
                     dynamicPositionY += spriteText.Height;
                 }
+
                 texts.Add(spriteText);
             }
 
@@ -36,7 +37,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         {
             float x = (float)i_GameScreen.GraphicsDevice.Viewport.Width / 2;
             float largestWidth = 0;
-            if(i_Texts != null)
+            if (i_Texts != null)
             {
                 foreach (Text text in i_Texts)
                 {
@@ -52,7 +53,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                     text.Position = new Vector2(x, text.Position.Y);
                 }
             }
-            else if(i_MenuItems != null)
+            else if (i_MenuItems != null)
             {
                 foreach (GameMenuItem menuItem in i_MenuItems)
                 {
@@ -71,4 +72,3 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         }
     }
 }
- 

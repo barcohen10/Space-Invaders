@@ -121,6 +121,7 @@ namespace SpaceInvaders.Services
 
             return enemiesMatrix;
         }
+
         public static BarrierGroup GetBarrierGroupComponent(GameScreen i_GameScreen)
         {
             BarrierGroup barrierGroup = null;
@@ -132,8 +133,8 @@ namespace SpaceInvaders.Services
                     break;
                 }
             }
-            return barrierGroup;
 
+            return barrierGroup;
         }
 
         public static void GameOver(Game i_Game)
@@ -151,18 +152,9 @@ namespace SpaceInvaders.Services
                     playerScores.Add(line);
                 }
             }
+
             GetScreensManagerComponent(i_Game).SetCurrentScreen(new GameOverScreen(i_Game, playerScores));
-
         }
-
-        //private static void gameOverMessageBox(Game i_Game, string i_Message)
-        //{
-        //    DialogResult dialogResult = MessageBox.Show(i_Message);
-        //    if (dialogResult == DialogResult.OK)
-        //    {
-        //        i_Game.Exit();
-        //    }
-        //}
 
         private static List<PlayerSpaceInvaders> getAllPlayers(Game i_Game, params PlayerSpaceInvaders[] i_PlayersToIgnore)
         {
@@ -231,6 +223,7 @@ namespace SpaceInvaders.Services
                     break;
                 }
             }
+
             return screensManager;
         }
 
@@ -246,12 +239,14 @@ namespace SpaceInvaders.Services
 
             return screenOptionsManager;
         }
+
         public static MultiPlayerConfiguration GetMultiPlayerConfiguration(Game i_Game)
         {
             MultiPlayerConfiguration multiPlayerConfiguration = i_Game.Services.GetService(typeof(MultiPlayerConfiguration)) as MultiPlayerConfiguration;
 
             return multiPlayerConfiguration;
         }
+
         public static void ClearComponents<T>(GameScreen i_GameScreen)
             where T : class
         {
@@ -263,9 +258,9 @@ namespace SpaceInvaders.Services
                 if (comp != null)
                 {
                     compsToBeDeleted.Add(component as GameComponent);
-
                 }
             }
+
             foreach (GameComponent item in compsToBeDeleted)
             {
                 i_GameScreen.Remove(item);

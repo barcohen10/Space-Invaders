@@ -1,18 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.Managers;
-using SpaceInvaders.Infrastructure.ObjectModel.Sound;
-using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.Managers;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
     public class SpaceInvadersSoundsMng : SoundsManager
     {
         private VolumeInstance m_BackgroundSound, m_SoundEffect;
-        private bool m_IsMute = false;
 
         public SpaceInvadersSoundsMng()
         {
@@ -22,9 +21,31 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
             this.AddVolumeInstance("SoundEffect", m_SoundEffect);
         }
 
-        public VolumeInstance BackgroundSound { get { return m_BackgroundSound; } set { m_BackgroundSound = value; } }
+        public VolumeInstance BackgroundSound 
+        {
+            get 
+            { 
+                return m_BackgroundSound;
+            } 
 
-        public VolumeInstance SoundEffect { get { return m_SoundEffect; } set { m_SoundEffect = value; } }
+            set 
+            { 
+                m_BackgroundSound = value;
+            } 
+        }
+
+        public VolumeInstance SoundEffect
+        {
+            get
+            { 
+                return m_SoundEffect;
+            }
+
+            set
+            {
+                m_SoundEffect = value; 
+            }
+        }
 
         public void DecreaseBackgroundMusic()
         {
@@ -45,6 +66,5 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         {
             this["SoundEffect"].Increase();
         }
-
     }
 }

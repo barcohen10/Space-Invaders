@@ -1,12 +1,12 @@
-﻿using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
 using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
 {
@@ -19,18 +19,17 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
         {
             m_ScreenOptionsMng = SpaceInvadersServices.GetScreenOptionsManager(this.Game);
         }
+
         protected override void InitMenuItems()
         {
-            ToggleMenuItem mouseVisabilityItem = new ToggleMenuItem("Mouse Visability:", this, m_ScreenOptionsMng.MouseVisibleStatus, new List<string>() { "Visible", "Invisible" }, Keys.Enter,
-       new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOff, ActivateKey = Keys.PageDown },
-       new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOn, ActivateKey = Keys.PageUp });
-            ToggleMenuItem fullScreenItem = new ToggleMenuItem("Full Screen Mode:", this, m_ScreenOptionsMng.FullScreenMode, new List<string>() { "On", "Off" }, Keys.Enter,
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown },
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
-            ToggleMenuItem allowResizingItem = new ToggleMenuItem("Allow Window Resizing:", this, m_ScreenOptionsMng.AllowWindowResizingMode, new List<string>() { "On", "Off" }, Keys.Enter,
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.DisallowWindowResizing, ActivateKey = Keys.PageDown },
-                new MethodKey() { MethodToRun = m_ScreenOptionsMng.AllowWindowResizing, ActivateKey = Keys.PageUp });
-            TextMenuItem doneItem = new TextMenuItem("Done", this, new MethodKey() { MethodToRun = this.done, ActivateKey = Keys.Enter });
+            ToggleMenuItem mouseVisabilityItem = new ToggleMenuItem(
+                "Mouse Visability:", this, m_ScreenOptionsMng.MouseVisibleStatus, new List<string>() { "Visible", "Invisible" }, Keys.Enter, new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOff, ActivateKey = Keys.PageDown }, new MethodKey() { MethodToRun = m_ScreenOptionsMng.MouseVisibilityOn, ActivateKey = Keys.PageUp });
+            ToggleMenuItem fullScreenItem = new ToggleMenuItem(
+                "Full Screen Mode:", this, m_ScreenOptionsMng.FullScreenMode, new List<string>() { "On", "Off" }, Keys.Enter, new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOff, ActivateKey = Keys.PageDown }, new MethodKey() { MethodToRun = m_ScreenOptionsMng.FullScreenOn, ActivateKey = Keys.PageUp });
+            ToggleMenuItem allowResizingItem = new ToggleMenuItem(
+                "Allow Window Resizing:", this, m_ScreenOptionsMng.AllowWindowResizingMode, new List<string>() { "On", "Off" }, Keys.Enter, new MethodKey() { MethodToRun = m_ScreenOptionsMng.DisallowWindowResizing, ActivateKey = Keys.PageDown }, new MethodKey() { MethodToRun = m_ScreenOptionsMng.AllowWindowResizing, ActivateKey = Keys.PageUp });
+            TextMenuItem doneItem = new TextMenuItem(
+                "Done", this, new MethodKey() { MethodToRun = this.done, ActivateKey = Keys.Enter });
             AddMenuItems(mouseVisabilityItem, fullScreenItem, allowResizingItem, doneItem);
         }
     }

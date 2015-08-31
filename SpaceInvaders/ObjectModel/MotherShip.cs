@@ -20,9 +20,10 @@ namespace SpaceInvaders.ObjectModel
     {
         private const int k_RandomNumberToGet = 333;
         private readonly float r_MotherShipVelocity = float.Parse(ConfigurationManager.AppSettings["MotherShip.Velocity"]);
-        private readonly int m_PointsToBeEarned= int.Parse(ConfigurationManager.AppSettings["Scores.Mothership"].ToString());
+        private readonly int m_PointsToBeEarned = int.Parse(ConfigurationManager.AppSettings["Scores.Mothership"].ToString());
         private Random m_RandomGenerator = new Random();
         private Sound m_SoundWhenKilled;
+
         public MotherShip(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
         {
@@ -142,8 +143,5 @@ namespace SpaceInvaders.ObjectModel
             get;
             set;
         }
-
-
-
     }
 }

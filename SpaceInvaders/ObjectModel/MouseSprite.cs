@@ -1,13 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
 {
@@ -17,20 +17,21 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
         private bool m_IsActive = false;
 
         public MouseSprite(GameScreen i_GameScreen, string i_AssetName)
-            : base(i_AssetName, i_GameScreen) 
+            : base(i_AssetName, i_GameScreen)
         {
         }
 
-        public bool IsActive 
-        { 
-            get 
-            { 
-                return m_IsActive; 
-            } 
-            set 
+        public bool IsActive
+        {
+            get
+            {
+                return m_IsActive;
+            }
+
+            set
             {
                 m_IsActive = value;
-                if(m_IsActive)
+                if (m_IsActive)
                 {
                     TintColor = Color.LimeGreen;
                 }
@@ -38,7 +39,7 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
                 {
                     TintColor = Color.White;
                 }
-            } 
+            }
         }
 
         public override void Initialize()
@@ -56,9 +57,9 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
             if (isHover && m_InputManager.MouseState.LeftButton == ButtonState.Pressed)
             {
                 IsActive = !IsActive;
-                Mouse.SetPosition((int)(this.Position.X + this.Width + this.Width / 2), (int)(this.Position.Y + this.Height / 2 ));
+                Mouse.SetPosition((int)(this.Position.X + this.Width + (this.Width / 2)), (int)(this.Position.Y + (this.Height / 2)));
             }
-             else if(isHover && !IsActive)
+            else if (isHover && !IsActive)
             {
                 TintColor = Color.LimeGreen;
             }
@@ -66,8 +67,8 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
             {
                 TintColor = Color.White;
             }
+
             base.Update(gameTime);
         }
-
     }
 }

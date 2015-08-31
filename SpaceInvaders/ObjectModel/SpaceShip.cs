@@ -71,11 +71,13 @@ namespace SpaceInvaders.ObjectModel
             {
                 m_Velocity.X = 0;
             }
-            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || ((m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released)) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec))
+
+            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec))
             {
                 m_ShootSound.Play();
                 getAndShootBullet(Color.Red, -r_BulletVelocity);
             }
+
             m_LastBTNState = m_InputManager.MouseState.LeftButton;
             if (Configuration.IsMouseMovementEnable)
             {
@@ -138,6 +140,7 @@ namespace SpaceInvaders.ObjectModel
             SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber).SpaceShip.Visible = false;
             SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber).SpaceShip.Enabled = false;
         }
+
         private void handleBulletCollision(Bullet i_Bullet)
         {
             PlayerSpaceInvaders player = SpaceInvadersServices.GetPlayerComponent(this.Game, SerialNumber);

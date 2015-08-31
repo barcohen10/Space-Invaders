@@ -18,9 +18,9 @@ namespace SpaceInvaders.ObjectModel
     public class Barrier : Sprite, ICollidable2D
     {
         private readonly float r_DefaultBarrierVelocity = float.Parse(ConfigurationManager.AppSettings["Barrier.Velocity"].ToString());
+        private readonly CollisionServices m_CollisionServices;
         private Sound m_HitSound;
         private float m_JumpingVelocity;
-        private readonly CollisionServices m_CollisionServices;
 
         public Barrier(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
@@ -38,43 +38,53 @@ namespace SpaceInvaders.ObjectModel
                 TouchScreenLimit(this, EventArgs.Empty);
             }
         }
+
         public override void Initialize()
         {
             base.Initialize();
             m_JumpingVelocity = r_DefaultBarrierVelocity;
             UseOwnSpriteBatch(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-     
-                this.Position = new Vector2(MathHelper.Clamp(this.Position.X, 0, this.Game.GraphicsDevice.Viewport.Width - this.Width), Position.Y);
-                if (this.Position.X == 0 || this.Position.X == (this.Game.GraphicsDevice.Viewport.Width - this.Width))
-                {
-                    OnTouchScreenLimit();
-                }
+            this.Position = new Vector2(MathHelper.Clamp(this.Position.X, 0, this.Game.GraphicsDevice.Viewport.Width - this.Width), Position.Y);
+            if (this.Position.X == 0 || this.Position.X == (this.Game.GraphicsDevice.Viewport.Width - this.Width))
+            {
+                OnTouchScreenLimit();
+            }
         }
+
         public void SpeedUp(float i_Velocity)
         {
             m_JumpingVelocity += i_Velocity;
             this.Velocity = new Vector2(m_JumpingVelocity, 0);
         }
-        public float CurrentSpeed { get { return m_JumpingVelocity; } }
+
+        public float CurrentSpeed 
+        {
+            get
+            {
+                return m_JumpingVelocity;
+            } 
+        }
+
         public void ChangeToDefaultJumpingSpeed()
         {
             m_JumpingVelocity = r_DefaultBarrierVelocity;
         }
+
         public void StartJumping()
         {
             this.Velocity = new Vector2(m_JumpingVelocity, 0);
-
         }
+
         public void StopJumping()
         {
-            this.Velocity = new Vector2(0,0);
-
+            this.Velocity = new Vector2(0, 0);
         }
+
         public override void Collided(ICollidable i_Collidable)
         {
             Bullet bullet = i_Collidable as Bullet;

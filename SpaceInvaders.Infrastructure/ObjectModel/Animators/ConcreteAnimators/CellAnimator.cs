@@ -1,25 +1,36 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
     public class CellAnimator : SpriteAnimator
     {
+        private readonly int r_NumOfCells = 1;
+        private readonly int r_StartCellIndex = 0;
         private TimeSpan m_CellTime;
         private TimeSpan m_TimeLeftForCell;
         private bool m_Loop = true;
         private int m_CurrCellIdx = 0;
-        private readonly int r_NumOfCells = 1;
-        private readonly int r_StartCellIndex = 0;
 
-        public TimeSpan CellTime { get { return m_CellTime; } set { m_CellTime = value; } }
+        public TimeSpan CellTime 
+        {
+            get
+            {
+                return m_CellTime;
+            } 
+
+            set 
+            { 
+                m_CellTime = value;
+            } 
+        }
 
         // CTORs
-        public CellAnimator(TimeSpan i_CellTime, int i_StartCellIndex,int i_NumOfCells, TimeSpan i_AnimationLength)
+        public CellAnimator(TimeSpan i_CellTime, int i_StartCellIndex, int i_NumOfCells, TimeSpan i_AnimationLength)
             : base("CellAnimator", i_AnimationLength)
         {
             this.m_CellTime = i_CellTime;

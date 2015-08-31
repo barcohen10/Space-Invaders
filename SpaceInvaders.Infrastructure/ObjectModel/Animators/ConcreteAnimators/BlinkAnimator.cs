@@ -1,9 +1,9 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
@@ -42,7 +42,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
                 this.BoundSprite.Visible = !this.BoundSprite.Visible;
                 m_TimeLeftForNextBlink = m_BlinkLength;
             }
-
         }
 
         protected override void RevertToOriginal()
@@ -50,5 +49,4 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
             this.BoundSprite.Visible = m_OriginalSpriteInfo.Visible;
         }
     }
-
 }

@@ -1,4 +1,8 @@
-﻿using C15Ex03Dotan301810610Bar308000322.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 using C15Ex03Dotan301810610Bar308000322.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -9,24 +13,23 @@ using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Screens
 {
     public class GamingScreen : GameScreen
     {
-        private int m_CurrentLevel = 1;
         private static bool m_FirstRun = true;
+        private int m_CurrentLevel = 1;
+
         public GamingScreen(Game i_Game)
             : base(i_Game)
         {
             this.SpritesSortMode = SpriteSortMode.Immediate;
             this.BlendState = BlendState.AlphaBlend;
         }
+
         private MultiPlayerConfiguration m_MultiPlayerConfiguration;
+
         private void initilizeOnFirstRun()
         {
             if (m_FirstRun)
@@ -35,6 +38,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
                 m_FirstRun = false;
             }
         }
+
         public override void Initialize()
         {
             initilizeOnFirstRun();
@@ -51,8 +55,10 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             base.Initialize();
             SpaceInvadersServices.ChangeBarriersGroupVerticalPosition(this, barrierGroup);
         }
+
         private Sound m_WonLevelSound;
         private Sound m_GameOverSound;
+
         public override void Update(GameTime gameTime)
         {
             if (InputManager.KeyPressed(Keys.P))
@@ -67,12 +73,14 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
                 m_GameOverSound.Play();
                 SpaceInvadersServices.GameOver(this.Game);
             }
+
             bool PlayersWon = !SpaceInvadersServices.IsAnyEnemiesLeft(this);
             if (PlayersWon)
             {
                 m_WonLevelSound.Play();
                 moveLevel();
             }
+
             base.Update(gameTime);
         }
 
@@ -106,9 +114,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Screens
             {
                 barrierGroup.StopJumpingBarriers();
             }
+
             this.ScreensManager.SetCurrentScreen(new MoveStageScreen(this.Game, m_CurrentLevel));
         }
-
-
     }
 }

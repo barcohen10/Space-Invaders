@@ -1,36 +1,37 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace C15Ex03Dotan301810610Bar308000322.Services
 {
-    public class ScreenOptionsMng 
+    public class ScreenOptionsMng
     {
-        private Game m_Game;
         private const int k_ScreenHeight = 640;
         private const int k_ScreenWidth = 800;
+        private Game m_Game;
         private Point m_DefaultWindowPosition;
+
         public ScreenOptionsMng(Game i_Game)
         {
             m_Game = i_Game;
             m_DefaultWindowPosition = i_Game.Window.Position;
-
         }
 
         public string MouseVisibleStatus
-        { 
-            get 
+        {
+            get
             {
                 string result = "Invisible";
 
-                if( m_Game.IsMouseVisible)
+                if (m_Game.IsMouseVisible)
                 {
                     result = "Visible";
                 }
+
                 return result;
-            } 
+            }
         }
 
         public string FullScreenMode
@@ -43,6 +44,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                 {
                     result = "On";
                 }
+
                 return result;
             }
         }
@@ -57,6 +59,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
                 {
                     result = "On";
                 }
+
                 return result;
             }
         }
@@ -97,8 +100,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Services
         public void CenterWindow()
         {
             m_Game.Window.Position = m_DefaultWindowPosition;
-
         }
+
         public void AllowWindowResizing()
         {
             m_Game.Window.AllowUserResizing = true;

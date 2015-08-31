@@ -1,4 +1,8 @@
-﻿using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
 using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem;
 using C15Ex03Dotan301810610Bar308000322.ObjectModel;
 using C15Ex03Dotan301810610Bar308000322.Services;
@@ -8,10 +12,6 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace C15Ex03Dotan301810610Bar308000322.Menu
 {
@@ -31,28 +31,52 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             m_Menu = new Menu(i_MenuTitle);
             m_MenuTitle = i_MenuTitle;
         }
-        protected Menu Menu { get { return m_Menu; } set { m_Menu = value; } }
 
-        protected Text TitleText { get { return m_TitleText; } set { m_TitleText = value; } }
+        protected Menu Menu
+        { 
+            get
+            { 
+                return m_Menu;
+            } 
+
+            set 
+            { 
+                m_Menu = value;
+            } 
+        }
+
+        protected Text TitleText 
+        {
+            get
+            { 
+                return m_TitleText;
+            }
+
+            set
+            { 
+                m_TitleText = value;
+            } 
+        }
 
         protected abstract void InitMenuItems();
 
         protected void AddMenuItems(params MenuItem[] i_MenuItems)
         {
-            foreach(MenuItem menuItem in i_MenuItems)
+            foreach (MenuItem menuItem in i_MenuItems)
             {
                 GameMenuItem menuItemGame = menuItem as GameMenuItem;
                 if (menuItemGame != null)
                 {
-                    float y = TitleText.Position.Y + TitleText.Height + TitleText.Height / 1.5f;
+                    float y = TitleText.Position.Y + TitleText.Height + (TitleText.Height / 1.5f);
                     if (m_Menu.MenuItems != null)
                     {
-                        GameMenuItem lastItem = (m_Menu[m_Menu.Count - 1] as GameMenuItem);
+                        GameMenuItem lastItem = m_Menu[m_Menu.Count - 1] as GameMenuItem;
                         if (lastItem != null)
                         {
-                            y = lastItem.Text.Position.Y + lastItem.Text.Height + lastItem.Text.Height / 1.5f;
+                            y = lastItem.Text.Position.Y + lastItem.Text.Height + (lastItem.Text.Height / 1.5f);
                         }
                     }
+
                     menuItemGame.Position = new Vector2(0, y);
                     this.Menu.AddMenuItem(menuItemGame);
                 }
@@ -98,8 +122,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                 {
                     handleKeyboard();
                 }
-
             }
+
             base.Update(gameTime);
         }
 
@@ -117,7 +141,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     {
                         activeMenuItem = m_Menu[i] as GameMenuItem;
                         activeMenuItem.IsActive = false;
-
                     }
                 }
             }
@@ -142,30 +165,31 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
             else if (m_ActiveMenuItemIndex > -1)
             {
-                GameMenuItem item = (Menu[m_ActiveMenuItemIndex] as GameMenuItem);
+                GameMenuItem item = Menu[m_ActiveMenuItemIndex] as GameMenuItem;
                 if (isMouseHover && !item.IsActive)
                 {
                     activateCurrentMenuItem();
                 }
-                else if(isMouseHover)
+                else if (isMouseHover)
                 {
-                    RangeMenuItem rangeItem = (m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem);
+                    RangeMenuItem rangeItem = m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem;
                     if (rangeItem != null)
                     {
-                        if(InputManager.MouseState.ScrollWheelValue > m_LastMouseWheelValue)
+                        if (InputManager.MouseState.ScrollWheelValue > m_LastMouseWheelValue)
                         {
                             rangeItem.IncreaseJump();
                         }
-                        else if(InputManager.MouseState.ScrollWheelValue < m_LastMouseWheelValue)
+                        else if (InputManager.MouseState.ScrollWheelValue < m_LastMouseWheelValue)
                         {
                             rangeItem.DecreaseJump();
                         }
+
                         m_LastMouseWheelValue = InputManager.MouseState.ScrollWheelValue;
                     }
                 }
             }
-            m_LastBTNState = InputManager.MouseState.LeftButton;
 
+            m_LastBTNState = InputManager.MouseState.LeftButton;
         }
 
         private void handleKeyboard()
@@ -180,16 +204,16 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             }
             else if (InputManager.KeyPressed(Keys.Enter))
             {
-                if(m_ActiveMenuItemIndex >= 0)
+                if (m_ActiveMenuItemIndex >= 0)
                 {
-                m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
+                    m_Menu[m_ActiveMenuItemIndex].RunMethod(Keys.Enter);
                 }
             }
 
             if (m_ActiveMenuItemIndex > -1)
             {
                 activateCurrentMenuItem();
-                ToggleMenuItem toggleItem = (m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem);
+                ToggleMenuItem toggleItem = m_Menu[m_ActiveMenuItemIndex] as ToggleMenuItem;
                 if (toggleItem != null)
                 {
                     if (InputManager.KeyPressed(toggleItem.ToggleRightMethod.ActivateKey))
@@ -203,8 +227,8 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                 }
                 else
                 {
-                    RangeMenuItem rangeItem = (m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem);
-                    if(rangeItem != null)
+                    RangeMenuItem rangeItem = m_Menu[m_ActiveMenuItemIndex] as RangeMenuItem;
+                    if (rangeItem != null)
                     {
                         if (InputManager.KeyPressed(rangeItem.DecreaseMethod.ActivateKey))
                         {
@@ -217,7 +241,6 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
                     }
                 }
             }
-           
         }
 
         protected void done()
@@ -226,7 +249,5 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
             ScreensManager.Remove(ScreensManager.ActiveScreen);
             ScreensManager.SetCurrentScreen(previousScreen);
         }
-
-
     }
 }

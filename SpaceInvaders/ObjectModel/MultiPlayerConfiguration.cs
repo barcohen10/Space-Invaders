@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework.Input;
-using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.ObjectModel;
-using SpaceInvaders.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
+using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Services;
 
 namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
 {
@@ -13,15 +13,16 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
     {
         private ePlayers m_PlayerCount = ePlayers.One;
         private bool v_IsMouseMoveEnable = true;
+
         public enum ePlayers
         {
             One,
             Two
         }
- 
+
         public void CreatePlayers(GameScreen i_GameScreen)
         {
-            ConfSpaceShip player1SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Green, Keys.Left, Keys.Right, new Keys[] { Keys.Enter, Keys.RightControl, Keys.LeftControl }, v_IsMouseMoveEnable); ;
+            ConfSpaceShip player1SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Green, Keys.Left, Keys.Right, new Keys[] { Keys.Enter, Keys.RightControl, Keys.LeftControl }, v_IsMouseMoveEnable);
             if (m_PlayerCount.Equals(ePlayers.One))
             {
                 SpaceInvadersServices.CreateNewPlayers(i_GameScreen, player1SpaceShipConf);
@@ -31,10 +32,20 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
                 ConfSpaceShip player2SpaceShipConf = new ConfSpaceShip(PlayerSpaceInvaders.eSpaceShipType.Blue, Keys.A, Keys.D, Keys.W, !v_IsMouseMoveEnable);
                 SpaceInvadersServices.CreateNewPlayers(i_GameScreen, player1SpaceShipConf, player2SpaceShipConf);
             }
-
         }
 
-        public ePlayers NumberOfPlayers { get { return m_PlayerCount; } set { m_PlayerCount = value; } }
+        public ePlayers NumberOfPlayers
+        {
+            get
+            {
+                return m_PlayerCount;
+            }
+
+            set
+            {
+                m_PlayerCount = value;
+            }
+        }
 
         public void ChangeToOnePlayer()
         {
@@ -45,6 +56,5 @@ namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
         {
             m_PlayerCount = ePlayers.Two;
         }
-  
     }
 }

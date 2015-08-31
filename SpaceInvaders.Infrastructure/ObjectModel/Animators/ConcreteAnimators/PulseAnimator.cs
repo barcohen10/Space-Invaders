@@ -1,15 +1,16 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
     public class PulseAnimator : SpriteAnimator
     {
         protected float m_Scale;
+
         public float Scale
         {
             get { return m_Scale; }
@@ -17,6 +18,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
         }
 
         protected float m_PulsePerSecond;
+
         public float PulsePerSecond
         {
             get { return m_PulsePerSecond; }

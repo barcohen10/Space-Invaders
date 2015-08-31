@@ -89,7 +89,9 @@ namespace SpaceInvaders.ObjectModel
                 this.LifesSprites.Add(life);
             }
         }
+
         private Sound m_LoseLifeSound;
+
         public override void LoseLife()
         {
             if (Lifes > 0)

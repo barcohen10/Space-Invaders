@@ -21,7 +21,6 @@ namespace SpaceInvaders.ObjectModel
             : base(i_AssetName, i_GameScreen)
         {
             m_SerialNumber = Guid.NewGuid().ToString();
-
         }
 
         public string SerialNumber 

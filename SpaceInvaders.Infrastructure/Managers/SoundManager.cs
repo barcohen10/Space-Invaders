@@ -1,59 +1,62 @@
-﻿using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.ObjectModel.Sound;
-using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
-using SpaceInvaders.Infrastructure.ServiceInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
+using SpaceInvaders.Infrastructure.ServiceInterfaces;
 
 namespace SpaceInvaders.Infrastructure.Managers
 {
-    public class SoundsManager  
- 
+    public class SoundsManager
     {
-        private Dictionary<string,VolumeInstance> m_VolumeInstances;
+        private Dictionary<string, VolumeInstance> m_VolumeInstances;
         private List<Sound> m_Sounds = new List<Sound>();
         private bool m_Muted = false;
+
         public SoundsManager()
         {
             m_VolumeInstances = new Dictionary<string, VolumeInstance>();
             m_Sounds = new List<Sound>();
         }
+
         private bool isMuted()
         {
             bool muted = true;
             foreach (Sound sound in m_Sounds)
             {
-                if(sound.Volume != 0)
+                if (sound.Volume != 0)
                 {
                     muted = false;
                     break;
                 }
             }
-            return muted;
 
+            return muted;
         }
-        public string SoundStatus 
-        { 
-            get 
+
+        public string SoundStatus
+        {
+            get
             {
                 string result = "Off";
                 if (!isMuted())
                 {
                     result = "On";
                 }
-                return result; 
-            } 
+
+                return result;
+            }
         }
-//Fix sounds 
+
         private void updateSoundList(object sender, EventArgs e)
         {
             foreach (Sound sound in m_Sounds)
             {
-                foreach (KeyValuePair<string,VolumeInstance> volumeInstance in m_VolumeInstances)
+                foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
                 {
-                    if(volumeInstance.Value.SoundType == sound.GetType())
+                    if (volumeInstance.Value.SoundType == sound.GetType())
                     {
                         sound.Volume = volumeInstance.Value.Volume;
                     }
@@ -68,44 +71,46 @@ namespace SpaceInvaders.Infrastructure.Managers
                 sound.Volume = 0;
             }
         }
+
         public void AddSound(Sound i_Sound)
         {
             m_Sounds.Add(i_Sound);
         }
+
         public void RemoveSound(Sound i_Sound)
         {
             m_Sounds.Remove(i_Sound);
         }
-        public void AddVolumeInstance(string i_InstanceName, VolumeInstance i_VolumeInstance )
+
+        public void AddVolumeInstance(string i_InstanceName, VolumeInstance i_VolumeInstance)
         {
             i_VolumeInstance.VolumeChange += updateSoundList;
-            m_VolumeInstances.Add(i_InstanceName,i_VolumeInstance);
+            m_VolumeInstances.Add(i_InstanceName, i_VolumeInstance);
         }
+
         public void RemoveVolumeInstance(string i_InstanceName)
         {
             m_VolumeInstances.Remove(i_InstanceName);
         }
+
         public VolumeInstance this[string i_InstanceName]
         {
             get
             {
-                VolumeInstance instance =null;
+                VolumeInstance instance = null;
                 m_VolumeInstances.TryGetValue(i_InstanceName, out instance);
                 return instance;
             }
         }
+
         public void Play()
         {
-            updateSoundList(null,EventArgs.Empty);
+            updateSoundList(null, EventArgs.Empty);
         }
-
-
-
-
 
         public void ConfigureSound(Sound sound)
         {
-            foreach (KeyValuePair<string, VolumeInstance> volumeInstance in m_VolumeInstances)
+            foreach (KeyValuePair<string, VolumeInstance> volumeInstance in this.m_VolumeInstances)
             {
                 if (volumeInstance.Value.SoundType == sound.GetType())
                 {

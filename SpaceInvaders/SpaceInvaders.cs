@@ -26,6 +26,7 @@ namespace SpaceInvaders
         private SpriteBatch m_SpriteBatch;
         private ScreensManager m_ScreensManager;
         private Sound m_BackgroundMusic;
+
         public SpaceInvaders()
         {
             m_Graphics = new GraphicsDeviceManager(this);
@@ -64,6 +65,7 @@ namespace SpaceInvaders
             {
                 Exit();
             }
+
             base.Update(gameTime);
         }
 

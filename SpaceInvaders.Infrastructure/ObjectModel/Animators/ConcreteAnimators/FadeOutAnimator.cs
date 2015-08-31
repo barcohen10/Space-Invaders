@@ -1,18 +1,18 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
     public class FadeOutAnimator : SpriteAnimator
     {
-
-        public FadeOutAnimator(TimeSpan i_AnimationLength):base("FadeOutAnimator",i_AnimationLength)
+        public FadeOutAnimator(TimeSpan i_AnimationLength)
+            : base("FadeOutAnimator", i_AnimationLength)
         {
-
         }
+
         protected override void RevertToOriginal()
         {
             this.BoundSprite.Opacity = m_OriginalSpriteInfo.Opacity;

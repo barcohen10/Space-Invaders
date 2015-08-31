@@ -1,10 +1,10 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using Microsoft.Xna.Framework;
-using SpaceInvaders.Infrastructure.ObjectModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
+using Microsoft.Xna.Framework;
+using SpaceInvaders.Infrastructure.ObjectModels;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
@@ -16,7 +16,8 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
             Sprite i_BoundSprite,
             params SpriteAnimator[] i_Animations)
             : base(i_Name, i_AnimationLength, i_BoundSprite, i_Animations)
-        { }
+        { 
+        }
 
         protected override void DoFrame(GameTime i_GameTime)
         {
@@ -37,5 +38,4 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
             }
         }
     }
-
 }
