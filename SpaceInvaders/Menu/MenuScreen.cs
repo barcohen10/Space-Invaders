@@ -113,7 +113,7 @@ namespace SpaceInvaders.Menu
         {
             if (m_Menu.Count > 0)
             {
-                if (m_Mouse.IsActive)
+                if (m_Mouse.IsSelected)
                 {
                     handleMouse();
                 }
