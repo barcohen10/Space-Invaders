@@ -702,5 +702,11 @@ ScrollWheelDelta:   {17}
             }
             return pressed;
         }
+
+
+        public int ScrollWheelDelta
+        {
+            get { throw new System.NotImplementedException(); }
+        }
     }
 }

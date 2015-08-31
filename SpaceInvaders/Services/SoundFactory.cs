@@ -77,7 +77,7 @@ namespace SpaceInvaders.Services
                     break;
             }
 
-            m_soundManager.ConfigureSound(sound);
+            m_soundManager.SetSoundByInstanceType(sound);
             m_soundManager.AddSound(sound);
             return sound;
         }
