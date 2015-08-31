@@ -48,7 +48,7 @@ namespace SpaceInvaders.ObjectModel
         public void InitAnimations()
         {
             ShrinkAnimator shrinkAnimator = new ShrinkAnimator(TimeSpan.FromSeconds(2));
-            VisibleBlinkAnimator blinkAnimator = new VisibleBlinkAnimator(TimeSpan.FromSeconds(0.3), TimeSpan.FromSeconds(2));
+            VisibleBlinkAnimator blinkAnimator = new VisibleBlinkAnimator("Blink", TimeSpan.FromSeconds(0.3), TimeSpan.FromSeconds(2));
             FadeOutAnimator fadeoutAnimator = new FadeOutAnimator(TimeSpan.FromSeconds(2));
             fadeoutAnimator.Finished += fadeoutAnimator_Finished;
             this.Animations.Add(shrinkAnimator);
