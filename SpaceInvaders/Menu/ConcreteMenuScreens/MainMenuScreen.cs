@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
-using C15Ex03Dotan301810610Bar308000322.ObjectModel;
-using C15Ex03Dotan301810610Bar308000322.Screens;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Menu.ConcreteMenuItems;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Screens;
+using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
+namespace SpaceInvaders.Menu.ConcreteMenuScreens
 {
     public class MainMenuScreen : MenuScreen
     {

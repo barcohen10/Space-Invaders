@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu
+namespace SpaceInvaders.Menu
 {
     public delegate void ClickedEventHandler();
 

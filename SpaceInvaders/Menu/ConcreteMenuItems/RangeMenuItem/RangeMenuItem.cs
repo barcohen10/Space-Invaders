@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
+namespace SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem
 {
     public class RangeMenuItem : GameMenuItem
     {

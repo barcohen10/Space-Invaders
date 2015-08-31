@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace C15Ex03Dotan301810610Bar308000322.Services
+namespace SpaceInvaders.Services
 {
     public class ScreenOptionsMng
     {

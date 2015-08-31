@@ -11,10 +11,10 @@ using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.Managers;
-using C15Ex03Dotan301810610Bar308000322.Screens;
+using SpaceInvaders.Screens;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
-using C15Ex03Dotan301810610Bar308000322.Services;
-using C15Ex03Dotan301810610Bar308000322.ObjectModel;
+using SpaceInvaders.Services;
+using SpaceInvaders.ObjectModel;
 
 namespace SpaceInvaders.Services
 {

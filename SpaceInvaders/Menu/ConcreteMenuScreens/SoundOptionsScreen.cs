@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Menu.ConcreteMenuItems;
+using SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem;
+using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens
+namespace SpaceInvaders.Menu.ConcreteMenuScreens
 {
     public class SoundOptionsScreen : MenuScreen
     {

@@ -6,9 +6,9 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
-using C15Ex03Dotan301810610Bar308000322.Menu;
+using SpaceInvaders.Menu;
 
-namespace C15Ex03Dotan301810610Bar308000322.Services
+namespace SpaceInvaders.Services
 {
     public static class TextServices
     {

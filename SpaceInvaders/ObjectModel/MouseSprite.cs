@@ -9,7 +9,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 
-namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
+namespace SpaceInvaders.ObjectModel
 {
     public class MouseSprite : Sprite
     {

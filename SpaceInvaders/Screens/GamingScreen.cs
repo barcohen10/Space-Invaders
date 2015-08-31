@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C15Ex03Dotan301810610Bar308000322.ObjectModel;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +14,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Screens
+namespace SpaceInvaders.Screens
 {
     public class GamingScreen : GameScreen
     {

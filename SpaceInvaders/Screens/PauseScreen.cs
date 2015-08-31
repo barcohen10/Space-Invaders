@@ -9,9 +9,9 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Services;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Screens
+namespace SpaceInvaders.Screens
 {
     public class PauseScreen : GameScreen
     {

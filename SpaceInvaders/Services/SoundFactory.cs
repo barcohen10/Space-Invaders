@@ -10,7 +10,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Services
+namespace SpaceInvaders.Services
 {
     public class SoundFactory
     {

@@ -7,7 +7,7 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound.ConcreteSounds;
 
-namespace C15Ex03Dotan301810610Bar308000322.Services
+namespace SpaceInvaders.Services
 {
     public class SpaceInvadersSoundsMng : SoundsManager
     {

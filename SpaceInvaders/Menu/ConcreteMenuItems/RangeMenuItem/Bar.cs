@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem
+namespace SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem
 {
     public class Bar : Sprite
     {

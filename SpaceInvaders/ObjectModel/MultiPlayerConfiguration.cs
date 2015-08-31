@@ -7,7 +7,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.ObjectModel
+namespace SpaceInvaders.ObjectModel
 {
     public class MultiPlayerConfiguration
     {

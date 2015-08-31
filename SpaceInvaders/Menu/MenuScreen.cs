@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuItems.RangeMenuItem;
-using C15Ex03Dotan301810610Bar308000322.ObjectModel;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Menu.ConcreteMenuItems;
+using SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
@@ -13,7 +13,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu
+namespace SpaceInvaders.Menu
 {
     public abstract class MenuScreen : GameScreen
     {
@@ -101,7 +101,7 @@ namespace C15Ex03Dotan301810610Bar308000322.Menu
 
         public override void Initialize()
         {
-            m_Mouse = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.Mouse) as C15Ex03Dotan301810610Bar308000322.ObjectModel.MouseSprite;
+            m_Mouse = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.Mouse) as MouseSprite;
             m_TitleText = SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.BigText) as Text;
             m_TitleText.TextString = m_MenuTitle;
             m_TitleText.Position = new Vector2(0, 20);

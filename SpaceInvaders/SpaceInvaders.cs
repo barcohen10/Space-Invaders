@@ -8,12 +8,12 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Services;
-using C15Ex03Dotan301810610Bar308000322.Screens;
+using SpaceInvaders.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using C15Ex03Dotan301810610Bar308000322.Menu.ConcreteMenuScreens;
-using C15Ex03Dotan301810610Bar308000322.ObjectModel;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Menu.ConcreteMenuScreens;
+using SpaceInvaders.ObjectModel;
+using SpaceInvaders.Services;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
 namespace SpaceInvaders

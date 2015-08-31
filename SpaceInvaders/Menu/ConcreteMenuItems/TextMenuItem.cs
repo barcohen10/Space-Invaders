@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using C15Ex03Dotan301810610Bar308000322.Services;
+using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Services;
 
-namespace C15Ex03Dotan301810610Bar308000322.Menu
+namespace SpaceInvaders.Menu
 {
     public class TextMenuItem : GameMenuItem
     {
