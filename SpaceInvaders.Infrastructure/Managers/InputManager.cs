@@ -574,7 +574,10 @@ namespace SpaceInvaders.Infrastructure.Managers
             }
         }
 
-        public int ScrollWheelDelta
+        public int 
+            
+            
+            WheelDelta
         {
             get { return m_MouseState.ScrollWheelValue - m_PrevMouseState.ScrollWheelValue; }
         }
