@@ -17,6 +17,7 @@ namespace Infrastructure.ObjectModel.Animators
         private bool        m_Initialized = false;
         private string      m_Name;
         protected bool      m_ResetAfterFinish = true;
+
         protected internal  Sprite m_OriginalSpriteInfo;
 
         public event EventHandler Finished;

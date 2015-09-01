@@ -1,17 +1,26 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
 {
     public class VolumeInstance
     {
         private Type m_SoundType;
-        private float m_Volume, m_MinValue, m_MaxValue,m_VolumeBeforeMute, m_JumpingScale;
-        public Type SoundType { get { return m_SoundType; } }
+        private float m_Volume, m_MinValue, m_MaxValue, m_VolumeBeforeMute, m_JumpingScale;
+
+        public Type SoundType
+        {
+            get
+            {
+                return m_SoundType;
+            }
+        }
+
         public event EventHandler<EventArgs> VolumeChange;
+
         private bool m_Muted = false;
 
         protected virtual void OnVolumeChange()
@@ -32,11 +41,16 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             m_SoundType = i_SoundType;
         }
 
-        public float Volume { get { return m_Volume; } }
+        public float Volume
+        {
+            get
+            {
+                return m_Volume;
+            }
+        }
 
         public void Increase()
         {
-
             m_Volume = MathHelper.Clamp(m_Volume + m_JumpingScale, m_MinValue, m_MaxValue);
             if (!m_Muted)
             {
@@ -65,9 +79,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
             m_Muted = false;
             m_Volume = m_VolumeBeforeMute;
             OnVolumeChange();
-
         }
-
-
     }
 }

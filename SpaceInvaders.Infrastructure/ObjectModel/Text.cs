@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel
 {
@@ -18,10 +18,9 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         private string m_TextString = string.Empty;
         private IInputManager m_InputManager;
 
-
         public Text(GameScreen i_GameScreen, string i_AssetName)
             : base(i_AssetName, i_GameScreen)
-        {   
+        {
         }
 
         public override void Initialize()
@@ -53,8 +52,9 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             get
             {
-                return m_Font.MeasureString(this.TextString).Y ;
+                return m_Font.MeasureString(this.TextString).Y;
             }
+
             set
             {
                 base.Height = value;
@@ -65,8 +65,9 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             get
             {
-                return m_Font.MeasureString(this.TextString).X ;
+                return m_Font.MeasureString(this.TextString).X;
             }
+
             set
             {
                 base.Width = value;
@@ -80,6 +81,5 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
             this.Animations.Enabled = true;
             this.Animations["pulse"].Pause();
         }
-
     }
 }

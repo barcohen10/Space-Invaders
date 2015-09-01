@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
 {
@@ -27,6 +27,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
                 Finished(this, EventArgs.Empty);
             }
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -37,7 +38,6 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Screens
                 m_TimeLeft = m_ScreenTime;
                 OnFinished();
             }
-
         }
     }
 }

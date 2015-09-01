@@ -94,17 +94,20 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Sound
                 }
             }
         }
+
         public void PlayInLoop()
         {
             this.isLooped = true;
             Play();
         }
+
         public float Pan
         {
             get
             {
                 return m_SoundEffectInstance.Pan;
             }
+
             set
             {
                 if (value > -1 && value <= 1)
