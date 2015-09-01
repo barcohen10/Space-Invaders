@@ -12,7 +12,6 @@ using SpaceInvaders.Infrastructure.Managers;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
-
 namespace SpaceInvaders.Screens
 {
     public class GamingScreen : GameScreen

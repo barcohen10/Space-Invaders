@@ -1,8 +1,8 @@
-﻿using SpaceInvaders.Menus;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceInvaders.Menus;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Menus
 {

@@ -71,7 +71,7 @@ namespace SpaceInvaders.ObjectModel
                 m_Velocity.X = 0;
             }
 
-            if ((m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released) && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec))
+            if (m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released && !this.isDying && SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec))
             {
                 m_ShootSound.Play();
                 getAndShootBullet(Color.Red, -r_BulletVelocity);

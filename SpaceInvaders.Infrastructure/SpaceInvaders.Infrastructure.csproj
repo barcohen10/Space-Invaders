@@ -77,7 +77,6 @@
     <Compile Include="ObjectModel\LoadableDrawbleComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceInterfaces\IScreenManager.cs" />
-    <Compile Include="Utilities\AppConfigParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

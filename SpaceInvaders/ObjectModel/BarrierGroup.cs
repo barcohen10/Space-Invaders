@@ -11,11 +11,11 @@ namespace SpaceInvaders.ObjectModel
     public class BarrierGroup : GameComponent
     {
         private const int k_NumOfBarries = 4;
+        private static Color[] m_OriginalPixels;
+        private static bool m_FirstRun = true;
         private List<Barrier> m_Barriers;
         private GameScreen m_GameScreen;
         private float m_CurrentBarriersSpeed;
-        private static Color[] m_OriginalPixels;
-        private static bool m_FirstRun= true;
 
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)

@@ -17,7 +17,7 @@ namespace SpaceInvaders.ObjectModel
     {
         private IInputManager m_InputManager;
         private bool m_IsSelected = false;
-        private List<string> m_TooltipMessages =  new List<string>() { "Click here to use menu with mouse", "Click here to use menu with keyboard" };
+        private List<string> m_TooltipMessages = new List<string>() { "Click here to use menu with mouse", "Click here to use menu with keyboard" };
         private Text m_Tooltip;
 
         public MouseSprite(GameScreen i_GameScreen, string i_AssetName)
