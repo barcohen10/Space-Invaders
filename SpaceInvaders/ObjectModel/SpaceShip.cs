@@ -122,7 +122,7 @@ namespace SpaceInvaders.ObjectModel
         {
             RotateAnimator rotateAnimator = new RotateAnimator(4, RotateAnimator.eDirection.Right, TimeSpan.Zero);
             FadeOutAnimator fadeOutAnimator = new FadeOutAnimator(TimeSpan.FromSeconds(2));
-            VisibleBlinkAnimator blinkAnimator = new VisibleBlinkAnimator("BlinkAnimator", TimeSpan.FromSeconds(0.2), TimeSpan.FromSeconds(2));
+            BlinkAnimator blinkAnimator = new BlinkAnimator("BlinkAnimator", TimeSpan.FromSeconds(0.2), TimeSpan.FromSeconds(2));
             fadeOutAnimator.Finished += fadeOutAnimator_Finished;
             this.Animations.Add(fadeOutAnimator);
             this.Animations.Add(rotateAnimator);

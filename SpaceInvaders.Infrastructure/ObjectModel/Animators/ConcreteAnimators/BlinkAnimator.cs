@@ -1,13 +1,13 @@
-﻿using Infrastructure.ObjectModel.Animators;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.ObjectModel.Animators;
+using Microsoft.Xna.Framework;
 
 namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
 {
-    public abstract class BlinkAnimator : SpriteAnimator
+    public class BlinkAnimator : SpriteAnimator
     {
         private TimeSpan m_BlinkLength;
         private TimeSpan m_TimeLeftForNextBlink;
@@ -39,11 +39,14 @@ namespace SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators
             if (m_TimeLeftForNextBlink.TotalSeconds < 0)
             {
                 // we have elapsed, so blink
-                DoWhenBlink();
+                this.BoundSprite.Visible = !this.BoundSprite.Visible;
                 m_TimeLeftForNextBlink = m_BlinkLength;
             }
         }
 
-        protected abstract void DoWhenBlink();
+        protected override void RevertToOriginal()
+        {
+            this.BoundSprite.Visible = m_OriginalSpriteInfo.Visible;
+        }
     }
 }

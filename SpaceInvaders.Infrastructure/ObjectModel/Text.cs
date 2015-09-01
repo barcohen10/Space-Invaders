@@ -28,7 +28,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
         {
             m_InputManager = Game.Services.GetService(typeof(IInputManager)) as IInputManager;
             base.Initialize();
-            initAnimations();
+            InitAnimations();
         }
 
         public override void Update(GameTime gameTime)
@@ -73,7 +73,7 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
             }
         }
 
-        private void initAnimations()
+        public void InitAnimations()
         {
             PulseAnimator pulseAnimator = new PulseAnimator("pulse", TimeSpan.Zero, 1.03f, 2);
             this.Animations.Add(pulseAnimator);

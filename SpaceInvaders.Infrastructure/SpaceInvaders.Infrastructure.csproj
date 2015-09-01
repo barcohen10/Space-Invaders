@@ -43,15 +43,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Managers\DummyInputManager.cs.cs" />
-    <Compile Include="ObjectModel\Animators\ConcreteAnimators\BlinkAnimator.cs" />
-    <Compile Include="ObjectModel\Animators\ConcreteAnimators\ColorBlinkAnimator.cs" />
     <Compile Include="ObjectModel\Animators\ConcreteAnimators\PulseAnimator.cs" />
     <Compile Include="ObjectModel\Sound\ConcreteSounds\SoundEffect.cs" />
     <Compile Include="ObjectModel\Sound\Configurations\VolumeInstance.cs" />
     <Compile Include="Managers\ScreensManager.cs" />
     <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="ObjectModel\Animators\CompositeAnimator.cs" />
-    <Compile Include="ObjectModel\Animators\ConcreteAnimators\VisibleBlinkAnimator.cs" />
+    <Compile Include="ObjectModel\Animators\ConcreteAnimators\BlinkAnimator.cs" />
     <Compile Include="ObjectModel\Animators\ConcreteAnimators\CellAnimator.cs" />
     <Compile Include="ObjectModel\Animators\ConcreteAnimators\FadeOutAnimator.cs" />
     <Compile Include="ObjectModel\Animators\ConcreteAnimators\RotateAnimator.cs" />

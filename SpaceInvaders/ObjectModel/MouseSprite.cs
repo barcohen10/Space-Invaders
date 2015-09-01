@@ -10,7 +10,6 @@ using SpaceInvaders.Infrastructure.ObjectModels;
 using SpaceInvaders.Infrastructure.ServiceInterfaces;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Services;
-using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 
 namespace SpaceInvaders.ObjectModel
 {
@@ -41,8 +40,6 @@ namespace SpaceInvaders.ObjectModel
                 {
                     TintColor = Color.LimeGreen;
                     m_Tooltip.TextString = m_TooltipMessages[1];
-                    this.Animations["ColorBlink"].Restart();
-                    this.Animations["ColorBlink"].Pause();
                 }
                 else
                 {
@@ -62,7 +59,6 @@ namespace SpaceInvaders.ObjectModel
             m_Tooltip.TextString = m_TooltipMessages[0];
             m_Tooltip.Position = new Vector2(this.Position.X, this.Position.Y + this.Height + 20);
             m_Tooltip.Visible = false;
-            initAnimations();
         }
 
         public override void Update(GameTime gameTime)
@@ -92,14 +88,6 @@ namespace SpaceInvaders.ObjectModel
             }
 
             base.Update(gameTime);
-        }
-
-        private void initAnimations()
-        {
-            ColorBlinkAnimator colorBlinkAnimator = new ColorBlinkAnimator("ColorBlink", Color.Red, TimeSpan.FromSeconds(0.3), TimeSpan.Zero);
-            this.Animations.Add(colorBlinkAnimator);
-            this.Animations.Enabled = true;
-            this.Animations["ColorBlink"].Resume();
         }
     }
 }
