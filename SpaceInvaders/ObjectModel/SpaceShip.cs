@@ -55,7 +55,13 @@ namespace SpaceInvaders.ObjectModel
                 this.Position = new Vector2(this.Position.X, y);
             }
         }
-
+        private bool isAllowedToShoot()
+        {
+            return !this.isDying
+                &&(SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec) 
+                && ((m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released)
+                || (m_InputManager.KeyPressed(Configuration.KeysShoot)));
+        }
         public override void Update(GameTime gameTime)
         {
             if (m_InputManager.KeyboardState.IsKeyDown(Configuration.KeyMoveLeft))
@@ -71,7 +77,7 @@ namespace SpaceInvaders.ObjectModel
                 m_Velocity.X = 0;
             }
 
-            if (m_InputManager.KeyPressed(Configuration.KeysShoot) || (m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released && !this.isDying && (SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec)))
+            if (isAllowedToShoot())
             {
                 m_ShootSound.Play();
                 getAndShootBullet(Color.Red, -r_BulletVelocity);
