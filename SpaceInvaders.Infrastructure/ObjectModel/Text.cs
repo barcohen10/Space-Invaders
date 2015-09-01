@@ -36,7 +36,17 @@ namespace SpaceInvaders.Infrastructure.ObjectModel
             base.Update(gameTime);
         }
 
-        public string TextString { get { return m_TextString; } set { m_TextString = value; } }
+        public string TextString {
+            get 
+            {
+                return m_TextString;
+            }
+            
+            set 
+            {
+                m_TextString = value;
+            }
+        }
 
         protected override void LoadTextureOrFont()
         {
