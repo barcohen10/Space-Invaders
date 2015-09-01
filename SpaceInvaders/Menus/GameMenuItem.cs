@@ -8,6 +8,7 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Infrastructure.ObjectModel.Menu;
 
 namespace SpaceInvaders.Menus
 {

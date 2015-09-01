@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Infrastructure.ObjectModel.Menu;
 
 namespace SpaceInvaders.Menus
 {

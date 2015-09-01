@@ -47,11 +47,8 @@
     <Compile Include="Menus\ConcreteMenuScreens\ScreenOptionsScreen.cs" />
     <Compile Include="Menus\ConcreteMenuScreens\SoundOptionsScreen.cs" />
     <Compile Include="Menus\GameMenuItem.cs" />
-    <Compile Include="Menus\Menu.cs" />
-    <Compile Include="Menus\MenuItem.cs" />
     <Compile Include="Menus\MenuScreen.cs" />
     <Compile Include="Menus\ConcreteMenuItems\TextMenuItem.cs" />
-    <Compile Include="Menus\MethodKey.cs" />
     <Compile Include="ObjectModel\Barrier.cs" />
     <Compile Include="ObjectModel\BarrierGroup.cs" />
     <Compile Include="ObjectModel\Bullet.cs" />

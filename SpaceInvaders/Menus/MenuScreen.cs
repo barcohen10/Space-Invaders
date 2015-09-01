@@ -10,8 +10,8 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 using SpaceInvaders.Menus.ConcreteMenuItems.RangeMenuItem;
-using SpaceInvaders.Infrastructure.ObjectModel.Menus;
 using SpaceInvaders.Menus.ConcreteMenuItems;
+using SpaceInvaders.Infrastructure.ObjectModel.Menu;
 
 namespace SpaceInvaders.Menus
 {

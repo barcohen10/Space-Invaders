@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
+using SpaceInvaders.Infrastructure.ObjectModel.Menu;
 
 namespace SpaceInvaders.Menus.ConcreteMenuItems.RangeMenuItem
 {
