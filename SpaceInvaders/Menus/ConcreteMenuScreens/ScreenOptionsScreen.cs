@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SpaceInvaders.Menu.ConcreteMenuItems;
+using SpaceInvaders.Menus.ConcreteMenuItems;
 using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceInvaders.Menu.ConcreteMenuScreens
+namespace SpaceInvaders.Menus.ConcreteMenuScreens
 {
     public class ScreenOptionsScreen : MenuScreen
     {

@@ -9,7 +9,7 @@ using SpaceInvaders.Infrastructure.ObjectModel.Animators.ConcreteAnimators;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
-namespace SpaceInvaders.Menu
+namespace SpaceInvaders.Menus
 {
     public class GameMenuItem : MenuItem
     {

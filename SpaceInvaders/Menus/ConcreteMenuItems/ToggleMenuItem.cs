@@ -8,7 +8,7 @@ using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Services;
 
-namespace SpaceInvaders.Menu.ConcreteMenuItems
+namespace SpaceInvaders.Menus.ConcreteMenuItems
 {
     public class ToggleMenuItem : GameMenuItem
     {

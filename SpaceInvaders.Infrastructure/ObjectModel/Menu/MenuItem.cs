@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceInvaders.Menu
+namespace SpaceInvaders.Infrastructure.ObjectModel.Menu
 {
     public delegate void ClickedEventHandler();
 
@@ -31,9 +31,6 @@ namespace SpaceInvaders.Menu
             get { return r_ItemName; }
         }
 
-        /// <summary>
-        /// Run all the methods of menu item in his ClickedEventHandler delegate
-        /// </summary>
         public void RunMethod(Keys i_Key)
         {
             if(m_AllMethods.ContainsKey(i_Key))

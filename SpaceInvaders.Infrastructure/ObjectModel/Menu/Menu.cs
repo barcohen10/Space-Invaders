@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SpaceInvaders.Menu
+namespace SpaceInvaders.Infrastructure.ObjectModel.Menu
 {
     /// <summary>
     /// Dynamic menu (Delegates)

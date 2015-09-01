@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SpaceInvaders.Menu.ConcreteMenuItems;
-using SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Services;
 using Microsoft.Xna.Framework;
@@ -11,8 +9,11 @@ using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
+using SpaceInvaders.Menus.ConcreteMenuItems.RangeMenuItem;
+using SpaceInvaders.Infrastructure.ObjectModel.Menus;
+using SpaceInvaders.Menus.ConcreteMenuItems;
 
-namespace SpaceInvaders.Menu
+namespace SpaceInvaders.Menus
 {
     public abstract class MenuScreen : GameScreen
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceInvaders.Menu
+namespace SpaceInvaders.Menus
 {
     public class MethodKey
     {

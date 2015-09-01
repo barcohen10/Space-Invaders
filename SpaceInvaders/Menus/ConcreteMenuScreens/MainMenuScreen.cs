@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SpaceInvaders.Menu.ConcreteMenuItems;
+using SpaceInvaders.Menus.ConcreteMenuItems;
 using SpaceInvaders.ObjectModel;
 using SpaceInvaders.Screens;
 using SpaceInvaders.Services;
@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Infrastructure.ObjectModel;
 
-namespace SpaceInvaders.Menu.ConcreteMenuScreens
+namespace SpaceInvaders.Menus.ConcreteMenuScreens
 {
     public class MainMenuScreen : MenuScreen
     {

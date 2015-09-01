@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
 using SpaceInvaders.Infrastructure.ObjectModels;
 
-namespace SpaceInvaders.Menu.ConcreteMenuItems.RangeMenuItem
+namespace SpaceInvaders.Menus.ConcreteMenuItems.RangeMenuItem
 {
     public class Rectangle : Sprite
     {

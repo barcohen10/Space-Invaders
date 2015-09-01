@@ -11,7 +11,7 @@ using SpaceInvaders.Services;
 using SpaceInvaders.Screens;
 using SpaceInvaders.Infrastructure.ObjectModel;
 using SpaceInvaders.Infrastructure.ObjectModel.Screens;
-using SpaceInvaders.Menu.ConcreteMenuScreens;
+using SpaceInvaders.Menus.ConcreteMenuScreens;
 using SpaceInvaders.Infrastructure.ObjectModel.Sound;
 
 namespace SpaceInvaders

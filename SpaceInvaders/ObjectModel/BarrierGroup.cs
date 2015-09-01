@@ -14,8 +14,8 @@ namespace SpaceInvaders.ObjectModel
         private List<Barrier> m_Barriers;
         private GameScreen m_GameScreen;
         private float m_CurrentBarriersSpeed;
-        private Color[] m_OriginalPixels;
-        private bool m_FirstRun = true;
+        private static Color[] m_OriginalPixels;
+        private static bool m_FirstRun= true;
 
         public BarrierGroup(GameScreen i_GameScreen)
             : base(i_GameScreen.Game)

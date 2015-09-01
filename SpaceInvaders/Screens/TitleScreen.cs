@@ -26,7 +26,6 @@ namespace SpaceInvaders.Screens
 
         public override void Initialize()
         {
-            SpritesFactory.CreateSprite(this, SpritesFactory.eSpriteType.SpaceBackground);
             base.Initialize();
         }
 

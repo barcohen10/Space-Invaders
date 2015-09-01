@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="Managers\DummyInputManager.cs.cs" />
     <Compile Include="ObjectModel\Animators\ConcreteAnimators\PulseAnimator.cs" />
+    <Compile Include="ObjectModel\Menu\Menu.cs" />
+    <Compile Include="ObjectModel\Menu\MenuItem.cs" />
+    <Compile Include="ObjectModel\Menu\MethodKey.cs" />
     <Compile Include="ObjectModel\Sound\ConcreteSounds\SoundEffect.cs" />
     <Compile Include="ObjectModel\Sound\Configurations\VolumeInstance.cs" />
     <Compile Include="Managers\ScreensManager.cs" />
