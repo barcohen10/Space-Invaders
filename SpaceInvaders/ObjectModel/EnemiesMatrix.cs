@@ -12,7 +12,7 @@ namespace SpaceInvaders.ObjectModel
 {
     public class EnemiesMatrix : GameComponent
     {
-        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 1;
+        private const int k_NumOfPinkEnemies = 1, k_NumOfLightBlueEnemies = 2, k_NumOfYellowEnemies = 2, k_StartupNumOfColumns = 9;
         private static Random s_RandomGenerator = new Random();
         private readonly List<List<Enemy>> r_EnemiesMatrix;
         private int m_YellowEnemyPoints = int.Parse(ConfigurationManager.AppSettings["Scores.YellowEnemy"].ToString());
