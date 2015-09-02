@@ -55,13 +55,15 @@ namespace SpaceInvaders.ObjectModel
                 this.Position = new Vector2(this.Position.X, y);
             }
         }
+
         private bool isAllowedToShoot()
         {
             return !this.isDying
-                &&(SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec) 
-                && ((m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released)
-                || (m_InputManager.KeyPressed(Configuration.KeysShoot)));
+                && (SpaceInvadersServices.GetShootingSpriteAmountOfAliveBullets(this.GameScreen, this) < r_MaxAmountOfBulletsAtOnec)
+                && (m_LastBTNState == ButtonState.Pressed && Configuration.IsMouseMovementEnable && m_InputManager.MouseState.LeftButton == ButtonState.Released
+                || m_InputManager.KeyPressed(Configuration.KeysShoot));
         }
+
         public override void Update(GameTime gameTime)
         {
             if (m_InputManager.KeyboardState.IsKeyDown(Configuration.KeyMoveLeft))
