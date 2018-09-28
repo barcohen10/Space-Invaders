@@ -1,9 +1,0 @@
-==========================Exercise Checking Report==========================
-Exercise No...........: 03
-First Student Details.:  301810610 - Dotan Douek
-Second Student Details:  308000322 - Bar Cohen
-Delivery Date.........: 03/09/2015
-Delivered In Delay....: NO
-Delay Reason..........: 
-Comments..............: Sound works but not on all computers , something wrong with the framework.
-=======================End Exercise Checking Report=========================
